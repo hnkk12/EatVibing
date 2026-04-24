@@ -1,150 +1,123 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
-import React from "react";
-import Grid from "./_components/item_grid";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { motion } from "framer-motion";
 import {
-  Zap,
-  Globe,
-  CreditCard,
-  CheckCircle2,
-  ShieldCheck,
+  Home,
+  Brain,
+  BookOpen,
+  NotepadText,
+  User,
+  Asterisk,
+  Layout,
+  Search,
 } from "lucide-react";
-import "./App.css";
 import Logo from "./_components/logo";
-import Chat from "./_components/pages/Chat.jsx";
-import Guide from "./_components/pages/Guide.jsx";
-import RecommendPage from "./_components/pages/RecommendPage.jsx";
-function Home() {
+import { BrowserRouter } from "react-router-dom";
+const Navbar = () => {
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-white font-sans">
-      {/* LEFT SIDE: Sidebar (Fixed/Sticky on Desktop) */}
-      <section className="w-full md:w-[400px] lg:w-[450px] bg-[#3d4a16] text-white p-8 md:p-12 md:h-screen md:sticky md:top-0 flex flex-col justify-between">
-        <div>
-          {/* Logo */}
-          <Logo />
-          {/* Hero Content */}
-          <h1 className="text-5xl md:text-6xl font-normal leading-tight mb-6">
-            Money Transfers Made <span className="text-[#b4eb77]">Simple</span>
-          </h1>
-          <p className="text-gray-300 text-lg mb-12">
-            No personal credit checks or founder guarantee.
-          </p>
+    <nav className="flex items-center justify-between px-8 py-6">
+      {/* Logo */}
+      <Logo />
 
-          {/* Offerings Grid */}
+      {/* Center Icons */}
+      <div className="flex items-center gap-6 text-zinc-400">
+        <Home className="w-5 h-5 cursor-pointer hover:text-zinc-900 transition-colors" />
+        <Brain className="w-5 h-5 cursor-pointer hover:text-zinc-900 transition-colors" />
+        <BookOpen className="w-5 h-5 cursor-pointer hover:text-zinc-900 transition-colors" />
+        <NotepadText className="w-5 h-5 cursor-pointer hover:text-zinc-900 transition-colors" />
+      </div>
 
-          <Grid />
-        </div>
-
-        {/* Footer Links (Left) */}
-        <div className="mt-12 md:mt-0 flex flex-wrap gap-4 text-sm text-gray-300">
-          <a href="#" className="hover:text-white">
-            Contact
-          </a>
-          <a href="#" className="hover:text-white">
-            Social
-          </a>
-          <a href="#" className="hover:text-white">
-            Address
-          </a>
-          <a href="#" className="hover:text-white">
-            Legal Terms
-          </a>
-        </div>
-      </section>
-
-      {/* RIGHT SIDE: Scrollable Content */}
-      <main className="flex-1 p-6 md:p-16 flex flex-col items-center justify-center">
-        {/* Header (Top Right) - Hidden on Mobile if needed, or moved */}
-        <div className="w-full flex justify-end mb-12 absolute top-8 right-8 hidden md:flex">
-          <button className="bg-[#b4eb77] text-black px-6 py-2 rounded-md font-semibold hover:bg-[#a2d66a] transition-colors">
-            Get started
-          </button>
-        </div>
-
-        {/* Main Image & Badges Container */}
-        <div className="relative w-full max-w-4xl mx-auto rounded-[40px] overflow-hidden shadow-2xl">
-          <img
-            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1000"
-            alt="User smiling"
-            className="w-full h-[500px] object-cover"
+      {/* Search & Profile */}
+      <div className="flex items-center gap-4">
+        <div className="relative group">
+          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <Search className="w-4 h-4 text-zinc-400 group-focus-within:text-zinc-900 transition-colors" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            className="pl-10 pr-4 py-2 bg-zinc-50 border border-zinc-200 rounded-full text-sm font-medium focus:outline-none focus:ring-1 focus:ring-zinc-400 focus:border-zinc-400 w-48 transition-all duration-300 group-hover:w-56"
           />
-
-          {/* Badges Overlay */}
-          <div className="absolute inset-0 p-8 flex flex-col justify-between pointer-events-none">
-            <div className="flex justify-between items-start">
-              <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-2 flex items-center gap-2 text-white">
-                <div className="bg-[#b4eb77] p-1 rounded-full text-black">
-                  <CreditCard size={14} />
-                </div>
-                <span className="text-sm font-medium italic">
-                  Interest earned!
-                </span>
-              </div>
-
-              <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-2 flex items-center gap-2 text-white">
-                <CheckCircle2 size={18} className="text-[#b4eb77]" />
-                <span className="text-sm font-medium italic">Money sent!</span>
-              </div>
-            </div>
-
-            <div className="flex justify-center">
-              <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-6 py-3 flex items-center gap-2 text-white translate-y-4">
-                <div className="bg-[#b4eb77] p-1 rounded-md text-black">
-                  <ShieldCheck size={16} />
-                </div>
-                <span className="text-lg font-medium italic">
-                  Payment recieved!
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
-
-        {/* Value Proposition */}
-        <div className="mt-20 text-center max-w-md">
-          <h2 className="text-2xl md:text-3xl font-medium text-gray-800 leading-tight">
-            We escalate transfer efficiency and productivity
-          </h2>
+        <div className="w-10 h-10 flex items-center justify-center rounded-full border border-zinc-200 hover:bg-zinc-50 cursor-pointer transition-colors">
+          <User className="w-5 h-5 text-zinc-900" />
         </div>
+      </div>
+    </nav>
+  );
+};
 
-        {/* Partner Logos */}
-        <div className="mt-20 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
-          <div className="flex items-center gap-1 font-bold text-[#3d4a16]">
-            <Globe size={20} /> Blooming
+const Hero = () => {
+  return (
+    <div className="relative flex-1 flex flex-col justify-center px-16 pb-20">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-2xl"
+      >
+        <h1 className="font-display text-8xl font-bold leading-[0.88] tracking-tighter text-zinc-900 mb-12">
+          Deliciously <br />
+          effortless
+          <br />
+          dining
+        </h1>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-full shadow-sm border border-zinc-100 cursor-pointer hover:shadow-md transition-shadow duration-300"
+        >
+          <div className="bg-zinc-900 p-1 rounded-full">
+            <Asterisk className="w-4 h-4 text-white" />
           </div>
-          <div className="flex items-center gap-1 font-bold text-[#3d4a16]">
-            <Zap size={20} /> BuildRight
-          </div>
-          <div className="flex items-center gap-1 font-bold text-[#3d4a16]">
-            <CheckCircle2 size={20} /> Flowbot
-          </div>
-          <div className="flex items-center gap-1 font-bold text-[#3d4a16]">
-            EXPOR
-          </div>
-          <div className="flex items-center gap-1 font-bold text-[#3d4a16]">
-            Redo
-          </div>
-        </div>
-      </main>
+          <span className="text-xl font-medium tracking-tight text-zinc-900">
+            Try AI Suggestion
+          </span>
+        </motion.div>
+      </motion.div>
+
+      {/* Decorative Walker Image (Absolute positioned) */}
+      <div className="absolute right-0 bottom-0 top-0 w-1/2 flex items-end justify-center pointer-events-none overflow-hidden select-none">
+        <motion.img
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 1 }}
+          src="https://images.unsplash.com/photo-1476973422084-e0fa66df945c?auto=format&fit=crop&q=80&w=1200"
+          alt="Minimalist person walking"
+          className="h-[70%] object-contain mix-blend-multiply opacity-90"
+          referrerPolicy="no-referrer"
+        />
+      </div>
     </div>
   );
-}
-function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Trang chủ hiển thị giao diện hiện tại */}
-        <Route path="/" element={<Home />} />
+};
 
-        {/* Các trang con khi click vào Grid sẽ hiện ra ở đây */}
-        <Route path="/ai-menu" element={<Chat />} />
-        <Route path="/guide" element={<Guide />} />
-        <Route path="/recommendation" element={<RecommendPage />} />
-      </Routes>
-    </Router>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <main className="h-screen w-screen bg-[#F7F7F7] relative overflow-hidden">
+        {" "}
+        {/* Background Ribbed Texture */}
+        <div className="absolute inset-0 bg-ribbed opacity-40 pointer-events-none" />
+        {/* Floating Gradient Accents */}
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-zinc-800/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-zinc-800/10 rounded-full blur-[100px]" />
+        {/* Main Container Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="w-full h-full bg-[#F7F7F7] shadow-2xl overflow-hidden flex flex-col relative z-10 border border-white/20"
+        >
+          <Navbar />
+          <Hero />
+        </motion.div>
+      </main>
+    </BrowserRouter>
   );
 }
-export default App;
