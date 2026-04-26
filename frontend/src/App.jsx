@@ -8,7 +8,7 @@ import RecommendPage from "./_components/pages/RecommendPage";
 export default function App() {
   return (
     <BrowserRouter>
-      <main className="min-h-screen w-full bg-[#F7F7F7] relative overflow-hidden flex flex-col">
+      <main className="h-screen w-full bg-[#F7F7F7] relative overflow-hidden flex flex-col">
         {" "}
         {/* Background Ribbed Texture */}
         <div className="absolute inset-0 bg-ribbed opacity-40 pointer-events-none" />
@@ -20,7 +20,7 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="w-full h-full bg-[#F7F7F7] overflow-hidden flex flex-col flex-1 relative z-10 "
+          className="w-full flex flex-col flex-1 min-h-0 relative z-10"
         >
           <Navbar />
           <Routes>
