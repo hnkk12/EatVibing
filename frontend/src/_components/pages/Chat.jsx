@@ -81,7 +81,7 @@ const Chat = () => {
 
       {/* Input Section */}
       <footer className="flex-shrink-0 max-w-3xl mx-auto w-full pb-6 px-4">
-        <div className="bg- rounded-3xl p-4 shadow-xl border border-white/5">
+        <div className="bg-white rounded-3xl p-4 shadow-xl border border-white/5">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -95,27 +95,6 @@ const Chat = () => {
             className="w-full bg-transparent border-none outline-none resize-none text-lg px-2 mb-4 placeholder-[#8e918f] text-black"
             rows={1}
           />
-          <div className="flex justify-between items-center">
-            <div className="flex gap-4 text-[#c4c7c5]">
-              <Plus
-                className="cursor-pointer hover:text-white transition-colors"
-                size={20}
-              />
-              <Sliders
-                className="cursor-pointer hover:text-white transition-colors"
-                size={20}
-              />
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1 text-sm font-medium text-[#c4c7c5] cursor-pointer hover:bg-[#2e2e2e] px-2 py-1 rounded-lg transition-colors">
-                Fast <ChevronDown size={16} />
-              </div>
-              <Mic
-                className="text-[#c4c7c5] cursor-pointer hover:text-white transition-colors"
-                size={20}
-              />
-            </div>
-          </div>
         </div>
         <p className="text-center text-[11px] text-black mt-4">
           EatVibing can make mistakes. Check important info.

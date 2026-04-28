@@ -8,7 +8,7 @@ import RecommendPage from "./_components/pages/RecommendPage";
 export default function App() {
   return (
     <BrowserRouter>
-      <main className="h-screen w-full bg-[#F7F7F7] relative overflow-hidden flex flex-col">
+      <main className="min-h-screen overflow-x-hidden w-full bg-[#F7F7F7] relative overflow-y-auto flex flex-col">
         {" "}
         {/* Background Ribbed Texture */}
         <div className="absolute inset-0 bg-ribbed opacity-40 pointer-events-none" />
