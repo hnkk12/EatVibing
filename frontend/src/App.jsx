@@ -4,11 +4,11 @@ import Navbar from "./_components/navbar";
 import Hero from "./_components/hero";
 import Chat from "./_components/pages/Chat";
 import Guide from "./_components/pages/Guide";
-import RecommendPage from "./_components/pages/RecommendPage";
+import Community from "./_components/pages/Community";
 export default function App() {
   return (
     <BrowserRouter>
-      <main className="min-h-screen overflow-x-hidden w-full bg-[#F7F7F7] relative overflow-y-auto flex flex-col">
+      <main className="min-h-screen overflow-x-hidden w-full bg-white relative overflow-y-auto flex flex-col">
         {" "}
         {/* Background Ribbed Texture */}
         <div className="absolute inset-0 bg-ribbed opacity-40 pointer-events-none" />
@@ -27,7 +27,7 @@ export default function App() {
             <Route path="/" element={<Hero />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/guide" element={<Guide />} />
-            <Route path="/rcm-page" element={<RecommendPage />} />
+            <Route path="/community" element={<Community />} />
           </Routes>
         </motion.div>
       </main>

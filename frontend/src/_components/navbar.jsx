@@ -48,7 +48,7 @@ const Navbar = () => {
     { to: "/", label: "Home" },
     { to: "/chat", label: "AI Assistance" },
     { to: "/guide", label: "Guideline" },
-    { to: "/rcm-page", label: "Community" },
+    { to: "/community", label: "Community" },
   ];
 
   return (
@@ -131,7 +131,15 @@ const Navbar = () => {
             onClick={() => setShowUserMenu(!showUserMenu)}
             className="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200"
           >
-            <User className="w-4 h-4 text-zinc-900" />
+            {user ? (
+              <img
+                src={user.user_metadata.avatar_url}
+                className="w-full h-full object-cover rounded-full"
+                alt="Avatar"
+              />
+            ) : (
+              <User className="w-4 h-4 text-zinc-900" />
+            )}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -149,17 +157,42 @@ const Navbar = () => {
       {/* Mobile User Menu */}
       {showUserMenu && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-zinc-200 p-4 flex flex-col shadow-lg">
-          <button
-            onClick={handleGoogleLogin}
-            className="w-full py-4 px-4 bg-white border border-zinc-200 rounded-2xl flex items-center justify-center gap-3 font-bold text-zinc-700 active:scale-[0.98] transition-transform"
-          >
-            <img
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              alt="Google"
-              className="w-5 h-5"
-            />
-            Continue with Google
-          </button>
+          {user ? (
+            <>
+              <div className="flex items-center gap-3 px-2 pb-2 border-b border-zinc-100">
+                <img
+                  src={user.user_metadata.avatar_url}
+                  className="w-10 h-10 rounded-full"
+                />
+                <div>
+                  <p className="text-sm font-bold text-zinc-800">
+                    {user.user_metadata.full_name}
+                  </p>
+                  <p className="text-[10px] text-zinc-400 uppercase tracking-widest font-bold">
+                    Member
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="w-full py-3 bg-red-50 text-red-500 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-colors active:scale-95"
+              >
+                <LogOut size={16} /> Sign Out
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={handleGoogleLogin}
+              className="w-full py-4 px-4 bg-white border border-zinc-200 rounded-2xl flex items-center justify-center gap-3 font-bold text-zinc-700 active:scale-[0.98] transition-transform shadow-sm"
+            >
+              <img
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                alt="Google"
+                className="w-5 h-5"
+              />
+              Continue with Google
+            </button>
+          )}
         </div>
       )}
       {/* Mobile Nav Links (Hamburger menu) */}

@@ -68,7 +68,7 @@ const Guide = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#FBFBFB] text-gray-800 font-sans selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white text-gray-800 font-sans selection:bg-black selection:text-white">
       <div className="max-w-[1440px] mx-auto px-6 py-12 flex gap-12">
         {/* --- SIDEBAR LEFT --- */}
         <aside className="w-1/5 sticky top-12 self-start">

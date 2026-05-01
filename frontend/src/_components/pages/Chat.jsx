@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import axios from "axios";
 import {
   Book,
   ChefHat,
@@ -11,10 +13,44 @@ import {
   Mic,
   Sliders,
   ChevronDown,
-} from "lucide-react"; // Sử dụng lucide-react cho các icon
+  ArrowUp,
+} from "lucide-react";
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  //send message function
+  const handleSend = async (customPrompt) => {
+    const textToSend = customPrompt || input;
+    if (!textToSend.trim() || isLoading) return;
+
+    //add user message to UI
+    const userMsg = { role: "user", text: textToSend };
+    setMessages((prev) => [...prev, userMsg]);
+    setInput("");
+    setIsLoading(true);
+    try {
+      //API calling to backend
+      const response = await axios.post("http://localhost:5000/api/ai/chat", {
+        prompt: textToSend,
+      });
+
+      //add AI responses to UI
+      const aiMsg = { role: "assistant", text: response.data.answer };
+      setMessages((prev) => [...prev, aiMsg]);
+    } catch (error) {
+      console.error("AI error", error);
+      const errorMsg = {
+        role: "assistant",
+        text: "Sorry Chef, there were some unexpected errors, please try again!",
+      };
+      setMessages((prev) => [...prev, errorMsg]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const suggestButtons = [
     {
       icon: <Book size={18} className="text-orange-400" />,
@@ -31,7 +67,7 @@ const Chat = () => {
   ];
 
   return (
-    <div className="flex flex-col flex-1 min-h-0 overflow-hidden text-[#e3e3e3] font-sans relative">
+    <div className="flex flex-col flex-1 min-h-0 overflow-hidden text-[#e3e3e3] font-sans relative bg-white">
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto no-scrollbar min-h-0">
         <div className="max-w-2xl mx-auto w-full flex flex-col px-4 py-10">
@@ -71,7 +107,13 @@ const Chat = () => {
                       : "bg-white text-black border border-zinc-200"
                   }`}
                 >
-                  {msg.text}
+                  {msg.role === "user" ? (
+                    msg.text
+                  ) : (
+                    <div className="prose prose-sm max-w-none prose-zinc">
+                      <ReactMarkdown>{msg.text}</ReactMarkdown>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
