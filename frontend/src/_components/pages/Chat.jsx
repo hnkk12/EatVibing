@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import { supabase } from "../../supabaseClient";
 import {
   Book,
   ChefHat,
@@ -19,11 +20,55 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  //scroll
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  //load history when accessing tab
+  useEffect(() => {
+    const fetchHistory = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        try {
+          const response = await axios.get(
+            `http://localhost:5000/api/ai/history/${user.id}`,
+          );
+
+          //map data from DB to text for UI
+          const history = response.data.map((m) => ({
+            role: m.role,
+            text: m.content,
+          }));
+          setMessages(history);
+        } catch (error) {
+          console.error("Error when loading history chat", error);
+        }
+      }
+    };
+    fetchHistory();
+  }, []);
 
   //send message function
   const handleSend = async (customPrompt) => {
     const textToSend = customPrompt || input;
     if (!textToSend.trim() || isLoading) return;
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      alert("Login to save chat history");
+      return;
+    }
 
     //add user message to UI
     const userMsg = { role: "user", text: textToSend };
@@ -34,6 +79,7 @@ const Chat = () => {
       //API calling to backend
       const response = await axios.post("http://localhost:5000/api/ai/chat", {
         prompt: textToSend,
+        userId: user.id,
       });
 
       //add AI responses to UI
@@ -87,6 +133,7 @@ const Chat = () => {
                 {suggestButtons.map((btn, idx) => (
                   <button
                     key={idx}
+                    onClick={() => handleSend(btn.label)}
                     className="flex items-center gap-2 bg-white border-black text-black hover:bg-slate-100 transition-colors px-4 py-2.5 rounded-full text-sm font-medium border border-transparent active:border-zinc-600"
                   >
                     {btn.icon}
@@ -96,7 +143,7 @@ const Chat = () => {
               </div>
             </div>
           ) : (
-            /* Nếu đã bắt đầu chat -> Hiện danh sách tin nhắn */
+            /* -> Hiện danh sách tin nhắn */
             <div className="flex flex-col gap-6 w-full pb-20">
               {messages.map((msg, i) => (
                 <div
@@ -116,6 +163,7 @@ const Chat = () => {
                   )}
                 </div>
               ))}
+              <div ref={messagesEndRef}></div>
             </div>
           )}
         </div>

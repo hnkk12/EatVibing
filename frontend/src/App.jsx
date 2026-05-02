@@ -5,10 +5,11 @@ import Hero from "./_components/hero";
 import Chat from "./_components/pages/Chat";
 import Guide from "./_components/pages/Guide";
 import Community from "./_components/pages/Community";
+import AdminDashboard from "./_components/pages/AdminDashBoard";
 export default function App() {
   return (
     <BrowserRouter>
-      <main className="min-h-screen overflow-x-hidden w-full bg-white relative overflow-y-auto flex flex-col">
+      <main className="h-screen overflow-x-hidden w-full bg-white relative overflow-hidden flex flex-col">
         {" "}
         {/* Background Ribbed Texture */}
         <div className="absolute inset-0 bg-ribbed opacity-40 pointer-events-none" />
@@ -20,7 +21,7 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="w-full flex flex-col flex-1 min-h-0 relative z-10"
+          className="w-full flex flex-col flex-1 min-h-0 relative z-10 "
         >
           <Navbar />
           <Routes>
@@ -28,6 +29,7 @@ export default function App() {
             <Route path="/chat" element={<Chat />} />
             <Route path="/guide" element={<Guide />} />
             <Route path="/community" element={<Community />} />
+            <Route path="/admin" element={<AdminDashboard />}></Route>
           </Routes>
         </motion.div>
       </main>

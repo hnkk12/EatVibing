@@ -1,5 +1,4 @@
-const supabase = require("../config/supabase");
-
+const { supabase } = require("../config/supabase");
 // [GET] Lấy tất cả món ăn kèm nguyên liệu và công thức
 exports.getAllMeals = async (req, res) => {
   try {
@@ -30,7 +29,9 @@ exports.createMeal = async (req, res) => {
     // 2. Insert ingredients nếu có
     if (ingredients?.length) {
       const ingData = ingredients.map((i) => ({ meal_id: meal.id, data: i }));
-      const { error: ingErr } = await supabase.from("ingredients").insert(ingData);
+      const { error: ingErr } = await supabase
+        .from("ingredients")
+        .insert(ingData);
       if (ingErr) throw ingErr;
     }
 
