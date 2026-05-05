@@ -170,21 +170,23 @@ const Chat = () => {
       </main>
 
       {/* Input Section */}
-      <footer className="flex-shrink-0 max-w-3xl mx-auto w-full pb-6 px-4">
-        <div className="bg-white rounded-3xl p-4 shadow-xl border border-white/5">
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
-            placeholder="Ask EatVibing"
-            className="w-full bg-transparent border-none outline-none resize-none text-lg px-2 mb-4 placeholder-[#8e918f] text-black"
-            rows={1}
-          />
+      <footer className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white/90 to-transparent pb-6 px-4 z-20">
+        <div className="max-w-3xl mx-auto w-full">
+          <div className="bg-white rounded-3xl p-4 shadow-2xl border border-zinc-200">
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSend();
+                }
+              }}
+              placeholder="Ask EatVibing"
+              className="w-full bg-transparent border-none outline-none resize-none text-lg px-2 mb-4 placeholder-[#8e918f] text-black"
+              rows={1}
+            />
+          </div>
         </div>
         <p className="text-center text-[11px] text-black mt-4">
           EatVibing can make mistakes. Check important info.

@@ -9,8 +9,7 @@ import AdminDashboard from "./_components/pages/AdminDashBoard";
 export default function App() {
   return (
     <BrowserRouter>
-      <main className="h-screen overflow-x-hidden w-full bg-white relative overflow-hidden flex flex-col">
-        {" "}
+      <main className="min-h-screen w-full bg-white relative overflow-x-hidden flex flex-col">
         {/* Background Ribbed Texture */}
         <div className="absolute inset-0 bg-ribbed opacity-40 pointer-events-none" />
         {/* Floating Gradient Accents */}
