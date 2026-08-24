@@ -1,201 +1,354 @@
-# BÁO CÁO THUYẾT MINH ĐỀ TÀI NGHIÊN CỨU KHOA HỌC / DỰ ÁN CÔNG NGHỆ
+# BÁO CÁO THUYẾT MINH ĐỀ TÀI NGHIÊN CỨU KHOA HỌC & DỰ ÁN CÔNG NGHỆ (AISC 2026)
 
 # 🥗 EATVIBING
-### HỆ THỐNG TRỢ LÝ ẨM THỰC THÔNG MINH CÁ NHÂN HÓA VÀ LẬP THỰC ĐƠN DINH DƯỠNG TỰ ĐỘNG ỨNG DỤNG TRÍ TUỆ NHÂN TẠO (AI)
-*(Smart Personalized Culinary & AI Meal Planning Platform)*
+## HỆ THỐNG TRỢ LÝ AI ĂN UỐNG CÁ NHÂN HÓA VÀ HỖ TRỢ RA QUYẾT ĐỊNH ẨM THỰC TỰ ĐỘNG THEO VÒNG LẶP PANTRY-TO-PLATE
+*(EatVibing – Personalized AI Food Coach & Culinary Decision System)*
+
+---
+
+## 🧭 PHƯƠNG HƯỚNG SẢN PHẨM CHỐT CHO AISC'26
+
+### North Star
+EatVibing được phát triển như một **Personalized AI Food Coach & Trust-Grounded Culinary Decision System**, không phải kho công thức, chatbot hỏi–đáp hay ứng dụng ép người dùng theo một thực đơn cứng. North Star của sản phẩm là: **mỗi ngày giúp người dùng đi từ bối cảnh thật trong bếp đến một quyết định bữa ăn có thể thực hiện, có căn cứ và ngày càng phù hợp hơn nhờ dữ liệu kết quả thực tế**.
+
+### Beachhead user và job-to-be-done
+- **Primary user:** người 18–35 tuổi sống một mình hoặc theo cặp, là sinh viên/nhân viên trẻ, đã có động lực tự nấu nhưng thiếu thời gian và “mental bandwidth” để quyết định, quản lý pantry và phối hợp các mục tiêu ăn uống.
+- **Primary job:** “Với những gì tôi đang có, thời gian/ngân sách/ràng buộc của tôi hôm nay, hãy giúp tôi chọn và nấu một bữa phù hợp mà tôi có thể tin cậy.”
+- Phân khúc mở rộng gồm hộ gia đình, người theo mục tiêu thể chất, creator/chuyên gia ẩm thực và đối tác grocery/wellness/campus. Phạm vi được xác định theo nhu cầu, không giới hạn theo quốc gia; hệ thống dùng language/market packs để bản địa hóa.
+
+### Bốn trụ cột sản phẩm
+1. **Persistent Personal Food Model:** hồ sơ bền vững kết hợp profile, pantry, khẩu vị, ràng buộc và chuỗi hành vi `View → Save → Pick → Cook → Skip → Repeat → Swap → Leftover/Waste`.
+2. **Adaptive Guidance, not rigid planning:** Personalized Guideline cung cấp lựa chọn theo bữa/ngày/tuần và giải thích “Why this meal?”; Trending Guideline dùng qualified engagement nhưng không bao giờ vượt hard constraints.
+3. **AI–Tool Separation:** AI Coach xử lý hội thoại Text/Voice, ambiguity, retrieval/adaptation và giải thích; calculator, constraint engine, pantry diff và policy engine xử lý các phép tính hoặc quyết định cần tính xác định.
+4. **Culinary Trust Layer:** sáu cổng Identity & Quantity, Constraint, Nutrition, Food Safety, Feasibility & Waste, Evidence & Disclosure; đầu ra chỉ ở ba trạng thái `SAFE / REVIEW / BLOCK` và fail-closed khi thiếu dữ liệu quan trọng.
+
+### Nguyên tắc claim và đánh giá
+- Không tuyên bố “an toàn tuyệt đối” hay thay thế bác sĩ/chuyên gia dinh dưỡng. Mọi claim quan trọng phải có nguồn, phiên bản dữ liệu, assumptions, confidence và giới hạn sử dụng.
+- Mục tiêu dị ứng được đo bằng **zero critical false negative trên bộ acceptance test có kiểm soát**, sau đó tiếp tục red-team và expert review; không suy diễn thành bảo đảm tuyệt đối ngoài đời thực.
+- Số liệu dinh dưỡng hiển thị phải truy được về bản ghi nguồn và có thể tái tính; LLM không tự tạo con số dinh dưỡng hoặc nới hard constraints.
+- Tác động giảm food waste, mức chấp nhận guideline và khả năng giữ chân được trình bày như mục tiêu pilot có baseline, không phải kết quả đã chứng minh.
 
 ---
 
 ## 📌 TÓM TẮT DỰ ÁN (EXECUTIVE SUMMARY)
-**EatVibing** là nền tảng công nghệ ẩm thực thế hệ mới tích hợp Trí tuệ nhân tạo (Generative AI / LLM), được phát triển nhằm giải quyết triệt để vấn đề muôn thuở **"Hôm nay ăn gì?"**, tình trạng lãng phí thực phẩm dư thừa trong tủ lạnh và nhu cầu thiết kế chế độ ăn dinh dưỡng chuyên biệt (Giảm cân - Weight Loss, Tăng cơ - Bulking, Lành mạnh - Balanced). 
 
-Dự án kết hợp kiến trúc Web fullstack hiện đại (**React 19, Node.js Express v5, Supabase PostgreSQL, Tailwind CSS v3**) cùng mô hình AI Chef chuyên sâu có khả năng tư vấn công thức nấu nướng chuẩn quốc tế và quản lý khẩu phần ăn khoa học.
+> **Định vị sản phẩm cốt lõi (One-Sentence Pitch):**  
+> **EatVibing là trợ lý AI ăn uống cá nhân hóa, học từ nguyên liệu sẵn có, hồ sơ, khẩu vị và hành vi nấu thực tế để tạo hướng dẫn bữa ăn đáng tin cậy theo vòng lặp Pantry → Plan → Trust → Cook → Learn.**  
+> *(EatVibing is a personalized AI food coach that learns what users have, like and actually cook, then turns that context into trustworthy meal guidance through a Pantry → Plan → Trust → Cook → Learn loop).*
 
----
+**EatVibing** là nền tảng công nghệ ẩm thực (AI-powered FoodTech SaaS) giúp giải quyết bài toán lặp lại **"Hôm nay ăn gì?"**, giảm lãng phí thực phẩm trong hộ gia đình và đồng hành cùng người dùng xây dựng thói quen ăn uống phù hợp, bền vững hơn.
 
-## CHƯƠNG 1: TỔNG QUAN VÀ TÍNH CẤP THIẾT CỦA ĐỀ TÀI
+Không dừng lại ở vai trò một chatbot công thức thông thường hay một ứng dụng đếm calo thụ động, EatVibing định vị là một **Personalized AI Food Coach (EatVibing AI Coach)** xuyên suốt toàn bộ hành trình ăn uống. Hệ thống kết hợp Mô hình Ngôn ngữ Lớn (LLM) để hiểu ngôn ngữ tự nhiên (Text & Voice) với một **Lớp ủy thác ẩm thực (Culinary Trust Layer)** mang tính xác định (*Deterministic Policy Engine*). Những gợi ý chưa đủ bằng chứng hoặc có xung đột quan trọng được yêu cầu xác nhận hay bị chặn trước khi đến tay người dùng.
 
-### 1.1. Bối cảnh thực tiễn và Lý do chọn đề tài
-Trong nhịp sống hiện đại bận rộn, việc duy trì một chế độ ăn uống lành mạnh, đầy đủ dinh dưỡng và ngon miệng đang trở thành thách thức lớn đối với hàng triệu người. Khảo sát thực tế chỉ ra 3 "điểm nghẽn" (pain points) phổ biến nhất của người nội trợ và giới trẻ hiện nay:
-
-1. **Nghịch lý lựa chọn ("Hôm nay ăn gì?"):** Người dùng mất từ 15 - 30 phút mỗi ngày chỉ để suy nghĩ thực đơn, gây ra tình trạng mệt mỏi quyết định (*decision fatigue*) và thường xuyên rơi vào thói quen gọi đồ ăn nhanh thiếu lành mạnh.
-2. **Lãng phí thực phẩm trong tủ lạnh (Food Waste):** Rất nhiều nguyên liệu thừa sau mỗi bữa ăn bị lãng quên và hư hỏng vì người nấu không biết cách kết hợp các nguyên liệu ngẫu nhiên sẵn có thành một món ăn hoàn chỉnh.
-3. **Thiếu công cụ dinh dưỡng cá nhân hóa:** Các chế độ ăn kiêng (*Weight Loss* - Ít carb/giàu xơ, *Bulking* - Giàu đạm/tăng cơ, *Balanced* - Ăn lành mạnh hàng ngày) đòi hỏi kiến thức dinh dưỡng chuyên sâu, nhưng các ứng dụng hiện tại trên thị trường hoặc quá phức tạp, hoặc chỉ cung cấp thực đơn tĩnh không thể tùy biến linh hoạt.
-
-Xuất phát từ thực tiễn trên, đề tài **"Nghiên cứu và phát triển Hệ thống Trợ lý Ẩm thực Thông minh EatVibing"** được thực hiện nhằm cung cấp một giải pháp toàn diện, ứng dụng Trí tuệ Nhân tạo tạo sinh (Generative AI) để tự động hóa hoàn toàn quy trình từ gợi ý món ăn, lập thực đơn tuần, hướng dẫn chế biến theo từng bước cho đến đồng bộ danh sách mua sắm.
-
-### 1.2. Mục tiêu nghiên cứu
-- **Về mặt công nghệ:** Xây dựng kiến trúc web hiệu năng cao, tích hợp mô hình ngôn ngữ lớn (LLM) qua giao thức chuẩn, huấn luyện prompt chuyên biệt để đóng vai Chef & Chuyên gia dinh dưỡng không bịa đặt nguyên liệu (*Hallucination prevention*) và chống lặp nội dung.
-- **Về mặt sản phẩm:** Hoàn thiện hệ sinh thái ẩm thực gồm 14 phân hệ chức năng: AI Chat Recipe, Lập thực đơn tuần 7 ngày, Vòng quay ngẫu nhiên món ăn, Bộ sưu tập món dạng E-commerce, Quản trị CMS Admin và Không gian chia sẻ cộng đồng.
-- **Về mặt xã hội:** Khuyến khích lối sống lành mạnh (Eat Clean), giảm thiểu lãng phí thực phẩm gia đình và tiết kiệm thời gian chuẩn bị bữa ăn hàng ngày.
+Trải nghiệm được thiết kế theo hướng **Web/PWA mobile-first**, có khả năng mở rộng sang **Native Mobile App**, household mode và các tích hợp đối tác mà không thay đổi các nguyên tắc dữ liệu và Trust Layer cốt lõi.
 
 ---
 
-## CHƯƠNG 2: KIẾN TRÚC HỆ THỐNG VÀ CÔNG NGHỆ ÁP DỤNG
+## CHƯƠNG 1: BỐI CẢNH, VẤN ĐỀ VÀ TÍNH CẤP THIẾT CỦA ĐỀ TÀI
 
-### 2.1. Mô hình Kiến trúc Tổng thể (Architecture Overview)
-Hệ thống EatVibing được thiết kế theo mô hình Monorepo 3 tầng (3-Tier Decoupled Architecture) hiện đại, đảm bảo tính mô-đun hóa cao, dễ dàng mở rộng quy mô (scalable) và bảo trì độc lập:
+### 1.1. Bối cảnh thực tiễn & Điểm nghẽn thị trường (Problem Statement)
+Trong nhịp sống hiện đại, việc duy trì một chế độ ăn uống lành mạnh, tiết kiệm và phù hợp với thể trạng cá nhân đang đối mặt với các rào cản nghiêm trọng:
+1. **Sự mệt mỏi vì phải ra quyết định (*Decision Fatigue*):** Người dùng phải lặp lại việc chọn món, cân đối thời gian, ngân sách và mục tiêu ăn uống mỗi ngày; quá trình phân mảnh này dễ dẫn đến lựa chọn vội vàng hoặc từ bỏ việc tự nấu.
+2. **Lãng phí thực phẩm tại hộ gia đình (*Household Food Waste*):** UNEP ước tính hộ gia đình chiếm khoảng 60% lượng food waste ở cấp bán lẻ, dịch vụ ăn uống và hộ gia đình trong năm 2022. Một nguyên nhân có thể can thiệp ở cấp sản phẩm là pantry không được nhìn thấy, theo dõi và ưu tiên theo hạn dùng.
+3. **Sự đứt gãy giữa Công thức - Dinh dưỡng - Thực tế nấu:** Các ứng dụng hiện nay hoặc chỉ là kho công thức tĩnh (không biết trong tủ lạnh người dùng có gì), hoặc là ứng dụng đếm calo khô khan (bắt người dùng nhập liệu thủ công), hoặc chatbot AI tự do dễ bị "ảo giác" (*hallucination*), tự bịa số liệu dinh dưỡng và nguyên liệu không an toàn.
+4. **Thiếu tính cá nhân hóa thích ứng dài hạn:** Đa phần các ứng dụng gợi ý món dựa trên lượt click/view ngẫu nhiên mà không hề ghi nhớ người dùng thích gì, ghét gì, đã nấu món nào, bỏ thừa nguyên liệu nào để ngày càng phục vụ thông minh hơn.
 
-| Tầng kiến trúc | Công nghệ chính | Vai trò & Chức năng trong hệ thống |
+### 1.2. Mục tiêu nghiên cứu & Chỉ số thành công (Objectives & Success Metrics)
+
+#### A. Mục tiêu tổng quát & Cụ thể
+- **Adaptive Personalization & AI Coach:** Xây dựng mô hình *EatVibing AI Coach* đồng hành liên tục, tiếp nhận đầu vào đa phương thức (Text, Voice) và duy trì *Persistent Personal Food Model* qua nhiều phiên tương tác.
+- **Constraint-Aware Planning & Culinary Trust Layer:** Thiết lập cơ chế kiểm duyệt độc lập (*Deterministic Verification*) phân loại rõ ràng trạng thái **SAFE / REVIEW / BLOCK**; đặt mục tiêu không có critical allergen false negative trong bộ acceptance test và không hiển thị số liệu dinh dưỡng không truy được về nguồn.
+- **Pantry-to-Plate Automation:** Tự động hóa toàn diện quy trình: Quản lý tủ lạnh thông minh (*Smart Pantry*) ➔ Lập thực đơn cá nhân hóa (*Personalized Meal Guideline*) ➔ Hướng dẫn nấu ăn rảnh tay (*Guided Cooking*) ➔ Học từ phản hồi thực tế (*Outcome-based Learning Loop*).
+
+#### B. Chỉ số đo lường thành công (Success Metrics)
+| Nhóm chỉ số | Chỉ số cụ thể | Mục tiêu kỳ vọng |
 | :--- | :--- | :--- |
-| **Presentation Layer (Frontend)** | React 19, Vite 8, Tailwind CSS v3, Framer Motion, Lucide Icons | Xây dựng giao diện người dùng Single Page Application (SPA), render hiệu ứng chuyển động mượt mà, tối ưu SEO và tương thích 100% Mobile/Desktop. |
-| **Business Logic Layer (Backend API)** | Node.js, Express v5, Axios, Dotenv, CORS | Xử lý nghiệp vụ logic, xác thực dữ liệu đầu vào (Input Validation), điều phối kết nối AI API, cung cấp RESTful Endpoints cho toàn bộ ứng dụng. |
-| **Database & Auth Layer** | Supabase (PostgreSQL), Supabase Auth (OAuth 2.0 Google) | Quản lý cơ sở dữ liệu quan hệ (Meals, Recipes, Ingredients, Chat History), áp dụng Row Level Security (RLS) và xác thực người dùng bằng Google OAuth. |
-| **AI Intelligence Engine** | OpenAI SDK, LLM7 API Engine, Prompt Engineering Framework | Mô hình ngôn ngữ lớn xử lý ngôn ngữ tự nhiên (NLP), phân tích nguyên liệu, tính toán định lượng calo và sinh công thức nấu ăn tự động theo chuẩn Markdown. |
-
-### 2.2. Kỹ thuật Prompt Engineering và Chống ảo giác (Anti-Hallucination)
-Hệ thống System Prompt được tinh chỉnh nghiêm ngặt dành cho AI Chef với 3 quy tắc bất khả xâm phạm:
-1. **Nguyên tắc kiến thức chuẩn xác:** Chỉ phản hồi dựa trên kiến thức ẩm thực thực tế (Gordon Ramsay, Michelin Guide, BBC Good Food). Tuyệt đối không tự bịa đặt các loại gia vị, sốt không có thật.
-2. **Quy tắc chống lặp (Anti-Loop):** Không liệt kê quá 10 nguyên liệu cho món đơn giản; các nguyên liệu phải khác biệt hoàn toàn về bản chất.
-3. **Chuẩn hóa cấu trúc đầu ra:** Bắt buộc tuân thủ cấu trúc Markdown: Tên món (`###`) ➔ Danh sách nguyên liệu kèm định lượng (`*`) ➔ Các bước nấu (`1, 2, 3...`) ➔ Mẹo nhà bếp (`> Blockquote`).
-
----
-
-## CHƯƠNG 3: MÔ TẢ CHI TIẾT TỪNG CHỨC NĂNG HỆ THỐNG
-
-### 3.1. Trang chủ & Định vị thương hiệu (Hero Showcase)
-- **Mục đích & Ý nghĩa:** Tạo ấn tượng thị giác mạnh mẽ ngay từ lần đầu truy cập, truyền tải thông điệp *"Deliciously effortless dining"* và dẫn dắt người dùng trải nghiệm ngay tính năng AI.
-- **Kịch bản người dùng (User Story):** Người dùng truy cập vào trang chủ, quan sát khẩu hiệu thương hiệu, hình ảnh món ăn chất lượng cao và nhấn nút *"Try AI Suggestion"* để chuyển ngay sang chế độ tư vấn công thức.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Thiết kế typography kích thước lớn (Display Font 8xl), nền hiệu ứng gân sọc nổi (*Ribbed Texture*) kết hợp vệt sáng mờ (*Gradient Blur Accents*), hiệu ứng fade-in mượt mà với Framer Motion và ảnh đĩa ăn chất lượng cao drop-shadow 2xl.
-- **Kiến trúc Xử lý Kỹ thuật:** Sử dụng Framer Motion `initial/animate` với cubic-bezier easing `[0.16, 1, 0.3, 1]`, điều hướng tức thời qua React Router DOM `<Link to='/chat'>`, thiết kế responsive tự động ẩn ảnh phụ trên màn hình nhỏ dưới 768px.
-
-### 3.2. Trợ lý Ẩm thực AI (AI Culinary Assistant & Chat Engine)
-- **Mục đích & Ý nghĩa:** Cung cấp một chuyên gia dinh dưỡng và đầu bếp ảo 24/7, có khả năng giải đáp mọi thắc mắc nấu nướng, tính toán calo và hướng dẫn công thức chi tiết theo thời gian thực.
-- **Kịch bản người dùng (User Story):** Người dùng đặt câu hỏi bằng ngôn ngữ tự nhiên (VD: *"Hãy hướng dẫn tôi nấu bò sốt vang mềm ngon chuẩn vị Pháp"*). AI phân tích và trả về công thức đầy đủ nguyên liệu, định lượng và mẹo nấu. Nếu người dùng đã đăng nhập, toàn bộ lịch sử được lưu vĩnh viễn.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Giao diện chat hiện đại, hỗ trợ render Markdown chuẩn (tiêu đề, in đậm, danh sách gạch đầu dòng, blockquote mẹo nấu), thanh nhập liệu nổi cố định đáy màn hình kèm phím tắt Enter để gửi nhanh.
-- **Kiến trúc Xử lý Kỹ thuật:** Kết nối Backend qua Endpoint `POST /api/ai/chat`. Tự động nhận diện session Google OAuth qua Supabase Client. Nếu có `userId`, tự động ghi 2 bản ghi (user prompt & assistant answer) vào bảng `messages`. Khi mở lại trang, Endpoint `GET /api/ai/history/:userId` sẽ tải lại toàn bộ lịch sử hội thoại.
-
-### 3.3. Gợi ý món ăn từ nguyên liệu sẵn có ("Dọn tủ lạnh" / Fridge Clean-out)
-- **Mục đích & Ý nghĩa:** Giúp người dùng tận dụng tối đa các nguyên liệu còn dư trong tủ lạnh, chống lãng phí thực phẩm và tiết kiệm chi phí sinh hoạt.
-- **Kịch bản người dùng (User Story):** Người dùng chỉ cần nhập danh sách các đồ ăn còn trong bếp (VD: *"Tôi còn 2 quả trứng, nửa củ hành tây và ít cơm nguội"*). Hệ thống AI sẽ tổng hợp và đưa ra 2-3 phương án món ăn tối ưu nhất có thể nấu ngay mà không cần đi chợ mua thêm.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Tích hợp sẵn nút phím tắt chuyên dụng "Dọn tủ lạnh" ngay trên màn hình chào mừng (Welcome Screen) của giao diện AI Chat.
-- **Kiến trúc Xử lý Kỹ thuật:** Prompt chuyên biệt gửi vào AI Engine yêu cầu thuật toán ưu tiên kết hợp chéo các nguyên liệu đầu vào và chỉ cho phép bổ sung các gia vị cơ bản có sẵn trong mọi gian bếp (muối, tiêu, dầu ăn, nước mắm).
-
-### 3.4. Khám phá món ăn theo Danh mục & Chế độ dinh dưỡng (Dietary Categorization)
-- **Mục đích & Ý nghĩa:** Phân loại món ăn khoa học theo mục tiêu thể hình và lối sống, giúp người dùng tìm kiếm món ăn phù hợp với chế độ ăn kiêng của bản thân trong vài giây.
-- **Kịch bản người dùng (User Story):** Người dùng chọn tab "Weight Loss" để xem các món giàu chất xơ, ít tinh bột; chọn "Bulking" để xem các món giàu protein hỗ trợ tăng cơ; hoặc chọn "Balanced" để duy trì thực đơn lành mạnh cân bằng.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Sidebar điều hướng cố định bên trái với đèn chỉ báo tròn (*Bullet Indicator*) chuyển động phóng to/thu nhỏ linh hoạt; khu vực hiển thị lưới món ăn chia từ 2 đến 4 cột chuẩn tỷ lệ 4:5.
-- **Kiến trúc Xử lý Kỹ thuật:** State management với React `useState('all' | 'loss' | 'gain' | 'balance')`, tự động lọc mảng món ăn từ API `GET /api/meals` theo trường `category` với độ trễ 0ms.
-
-### 3.5. Bộ chọn ngẫu nhiên món ăn - "Hôm nay ăn gì?" (Random Meal Picker)
-- **Mục đích & Ý nghĩa:** Giải quyết dứt điểm tình trạng "nghịch lý lựa chọn" và phân vân kéo dài trước mỗi bữa ăn.
-- **Kịch bản người dùng (User Story):** Khi không biết chọn món gì, người dùng truy cập mục "What to eat today?" và bấm nút "Generate Recipe". Hệ thống sẽ tự động quay số ngẫu nhiên và chọn ra một món ăn hoàn chỉnh kèm công thức từ cơ sở dữ liệu.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Khối banner tối giản phong cách Bắc Âu (Nordic Style), viền mảnh, nút bấm tương tác đổi màu đảo nghịch khi di chuột (*Hover Invert Effect*).
-- **Kiến trúc Xử lý Kỹ thuật:** Thuật toán chọn ngẫu nhiên `meals[Math.floor(Math.random() * meals.length)]` kết hợp hiệu ứng quay xáo trộn danh sách tạo cảm giác hồi hộp và thích thú cho người dùng.
-
-### 3.6. Lập thực đơn dinh dưỡng 7 ngày (Weekly Meal Planner)
-- **Mục đích & Ý nghĩa:** Cung cấp giải pháp lên kế hoạch ăn uống trọn vẹn cả tuần cho cá nhân và gia đình, duy trì tính kiên trì và kỷ luật ăn uống.
-- **Kịch bản người dùng (User Story):** Người dùng chọn chế độ ăn (Giảm cân / Tăng cơ / Cân đối), hệ thống tự động dàn trải thực đơn 7 ngày (từ Thứ 2 đến Chủ nhật) với đầy đủ 3 bữa Sáng - Trưa - Tối khoa học, đảm bảo không bị trùng lặp món quá 2 lần/tuần.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Giao diện cuộn ngang (*Horizontal Scroll*) linh hoạt trên thiết bị di động và hiển thị lưới 7 cột tổng quan trên máy tính để bàn (*Desktop Grid*).
-- **Kiến trúc Xử lý Kỹ thuật:** Dữ liệu thực đơn được cấu trúc dạng ma trận 7x3 (7 ngày x 3 bữa), tự động tính toán tổng năng lượng nạp vào (TDEE ước tính) dựa trên các món ăn được chỉ định trong mỗi ngày.
-
-### 3.7. Bộ sưu tập món ăn & Thẻ tương tác (Interactive Recipe Gallery with Overlays)
-- **Mục đích & Ý nghĩa:** Hiển thị danh sách món ăn theo phong cách sàn thương mại điện tử cao cấp, tạo cảm giác sang trọng và chuyên nghiệp.
-- **Kịch bản người dùng (User Story):** Người dùng duyệt qua danh sách các món ăn. Khi di chuột vào từng bức ảnh, lớp phủ màu đen bóng mờ trượt từ dưới lên hiển thị nút "View Recipe", đồng thời ảnh món ăn tự động phóng to nhẹ (Zoom 105%) và khử màu xám.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Tỷ lệ khung ảnh 4:5 thời thượng, hiệu ứng chuyển màu Grayscale [0.3] sang Full Color, tag xuất xứ văn hóa ẩm thực (Việt, Mỹ, Âu, Trung, Ý...) tách biệt bằng đường kẻ thanh lịch.
-- **Kiến trúc Xử lý Kỹ thuật:** Áp dụng Tailwind CSS transitions `duration-700`, `group-hover:scale-105`, `translate-y-full` sang `translate-y-0` tối ưu hiệu năng GPU rendering của trình duyệt.
-
-### 3.8. Hướng dẫn nấu ăn chi tiết từng bước (Step-by-step Cooking Guide)
-- **Mục đích & Ý nghĩa:** Hỗ trợ người mới bắt đầu làm quen với bếp núc có thể thực hiện thành công món ăn một cách dễ dàng nhất.
-- **Kịch bản người dùng (User Story):** Khi người dùng mở chi tiết một món ăn, màn hình hiển thị danh sách nguyên liệu cần chuẩn bị kèm khối lượng chính xác, tiếp theo là timeline các bước nấu được đánh số thứ tự từ 1 đến N kèm hình ảnh minh họa và lưu ý nhiệt độ/thời gian.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Giao diện dạng Timeline dọc với các nút số tròn nổi bật, ô hướng dẫn bo góc 2xl màu nền nhã nhặn, hiển thị rõ ràng định lượng nguyên liệu dạng checklist.
-- **Kiến trúc Xử lý Kỹ thuật:** Quan hệ 1-N trong cơ sở dữ liệu giữa bảng `meals` và 2 bảng con `ingredients` (trường `data`), `recipes` (trường `step_number`, `content`, `image_step_url`).
-
-### 3.9. Trình tạo danh sách mua sắm thông minh (Smart Shopping List Generator)
-- **Mục đích & Ý nghĩa:** Tự động trích xuất toàn bộ nguyên liệu cần thiết từ các công thức đã chọn thành một danh sách đi chợ tiện lợi.
-- **Kịch bản người dùng (User Story):** Sau khi chọn thực đơn 3 ngày hoặc 7 ngày, người dùng bấm "Tạo danh sách mua sắm". Hệ thống tự động gộp các nguyên liệu trùng nhau (VD: 200g ức gà + 300g ức gà = 500g ức gà) và phân loại theo quầy siêu thị (Rau củ, Thịt cá, Gia vị).
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Giao diện checklist có thể đánh dấu tick hoàn thành khi mua xong từng món, hỗ trợ nút chia sẻ nhanh danh sách qua Zalo/Tin nhắn.
-- **Kiến trúc Xử lý Kỹ thuật:** Thuật toán gom nhóm (*Grouping & Aggregation*) phân tích chuỗi nguyên liệu, lưu trữ trạng thái mua hàng vào `localStorage` hoặc Supabase Database.
-
-### 3.10. Cá nhân hóa khẩu vị & Hồ sơ người dùng (Dietary Profile & Customization)
-- **Mục đích & Ý nghĩa:** Ghi nhận sở thích cá nhân, khẩu vị dị ứng và chế độ ăn kiêng đặc thù để AI đưa ra các gợi ý chính xác nhất.
-- **Kịch bản người dùng (User Story):** Người dùng thiết lập hồ sơ: "Dị ứng đậu phộng, không ăn cay, đang theo chế độ Eat Clean ít đường". Kể từ đó, mọi câu trả lời từ AI và đề xuất trên trang chủ sẽ tự động lọc bỏ các món chứa đậu phộng hoặc ớt.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Mục cài đặt Profile người dùng với các chip tag có thể bật/tắt (*Toggle Tags*) như Vegan, Keto, Nut-Free, Low-Carb, Gluten-Free.
-- **Kiến trúc Xử lý Kỹ thuật:** Thông tin sở thích được đính kèm vào phần `system context` mỗi khi gửi yêu cầu tới AI Engine thông qua controller [aiController.js:L9-L38].
-
-### 3.11. Mạng xã hội Ẩm thực & Chia sẻ Công thức (Community Recipe Hub)
-- **Mục đích & Ý nghĩa:** Xây dựng cộng đồng người yêu ẩm thực văn minh, nơi người dùng có thể chia sẻ những biến tấu món ăn độc đáo của riêng mình.
-- **Kịch bản người dùng (User Story):** Người dùng đăng tải bài viết kèm ảnh chụp đĩa ăn thực tế do chính mình nấu, chia sẻ bí quyết riêng và nhận lượt thích (Like), lưu bài viết (Bookmark) từ những thành viên khác.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Bố cục Newsfeed hiện đại dạng Card bài viết, hỗ trợ tải ảnh lên Supabase Storage, khu vực bình luận tương tác trực tiếp dưới mỗi bài đăng.
-- **Kiến trúc Xử lý Kỹ thuật:** Tích hợp bảng `community_posts` liên kết với tài khoản người dùng qua Supabase Auth UID, kiểm soát quyền riêng tư bằng Row Level Security (RLS).
-
-### 3.12. Hệ thống Đánh giá, Bình luận & Vòng lặp cải tiến AI (Rating & Continuous Loop)
-- **Mục đích & Ý nghĩa:** Thu thập phản hồi thực tế từ người nấu để liên tục tinh chỉnh và nâng cao độ chuẩn xác của thuật toán gợi ý AI.
-- **Kịch bản người dùng (User Story):** Sau khi nấu xong một món theo gợi ý của AI, người dùng đánh giá số sao (1-5 sao) và để lại nhận xét (VD: "Nước sốt hơi chua, nên giảm bớt 1 thìa dấm"). Dữ liệu này giúp cộng đồng biết trước và làm nguồn dữ liệu phản hồi (*RLHF*) cho AI.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Hệ thống đánh giá sao tương tác (*Interactive Star Rating*) kèm khung viết đánh giá ngắn gọn, gắn nhãn "Đã nấu thành công" (*Verified Cook*).
-- **Kiến trúc Xử lý Kỹ thuật:** Bảng `ratings_reviews` lưu trữ `meal_id`, `user_id`, `score`, `comment`, tính toán điểm trung bình xếp hạng theo thời gian thực.
-
-### 3.13. Bảng điều khiển Quản trị viên (Admin Dashboard & CMS)
-- **Mục đích & Ý nghĩa:** Cung cấp công cụ mạnh mẽ cho ban quản trị duyệt, tạo mới, chỉnh sửa và quản lý toàn bộ kho công thức món ăn của hệ thống.
-- **Kịch bản người dùng (User Story):** Admin truy cập trang `/admin`, nhập tên món, xuất xứ, chọn chế độ (Giảm cân / Tăng cơ / Cân bằng), điền link ảnh, thêm danh sách nguyên liệu động và các bước nấu dạng Timeline, sau đó bấm "Save Meal" để lưu vào cơ sở dữ liệu.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Form nhập liệu 2 cột trực quan: Cột trái quản lý thông tin cơ bản & danh sách nguyên liệu có nút Thêm/Xóa nhanh; Cột phải quản lý các bước nấu Timeline đánh số tự động.
-- **Kiến trúc Xử lý Kỹ thuật:** Thực hiện Atomic Insert qua API `POST /api/meals` trong [mealController.js:L16-L49]. Hệ thống ghi đồng thời dữ liệu vào bảng `meals`, tự động lấy `meal.id` để ghi tiếp hàng loạt bản ghi con vào bảng `ingredients` và `recipes`.
-
-### 3.14. Hệ thống Xác thực, Bảo mật & Quản lý phiên (Authentication & Security)
-- **Mục đích & Ý nghĩa:** Đảm bảo an toàn tuyệt đối cho thông tin cá nhân của người dùng và bảo vệ dữ liệu nội bộ của hệ thống.
-- **Kịch bản người dùng (User Story):** Người dùng đăng nhập 1-chạm thông qua tài khoản Google OAuth 2.0. Hệ thống tự động đồng bộ ảnh đại diện (Avatar), tên hiển thị và duy trì trạng thái đăng nhập liên tục giữa các tab trình duyệt.
-- **Thiết kế Giao diện & Trải nghiệm (UI/UX):** Menu User dạng Dropdown Avatar thanh lịch trên thanh điều hướng Navbar, hỗ trợ hiển thị tên người dùng và nút Đăng xuất (*Sign Out*) màu đỏ cảnh báo.
-- **Kiến trúc Xử lý Kỹ thuật:** Sử dụng `@supabase/supabase-js` Auth listener `onAuthStateChange`, token JWT được lưu trữ an toàn trong Secure Browser Storage; bảo mật toàn bộ biến môi trường qua `.env` và `dotenv`.
+| **Mức độ tương tác & Chuyển đổi** | **Guideline Acceptance Rate** | > 65% gợi ý trong ngày được người dùng chấp thuận |
+| | **Pick-to-Cook Conversion** | > 50% món được chọn chuyển thành hành động nấu thực tế |
+| | **Repeat-Cook Rate** | Tăng trưởng 30% tỷ lệ nấu lại các món hợp khẩu vị |
+| | **Voice Task Completion** | > 85% tác vụ rảnh tay hoàn thành chính xác bằng giọng nói |
+| **Độ tin cậy & An toàn** | **Critical Allergen False-Negative** | 0 trường hợp trên bộ acceptance test có kiểm soát; mọi unknown critical ingredient chuyển REVIEW/BLOCK |
+| | **Nutrition Provenance Coverage** | 100% số liệu calo/macro hiển thị truy được về source record và serving assumptions |
+| | **Recommendation Diversity** | Đảm bảo phân bổ đa dạng trường phái ẩm thực, không bão hòa món viral |
+| **Hiệu quả Xã hội & Cá nhân hóa** | **Food Waste Reduction** | Giảm 35% lượng thực phẩm bị bỏ quên quá hạn trong tủ lạnh |
+| | **Cold-start to Personalized Quality** | Đạt độ khớp khẩu vị > 80% chỉ sau 3 lần nấu đầu tiên |
 
 ---
 
-## CHƯƠNG 4: THIẾT KẾ CƠ SỞ DỮ LIỆU VÀ CÁC THỰC THỂ (DATABASE DESIGN)
+## CHƯƠNG 2: TÍNH MỚI, ĐIỂM ĐỘT PHÁ VÀ SO SÁNH GIẢI PHÁP
 
-### 4.1. Bảng `meals` (Danh mục món ăn trung tâm)
-| Tên trường (Column) | Kiểu dữ liệu | Ràng buộc | Ý nghĩa & Mô tả |
-| :--- | :--- | :--- | :--- |
-| `id` | BIGINT / UUID | PRIMARY KEY, IDENTITY | Định danh duy nhất của mỗi món ăn trong hệ thống. |
-| `name` | TEXT / VARCHAR(255) | NOT NULL | Tên đầy đủ của món ăn (VD: Phở Bò Nam Định). |
-| `origin` | VARCHAR(100) | NULLABLE | Quốc gia hoặc văn hóa xuất xứ (Việt, Ý, Mỹ, Âu, Trung). |
-| `category` | VARCHAR(50) | NOT NULL, DEFAULT 'balance' | Phân loại dinh dưỡng: 'loss' (giảm cân), 'gain' (tăng cơ), 'balance' (cân bằng). |
-| `image_url` | TEXT | NULLABLE | Đường dẫn URL ảnh chất lượng cao đại diện cho món ăn. |
-| `created_at` | TIMESTAMPTZ | DEFAULT NOW() | Thời điểm tạo bản ghi trong cơ sở dữ liệu. |
+### 2.1. Tính mới và Điểm đột phá (Novelty & Key Differentiators)
 
-### 4.2. Bảng `ingredients` (Nguyên liệu chi tiết)
-| Tên trường (Column) | Kiểu dữ liệu | Ràng buộc | Ý nghĩa & Mô tả |
-| :--- | :--- | :--- | :--- |
-| `id` | BIGINT | PRIMARY KEY, IDENTITY | Định danh duy nhất của mỗi dòng nguyên liệu. |
-| `meal_id` | BIGINT | FOREIGN KEY -> meals(id) ON DELETE CASCADE | Khóa ngoại tham chiếu đến món ăn sở hữu nguyên liệu này. |
-| `data` | TEXT | NOT NULL | Tên nguyên liệu kèm khối lượng/định lượng (VD: 300g thịt thăn bò). |
-| `created_at` | TIMESTAMPTZ | DEFAULT NOW() | Thời điểm thêm nguyên liệu. |
+```
+[Khảo sát Onboarding + Smart Pantry] ──► [EatVibing AI Coach] ──► [Personalized Meal Guideline]
+                                                  │
+                                                  ▼
+[Học từ Outcome: Nấu/Bỏ/Đánh giá] ◄── [Guided Cooking] ◄── [Culinary Trust Layer (SAFE/REVIEW/BLOCK)]
+```
 
-### 4.3. Bảng `recipes` (Các bước thực hiện nấu ăn)
-| Tên trường (Column) | Kiểu dữ liệu | Ràng buộc | Ý nghĩa & Mô tả |
-| :--- | :--- | :--- | :--- |
-| `id` | BIGINT | PRIMARY KEY, IDENTITY | Định danh duy nhất của bước thực hiện. |
-| `meal_id` | BIGINT | FOREIGN KEY -> meals(id) ON DELETE CASCADE | Khóa ngoại tham chiếu đến món ăn tương ứng. |
-| `step_number` | INTEGER | NOT NULL | Số thứ tự bước nấu (1, 2, 3... N). |
-| `content` | TEXT | NOT NULL | Mô tả chi tiết kỹ thuật nấu của bước này. |
-| `image_step_url` | TEXT | NULLABLE | Ảnh minh họa thực tế cho bước nấu. |
-| `created_at` | TIMESTAMPTZ | DEFAULT NOW() | Thời điểm tạo bước nấu. |
+1. **Persistent Personal Food Model (Mô hình ẩm thực cá nhân bền vững):**  
+   Khác với các chatbot khởi tạo lại ngữ cảnh từ con số 0 trong mỗi phiên trò chuyện, EatVibing lưu trữ trạng thái sở hữu nguyên liệu, lịch sử nấu, khẩu vị chi tiết và các phản hồi sau bữa ăn vào một hồ sơ học tập liên tục.
+2. **Kiến trúc Tách biệt Trách nhiệm (LLM Reasoning vs. Deterministic Trust Layer):**  
+   LLM đóng vai trò tương tác tự nhiên, thấu hiểu ngữ cảnh và sáng tạo gợi ý, trong khi toàn bộ việc tính toán dinh dưỡng, quy đổi đơn vị, trừ kho thực phẩm và kiểm soát an toàn do dịch vụ toán học và chính sách xác định (*Deterministic Services*) chịu trách nhiệm.
+3. **Qualified Engagement Ranking cho Trending Guideline:**  
+   Các món ăn xu hướng cộng đồng (*Trending*) không được xếp hạng bằng lượt click ảo, mà dựa trên điểm số tương tác chất lượng (*Qualified Engagement Score*: Nấu thực tế, nấu lại, đánh giá cao, tỷ lệ bỏ qua thấp). Quan trọng nhất, **Trending không bao giờ được phép vượt qua các ràng buộc dị ứng và an toàn của cá nhân**.
 
-### 4.4. Bảng `messages` (Lịch sử hội thoại AI Chat)
-| Tên trường (Column) | Kiểu dữ liệu | Ràng buộc | Ý nghĩa & Mô tả |
-| :--- | :--- | :--- | :--- |
-| `id` | BIGINT / UUID | PRIMARY KEY, IDENTITY | Định danh duy nhất của tin nhắn. |
-| `user_id` | UUID | FOREIGN KEY -> auth.users(id) ON DELETE CASCADE | ID người dùng sở hữu lịch sử chat (từ Supabase Auth). |
-| `role` | VARCHAR(20) | NOT NULL ('user' \| 'assistant') | Vai trò người gửi: 'user' (người dùng) hoặc 'assistant' (AI Chef). |
-| `content` | TEXT | NOT NULL | Nội dung câu hỏi hoặc câu trả lời markdown của AI. |
-| `created_at` | TIMESTAMPTZ | DEFAULT NOW() | Thời điểm gửi tin nhắn (sắp xếp theo thứ tự thời gian). |
+### 2.2. Bảng so sánh với các giải pháp hiện hữu (Gap Analysis)
+
+| Tiêu chí so sánh | Ứng dụng Recipe truyền thống (Cookpad, Tasty) | Ứng dụng Calorie/Macro (MyFitnessPal, YAZIO) | Chatbot AI chung (ChatGPT, Claude) | **EatVibing (Personalized AI Food Coach)** |
+| :--- | :--- | :--- | :--- | :--- |
+| **Nhận diện nguyên liệu tủ lạnh** | Thủ công theo từ khóa | Không hỗ trợ | Nhập text tự do | **Smart Pantry (Text/Voice, tự động trừ kho)** |
+| **Cá nhân hóa thực đơn** | Tĩnh, danh mục cố định | Thực đơn mẫu khô khan | Sinh text mỗi lần mỗi khác | **Personalized Meal Guideline thích ứng** |
+| **Độ chính xác dữ liệu dinh dưỡng** | Thường không có | Database chuẩn nhưng nhập khó | Dễ bịa đặt số calo (Ảo giác) | **Deterministic Calculation + USDA Grounding** |
+| **Kiểm soát An toàn & Dị ứng** | Người dùng tự đọc | Cảnh báo cơ bản | Không có lớp chặn bắt buộc | **Culinary Trust Layer (SAFE / REVIEW / BLOCK)** |
+| **Học từ hành vi thực tế** | Chỉ ghi nhận lượt xem | Không học thói quen nấu | Không có trạng thái lưu bền vững | **Học từ hành động: Pick, Cook, Repeat, Swap, Waste** |
+| **Hỗ trợ nấu ăn rảnh tay** | Text từng bước | Không có | Phải bấm điện thoại đọc | **Voice-assisted Guided Cooking** |
 
 ---
 
-## CHƯƠNG 5: ĐÁNH GIÁ TÍNH MỚI, TÍNH ỨNG DỤNG VÀ HƯỚNG PHÁT TRIỂN
+## CHƯƠNG 3: KIẾN TRÚC HỆ THỐNG VÀ NGUYÊN TẮC CÔNG NGHỆ
 
-### 5.1. Tính mới và Điểm nổi bật của đề tài (Novelty)
-- **Tương tác hội thoại thông minh tự nhiên:** Thay vì chỉ tìm kiếm theo từ khóa cứng nhắc, người dùng có thể trò chuyện tự nhiên với AI như một đầu bếp chuyên nghiệp để điều chỉnh công thức theo khẩu vị riêng.
-- **Tự động hóa toàn diện quy trình dinh dưỡng:** Tích hợp liền mạch chuỗi giá trị: *Kiểm tra tủ lạnh ➔ Sinh công thức ➔ Lập thực đơn tuần ➔ Lên danh sách mua sắm ➔ Hướng dẫn nấu từng bước*.
-- **Kiến trúc Module hóa hiện đại:** Ứng dụng toàn bộ các công nghệ Web mới nhất năm 2026 (React 19, Vite 8, Express 5, Supabase PostgreSQL, LLM Engine).
+### 3.1. Mô hình Phân tầng Kiến trúc (System Architecture)
 
-### 5.2. Khả năng ứng dụng thực tiễn và Tác động xã hội
-Hệ thống EatVibing có khả năng triển khai ngay vào thực tiễn phục vụ các nhóm đối tượng: sinh viên, nhân viên văn phòng bận rộn, người tập gym/thể thao cần kiểm soát macro calo và các gia đình trẻ muốn xây dựng lối sống ẩm thực bền vững, tiết kiệm.
+Hệ thống được thiết kế theo kiến trúc 3 tầng phân tách độc lập (*3-Tier Decoupled Architecture*), tích hợp các dịch vụ thông minh:
 
-### 5.3. Định hướng phát triển trong tương lai
-- **Computer Vision (Thị giác máy tính):** Cho phép người dùng chụp ảnh toàn cảnh ngăn mát tủ lạnh để AI tự động nhận diện danh sách thực phẩm mà không cần gõ phím.
-- **Mobile App Đa nền tảng:** Đóng gói ứng dụng di động native bằng React Native / Flutter hỗ trợ thông báo nhắc nhở giờ nấu ăn và chế độ nấu rảnh tay bằng giọng nói (*Voice Cooking Mode*).
-- **Liên kết sàn E-commerce:** Tích hợp API kết nối các siêu thị online (WinMart, GrabMart, ShopeeFood) để người dùng đặt mua nguyên liệu thiếu chỉ với 1 cú click.
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│             PRESENTATION LAYER (Web/PWA - React 19 / Mobile Roadmap)   │
+│  - Onboarding Profile   - Smart Pantry UI   - Personalized Guideline   │
+│  - AI Coach Chat/Voice  - Recipe Discovery  - Guided Cooking Timeline  │
+└──────────────────────────────────┬─────────────────────────────────────┘
+                                   │ HTTPS / RESTful API / WebSocket
+┌──────────────────────────────────▼─────────────────────────────────────┐
+│                    APPLICATION & BUSINESS LOGIC LAYER                  │
+│  ┌─────────────────────────┐           ┌────────────────────────────┐  │
+│  │   EatVibing AI Coach    │           │    Culinary Trust Layer    │  │
+│  │  - Context Understanding│           │  - Deterministic Nutrition │  │
+│  │  - Prompt Orchestrator  │           │  - Allergen Hard Filter    │  │
+│  │  - Voice/NLP Adapter    │           │  - SAFE/REVIEW/BLOCK Engine│  │
+│  │  - Explain-Why Generator│           │  - Pantry Diff Calculator  │  │
+│  └────────────┬────────────┘           └─────────────▲──────────────┘  │
+│               │ OpenAI Protocol                      │                 │
+│               ▼                                      │                 │
+│  ┌─────────────────────────┐                         │                 │
+│  │  LLM Engine (LLM7/OAI)  │─────────────────────────┘                 │
+│  └─────────────────────────┘                                           │
+└──────────────────────────────────┬─────────────────────────────────────┘
+                                   │ SQL / Row Level Security (RLS)
+┌──────────────────────────────────▼─────────────────────────────────────┐
+│                 PERSISTENCE & DATA LAYER (Supabase PostgreSQL)         │
+│  - User Profiles (Context)   - Smart Pantry Inventory - Meals & Recipes │
+│  - Interaction Learning Logs - Saved Meal Passports   - Audit Messages │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3.2. Phân định rõ ràng: AI Coach vs. Deterministic Tool
+
+| Thành phần | Công nghệ đảm nhiệm | Phạm vi trách nhiệm (Scope of Responsibility) |
+| :--- | :--- | :--- |
+| **EatVibing AI Coach** | LLM Engine + System Prompt Framework + Voice NLP | - Tiếp nhận hội thoại tự nhiên, hiểu ý định người dùng (Intent recognition).<br>- Trích xuất danh sách nguyên liệu từ câu nói tự nhiên.<br>- Sáng tạo và đề xuất danh sách ứng viên món ăn (*Candidate generation*).<br>- Tạo lời giải thích minh bạch: *"Tại sao món này được đề xuất?" (Explain-Why)*.<br>- Điều chỉnh công thức linh hoạt theo yêu cầu thay thế nguyên liệu. |
+| **Deterministic Services (Policy & Tools)** | Backend TypeScript/Node.js + Supabase SQL | - Tính toán chỉ số BMI ngữ cảnh từ chiều cao/cân nặng.<br>- Tính toán chính xác Calo, Protein, Carb, Fat theo trọng lượng nguyên liệu.<br>- Quy đổi đơn vị đo lường (gram, ml, muỗng, quả).<br>- Khấu trừ tự động nguyên liệu trong *Smart Pantry* sau khi nấu.<br>- **Thực thi bộ lọc dị ứng và cấp nhãn Trust Status (SAFE / REVIEW / BLOCK)**. |
+
+---
+
+## CHƯƠNG 4: MÔ TẢ CHI TIẾT CÁC PHÂN HỆ CHỨC NĂNG
+
+### 4.1. Hồ sơ cá nhân hóa ban đầu (Lightweight Onboarding Profile)
+- **Mục đích:** Thu thập dữ liệu nền tảng ngay khi tạo tài khoản để AI Coach có căn cứ tạo gợi ý cá nhân hóa ngay từ phiên đầu tiên mà không làm người dùng nản lòng vì khảo sát quá dài.
+- **Cấu trúc dữ liệu thu thập:**
+  1. *Chỉ số thể trạng cơ bản (Contextual Body Metrics):* Tuổi/Nhóm tuổi, Giới tính (tự nguyện), Chiều cao, Cân nặng, Hệ thống tự động tính chỉ số BMI như một **chỉ báo ngữ cảnh (Contextual Indicator)**, Mức độ vận động (*Sedentary, Moderate, Active*). *(Lưu ý: Không dùng BMI làm chẩn đoán y tế)*.
+  2. *Mục tiêu ăn uống (Eating Goals):* Ăn uống cân bằng, Quản lý cân nặng, Tăng cường Protein thể hình, Tiết kiệm chi phí sinh hoạt, Giảm rác thải thực phẩm, Nấu ăn nhanh gọn < 20 phút, Meal prep cho cả tuần, Chế độ Vegetarian/Vegan.
+  3. *Hồ sơ khẩu vị (Taste Profile):* Trường phái ẩm thực yêu thích (Việt, Á, Âu, Địa Trung Hải), Mức độ ăn cay (0–5), Thói quen ăn mặn/ngọt, Thực phẩm không thích (*Disliked foods*), Kỹ năng nấu bếp (Mới bắt đầu, Trung bình, Nâng cao).
+  4. *Ràng buộc cứng (Hard Constraints):* Danh sách dị ứng thực phẩm (*Peanuts, Seafood, Dairy, Gluten...*), Kiêng khem tôn giáo, Thiết bị bếp sẵn có (Nồi chiên không dầu, Lò nướng, Bếp từ), Thời gian nấu tối đa cho phép, Số khẩu phần ăn mặc định (*Servings*).
+- **Quyền riêng tư:** Người dùng toàn quyền chỉnh sửa, cài đặt lại (Reset), xuất dữ liệu (Export), xóa hồ sơ (Delete) hoặc bật/tắt chế độ học tập cá nhân hóa (*Opt-out Personalization Learning*).
+
+### 4.2. Trợ lý AI Ăn uống Cá nhân hóa (EatVibing AI Coach)
+- **Mục đích:** Đóng vai trò chuyên gia tư vấn dinh dưỡng và đầu bếp riêng xuyên suốt hành trình ẩm thực.
+- **Khả năng tương tác:**
+  - **Đa phương thức (Text & Voice):** Người dùng có thể gõ phím hoặc bấm mic nói tự nhiên: *"Tối nay tôi đi làm về muộn, trong tủ còn ức gà và nấm, hãy gợi ý món nấu dưới 20 phút."*
+  - **Tính năng Explain-Why (Minh bạch lý do):** AI Coach luôn hiển thị rõ: (1) Món này giúp tận dụng nguyên liệu nào sắp hết hạn trong tủ; (2) Món này phù hợp với mục tiêu tăng đạm ra sao; (3) Món này đã loại bỏ hoàn toàn các gia vị gây dị ứng của bạn.
+  - **Lắng nghe và Thích ứng:** Ghi nhận mọi phản hồi: *"Món này ngon nhưng hơi cay"*, *"Lần sau bớt ngọt lại"* để điều chỉnh các đề xuất trong tương lai.
+
+### 4.3. Không gian gợi ý thực đơn thích ứng (Personalized Meal Guideline)
+- **Mục đích:** Cung cấp không gian gợi ý linh hoạt, chia theo các bữa trong ngày (Sáng, Trưa, Tối, Bữa phụ/Snack).
+- **Cơ chế hoạt động:**
+  - Đây không phải một thực đơn ép buộc cứng nhắc (*Rigid Diet Plan*), mà là tập hợp các gợi ý tối ưu được AI Coach sàng lọc dựa trên: *Profile + Smart Pantry + Thời gian rảnh + Ngân sách + Điểm ưu tiên chống lãng phí*.
+  - Người dùng bấm chọn món (*Pick*) để chuyển sang chế độ nấu hoặc thêm vào kế hoạch tuần.
+  - **Học sâu từ hành vi thực tế:** Mỗi tương tác *View, Save, Pick, Cook, Skip, Repeat-cook, Rate, Swap, Leftover* đều cập nhật trọng số vào mô hình sở thích cá nhân.
+
+### 4.4. Khám phá Món thịnh hành có kiểm duyệt (Trending / Community Guideline)
+- **Mục đích:** Giúp người dùng khám phá các món ăn được cộng đồng yêu thích nhất theo Tuần, Tháng, Năm.
+- **Nguyên tắc xếp hạng Qualified Engagement Score:**
+  $$\text{Score} = w_1 \cdot \text{Cooked} + w_2 \cdot \text{RepeatCook} + w_3 \cdot \text{Rating} + w_4 \cdot \text{Save} - w_5 \cdot \text{SkipRate}$$
+  *(Lượt click/view chỉ là tín hiệu phụ; trọng số chính nằm ở hành vi nấu thực tế và sự hài lòng).*
+- **Nguyên tắc an toàn tối thượng:**
+  - Mọi món trending phải vượt qua kiểm duyệt xuất xứ (*Provenance & Moderation*) và đạt chuẩn **SAFE** từ *Culinary Trust Layer*.
+  - **Trending KHÔNG BAO GIỜ được phép vượt qua Hard Constraints của người dùng.** Nếu một món cực kỳ viral nhưng chứa đậu phộng, hệ thống sẽ tự động gán nhãn **BLOCK** và ẩn khỏi Guideline của người dùng bị dị ứng đậu phộng.
+  - Áp dụng thuật toán Đa dạng hóa (*Diversity Mechanism*) ngăn chặn việc thực đơn chỉ toàn một loại ẩm thực viral.
+
+### 4.5. Lớp ủy thác ẩm thực (Culinary Trust Layer)
+- **Mục đích:** Bảo vệ người dùng khỏi ảo giác của AI và các rủi ro sức khỏe với 3 trạng thái kiểm định rõ ràng:
+  - 🟢 **SAFE:** Các hard gates đạt trong phạm vi dữ liệu đã biết; phép tính calo/macro có bản ghi nguồn; không phát hiện xung đột dị ứng theo policy hiện hành. SAFE không phải chứng nhận y khoa hay bảo đảm tuyệt đối.
+  - 🟡 **REVIEW:** Công thức từ nguồn cộng đồng thiếu định lượng chi tiết hoặc chứa nguyên liệu cần người dùng xác nhận lại khẩu phần/đơn vị đo.
+  - 🔴 **BLOCK:** Phát hiện chất gây dị ứng đã khai báo trong hồ sơ, nguyên liệu kỵ nhau hoặc không đảm bảo an toàn vệ sinh thực phẩm. Món ăn bị chặn lập tức khỏi thực đơn gợi ý.
+
+### 4.6. Quản lý kho nguyên liệu thông minh (Smart Pantry)
+- **Mục đích:** Theo dõi tồn kho thực phẩm thực tế trong gian bếp gia đình.
+- **Tính năng:**
+  - Nhập liệu bằng Text, Voice hoặc Quét hóa đơn/Barcode (Roadmap).
+  - Gắn nhãn hạn sử dụng và tự động phát cảnh báo nguyên liệu sắp hỏng (*Near-expiry Alerts*).
+  - Tự động trừ tồn kho (*Pantry Auto-subtraction*) sau khi người dùng xác nhận đã hoàn thành nấu món ăn.
+
+### 4.7. Hướng dẫn nấu ăn rảnh tay từng bước (Voice-Assisted Guided Cooking)
+- **Mục đích:** Hỗ trợ người nấu tập trung tối đa trong bếp mà không phải chạm tay ướt/bẩn vào màn hình điện thoại.
+- **Tính năng:**
+  - Hiển thị Timeline các bước nấu kèm định lượng thành phần rõ ràng.
+  - Nhận diện giọng nói điều khiển: *"Next step"* (Bước tiếp theo), *"Set timer 10 minutes"* (Hẹn giờ 10 phút), *"Repeat instruction"* (Đọc lại hướng dẫn bước này).
+  - Nếu độ tin cậy nhận diện giọng nói thấp (*Low Confidence*) ở các thông tin nhạy cảm (số lượng gia vị cay, thời gian tắt bếp), hệ thống sẽ phát âm thanh yêu cầu người dùng xác nhận lại.
+
+### 4.8. Tạo danh sách mua sắm thông minh (Smart Shopping List & Diff Engine)
+- **Mục đích:** Giúp việc đi chợ nhanh chóng và tiết kiệm tối đa chi phí.
+- **Cơ chế Diff Engine:**
+  $$\text{Danh sách cần mua} = \text{Tổng nguyên liệu công thức cần} - \text{Nguyên liệu sẵn có trong Smart Pantry}$$
+  *(Hệ thống tự động gộp định lượng nguyên liệu cùng loại và phân chia theo từng quầy siêu thị).*
+
+### 4.9. Hộ chiếu món ăn & Bộ sưu tập (Meal Passport & Recipe Gallery)
+- **Mục đích:** Ghi nhận hành trình ẩm thực của người dùng dưới dạng một "hộ chiếu" dinh dưỡng sinh động.
+- **Tính năng:** Lưu trữ các món đã nấu thành công, huy hiệu thành tích ẩm thực (VD: *Master Chef món Việt, 7 ngày ăn sạch liên tiếp*), và lưu lại các biến tấu gia vị riêng của người dùng.
+
+### 4.10. Bảng điều khiển Quản trị viên (Admin Dashboard & Content Management)
+- **Mục đích:** Cho phép ban quản trị duyệt công thức, kiểm duyệt bài đăng cộng đồng và quản lý kho dữ liệu dinh dưỡng gốc.
+- **Tính năng:** Thêm/Sửa/Xóa món ăn, kiểm tra độ tin cậy của công thức, phân quyền truy cập và giám sát các chỉ số an toàn hệ thống.
+
+---
+
+## CHƯƠNG 5: MÔ HÌNH DỮ LIỆU VÀ CƠ SỞ DỮ LIỆU QUAN HỆ
+
+Hệ thống sử dụng cơ sở dữ liệu **Supabase PostgreSQL** với chính sách bảo mật cấp hàng (*Row Level Security - RLS*).
+
+```
+┌─────────────────┐       ┌─────────────────┐       ┌──────────────────────┐
+│  user_profiles  │ 1   * │  smart_pantry   │       │     interactions     │
+│─────────────────│───────│─────────────────│       │──────────────────────│
+│ id (UUID, PK)   │       │ id (BIGINT, PK) │       │ id (BIGINT, PK)      │
+│ body_metrics    │       │ user_id (FK)    │       │ user_id (FK)         │
+│ eating_goals    │       │ ingredient_name │       │ meal_id (FK)         │
+│ taste_profile   │       │ quantity / unit │       │ event_type (ENUM)    │
+│ constraints     │       │ expiry_date     │       │ context_snapshot     │
+└────────┬────────┘       └─────────────────┘       └──────────────────────┘
+         │ 1
+         │ *
+┌────────▼────────┐ 1   * ┌─────────────────┐ 1   * ┌──────────────────────┐
+│    messages     │       │      meals      │       │     ingredients      │
+│─────────────────│       │─────────────────│───────│──────────────────────│
+│ id (UUID, PK)   │       │ id (BIGINT, PK) │       │ id (BIGINT, PK)      │
+│ user_id (FK)    │       │ name / origin   │       │ meal_id (FK)         │
+│ role / content  │       │ category        │       │ name / amount / unit │
+│ created_at      │       │ trust_status    │       └──────────────────────┘
+└─────────────────┘       │ qualified_score │ 1   * ┌──────────────────────┐
+                          │ is_trending     │───────│       recipes        │
+                          └─────────────────┘       │──────────────────────│
+                                                    │ id (BIGINT, PK)      │
+                                                    │ meal_id (FK)         │
+                                                    │ step_number, content │
+                                                    └──────────────────────┘
+```
+
+### Chi tiết các thực thể dữ liệu chính:
+1. **`user_profiles`:** Lưu trữ thông tin cá nhân hóa (*height, weight, calculated_bmi, activity_level, taste_preferences, allergen_hard_constraints, opt_out_learning*).
+2. **`smart_pantry`:** Danh mục nguyên liệu trong tủ lạnh (*user_id, ingredient_name, quantity, unit, expiry_date, is_near_expiry*).
+3. **`meals`:** Món ăn hệ thống (*id, name, origin, category, trust_status ['SAFE','REVIEW','BLOCK'], qualified_score, is_trending*).
+4. **`ingredients` & `recipes`:** Cấu trúc 1-N lưu trữ định lượng nguyên liệu chi tiết và các bước nấu có đánh số thứ tự.
+5. **`interactions` (Learning Log):** Lưu trữ sự kiện học tập (*user_id, meal_id, event_type ['IMPRESSION','CLICK','PICK','COOK','REPEAT','SKIP','RATE','SWAP','WASTE'], feedback_notes*).
+6. **`messages`:** Lịch sử hội thoại trò chuyện cùng EatVibing AI Coach.
+
+---
+
+## CHƯƠNG 6: BẢO VỆ DỮ LIỆU CÁ NHÂN, ĐẠO ĐỨC AI & AN TOÀN SỨC KHỎE
+
+1. **Nguyên tắc phi y tế hóa (Non-Medical Disclaimer):**  
+   EatVibing được định vị là công cụ hỗ trợ lối sống ẩm thực và gợi ý bữa ăn lành mạnh. **Hệ thống tuyệt đối không đưa ra chẩn đoán y khoa, không chỉ định thực đơn điều trị bệnh lý (Medical Nutrition Therapy)** và không dùng chỉ số BMI đơn lẻ để đánh giá sức khỏe toàn diện.
+2. **Thu thập tối thiểu và Đồng thuận rõ ràng (Explicit Consent & Data Minimization):**  
+   Mọi dữ liệu thể trạng và thói quen chỉ được thu thập khi có sự đồng ý của người dùng. Dữ liệu nhạy cảm được mã hóa và không chia sẻ cho bên thứ ba.
+3. **Quyền làm chủ dữ liệu của người dùng (User Data Sovereignty):**  
+   Cung cấp tính năng tải về toàn bộ dữ liệu cá nhân (*Export*), xóa vĩnh viễn tài khoản (*Delete/Right to be forgotten*) và tùy chọn tắt chức năng theo dõi thói quen (*Opt-out Personalization*).
+
+---
+
+## CHƯƠNG 7: CHIẾN LƯỢC KINH DOANH SẢN PHẨM SỐ (DIGITAL SAAS BUSINESS MODEL)
+
+EatVibing áp dụng mô hình kinh doanh **Freemium SaaS** với các gói dịch vụ linh hoạt, đáp ứng từ cá nhân đến hộ gia đình và đối tác doanh nghiệp:
+
+| Gói dịch vụ | Mức giá tham chiếu | Giá trị cốt lõi cung cấp | Đối tượng mục tiêu |
+| :--- | :---: | :--- | :--- |
+| **Free Tier** | **$0** | - Quản lý Smart Pantry cơ bản (tối đa 20 mục).<br>- EatVibing AI Coach cơ bản (Text chat).<br>- Gợi ý thực đơn giới hạn 3 ngày.<br>- Kiểm định an toàn ẩm thực cơ bản (*Culinary Trust Status*). | Người dùng mới muốn trải nghiệm vòng lặp cốt lõi trước khi trả phí. |
+| **Plus** | **$4.99 / tháng** | - **Lập kế hoạch bữa ăn cá nhân hóa với AI Coach**.<br>- Lưu trữ lịch sử pantry & thực đơn không giới hạn.<br>- Personalized Meal Guideline trọn vẹn theo tuần.<br>- Cảnh báo thực phẩm gần hết hạn & Thông kê chống lãng phí (*Waste Insights*).<br>- Hỗ trợ điều khiển bằng giọng nói cơ bản (*Voice Support*). | Cá nhân bận rộn muốn tối ưu hóa thời gian đi chợ và nấu ăn hàng ngày. |
+| **Pro** | **$9.99 / tháng** | - **AI Coach cá nhân hóa nâng cao dựa trên profile và hành vi thực tế**.<br>- Phân tích chỉ số dinh dưỡng chuyên sâu.<br>- Hạn ngạch nhận diện Voice & Vision cao cấp.<br>- Guideline thích ứng liên tục theo thói quen nấu.<br>- Hồ sơ Meal Passport chi tiết và mục tiêu thể hình nâng cao. | Người theo đuổi chế độ ăn chuyên sâu (Eat Clean, Gym/Fitness, Keto). |
+| **Family** | **$14.99 / tháng** | - **Nhiều hồ sơ AI cá nhân hóa trong cùng một hộ gia đình (Household)**.<br>- Dùng chung Smart Pantry, Meal Plan và Smart Shopping List.<br>- Phân quyền thành viên gia đình và Báo cáo dinh dưỡng tổng thể tổ ấm. | Hộ gia đình có nhiều thành viên với khẩu vị và nhu cầu ăn uống khác nhau. |
+| **Creator** | **Freemium / RevShare** | - Bộ công cụ CMS sáng tạo công thức chuẩn quốc tế.<br>- Xác thực bản quyền công thức (*Provenance*).<br>- Chia sẻ doanh thu từ lượt nấu của cộng đồng. | Đầu bếp chuyên nghiệp, Food Blogger, Chuyên gia ẩm thực. |
+| **Business / API** | **Theo hợp đồng B2B** | - API tích hợp hệ thống siêu thị online (WinMart, GrabMart...).<br>- White-label solution cho chuỗi căn hộ, trường học, trung tâm thể hình.<br>- Bảng điều khiển chiến dịch & SLA/SSO chuyên biệt. | Doanh nghiệp bán lẻ thực phẩm, Chuỗi phòng gym, Tập đoàn chăm sóc sức khỏe. |
+
+---
+
+## CHƯƠNG 8: KỊCH BẢN TRÌNH DIỄN SẢN PHẨM (3-MINUTE DEMO SCENARIO)
+
+- **0:00 – 0:25 (Onboarding & Profile Setup):**  
+  Người dùng thiết lập nhanh: Dị ứng đậu phộng (*Peanut allergy*), mục tiêu tăng đạm (*High-protein*), thời gian nấu < 30 phút. Hệ thống tạo hồ sơ cá nhân hóa và thiết lập bộ lọc an toàn.
+- **0:25 – 0:45 (Voice Interaction với EatVibing AI Coach):**  
+  Người dùng bấm nút Voice nói: *"Tối nay tôi có trứng, cà chua và ít cơm nguội, muốn nấu món gì nhanh dưới 30 phút."* AI Coach phân tích giọng nói, trích xuất nguyên liệu và đối chiếu kho Smart Pantry.
+- **0:45 – 1:10 (Sinh Personalized Guideline & Explain-Why):**  
+  AI Coach sinh danh sách 3 ứng viên món ăn, kèm bảng minh bạch giải thích: Món nào tận dụng được cơm nguội, hàm lượng protein đạt chuẩn bao nhiêu gam.
+- **1:10 – 1:35 (Trực quan hóa Culinary Trust Layer):**  
+  Hệ thống phát hiện một món trending cộng đồng có nước sốt chứa đậu phộng ➔ Gán nhãn **BLOCK** (Chặn hiển thị). Một món thiếu dữ liệu nguồn ➔ Gán nhãn **REVIEW**. Món *Cơm rang trứng cà chua kiểu Pháp* đạt chuẩn ➔ Gán nhãn **SAFE**.
+- **1:35 – 2:00 (Pick món & Tạo Shopping List Diff):**  
+  Người dùng bấm *Pick* món SAFE. Hệ thống tự động kiểm tra kho: Đã có trứng, cà chua, cơm; chỉ thiếu hành lá ➔ Shopping List chỉ hiển thị mua duy nhất 1 bó hành lá.
+- **2:00 – 2:30 (Voice-Assisted Guided Cooking):**  
+  Chuyển sang màn hình nấu. Người dùng nấu rảnh tay, ra lệnh giọng nói: *"Next step"* để chuyển bước nấu và *"Set timer 5 minutes"* để canh giờ xào cà chua.
+- **2:30 – 3:00 (Hoàn thành, Đánh giá & Cập nhật Vòng lặp học tập):**  
+  Người dùng ấn *"Đã nấu thành công"*, chấm 5 sao kèm nhận xét: *"Rất ngon nhưng lần sau cho ít tiêu hơn"*. AI Coach phản hồi: *"Đã ghi nhận, tôi sẽ giảm độ cay trong các thực đơn tiếp theo của bạn."* ➔ Hoàn tất vòng lặp Pantry → Plan → Trust → Cook → Learn.
+
+---
+
+## CHƯƠNG 9: LỘ TRÌNH PHÁT TRIỂN DỰ ÁN (PROJECT ROADMAP)
+
+```
+┌───────────────────────────┐      ┌───────────────────────────┐      ┌───────────────────────────┐
+│     GIAI ĐOẠN 1 (MVP)     │      │   GIAI ĐOẠN 2 (TIẾP THEO) │      │   GIAI ĐOẠN 3 (MỞ RỘNG)   │
+│       CORE EXPERIENCE     │      │   ADAPTIVE EXPERIENCE     │      │     EXPANSION & SCALE     │
+├───────────────────────────┤      ├───────────────────────────┤      ├───────────────────────────┤
+│ • Onboarding Profile      │ ───► │ • Advanced Voice NLP      │ ───► │ • Native Mobile App       │
+│ • Smart Pantry cơ bản     │      │ • Computer Vision (Quét)  │      │ • Creator / Community CMS │
+│ • EatVibing AI Coach Text │      │ • Long-term Adaptive Model│      │ • B2B Grocery API         │
+│ • Culinary Trust Layer    │      │ • Waste Analytics Engine  │      │ • Voice Cooking Assistant │
+│ • Personalized Guideline  │      │ • Gói thuê bao Family     │      │ • Marketplace Integration │
+└───────────────────────────┘      └───────────────────────────┘      └───────────────────────────┘
+```
+
+1. **Giai đoạn 1 (Core MVP Prototype - Đang triển khai):**
+   - Hoàn thiện Web/PWA, Profile khảo sát ban đầu, Quản lý Smart Pantry, Chatbot EatVibing AI Coach, Lớp ủy thác Culinary Trust Layer (SAFE/REVIEW/BLOCK), và Trình tạo danh sách mua sắm bù trừ.
+2. **Giai đoạn 2 (Enhanced Interaction & Intelligence - Quý 3/2026):**
+   - Tích hợp Voice Interaction hai chiều, Nâng cấp Thị giác máy tính (Quét ảnh ngăn tủ lạnh và hóa đơn mua hàng), Hoàn thiện thuật toán học tập hành vi thích ứng dài hạn, Triển khai gói thuê bao Family.
+3. **Giai đoạn 3 (Ecosystem & Multi-platform Expansion - Quý 4/2026 - 2027):**
+   - Đóng gói ứng dụng di động Native Mobile App (React Native), Mở rộng cổng Creator/B2B, Tích hợp API đặt hàng trực tiếp qua các hệ thống siêu thị đối tác.
 
 ---
 
 ## KẾT LUẬN
-Đề tài nghiên cứu **"Hệ thống Trợ lý Ẩm thực Thông minh EatVibing"** đã giải quyết thành công các mục tiêu đặt ra, chứng minh tính khả thi và hiệu quả vượt trội của việc ứng dụng Trí tuệ Nhân tạo tạo sinh vào lĩnh vực dinh dưỡng và ẩm thực gia đình. Với cấu trúc mã nguồn chuẩn mực, giao diện thân thiện và kiến trúc backend an toàn, EatVibing sẵn sàng để mở rộng và phát triển thành một sản phẩm công nghệ có giá trị thực tiễn cao trong xã hội số.
+
+Dự án **EatVibing** không chỉ dừng lại ở một ý tưởng công nghệ tiềm năng mà đã được hiện thực hóa với kiến trúc kỹ thuật vững chắc, giải quyết đồng thời bài toán kinh tế gia đình và sức khỏe cộng đồng. Bằng việc kết hợp hài hòa giữa **sự sáng tạo của Trí tuệ Nhân tạo (AI Coach)** và **tính kỷ luật, chính xác của Lớp ủy thác ẩm thực (Culinary Trust Layer)**, EatVibing tự tin khẳng định vị thế tiên phong trong làn sóng chuyển đổi số ngành FoodTech tại cuộc thi **AISC 2026**.
+
+---
+
+## 📝 CHANGELOG CẬP NHẬT TÀI LIỆU (SAU HỌP NHÓM)
+
+| Hạng mục | Chi tiết cập nhật | Ghi chú & Rationale |
+| :--- | :--- | :--- |
+| **Đổi định vị & Tên gọi (Terminology)** | Đổi từ `AI Culinary Assistant` thành **EatVibing AI Coach** (*Personalized AI Food Coach*). | Thể hiện đúng vai trò đồng hành xuyên suốt hành trình ăn uống, không chỉ là bot trả lời công thức. |
+| **Cập nhật Vòng lặp cốt lõi** | Chuẩn hóa quy trình: **Pantry → Plan → Trust → Cook → Learn**. | Tạo sự liền mạch từ nguyên liệu sẵn có đến hành động nấu và học từ kết quả thực tế. |
+| **Bổ sung Onboarding Profile** | Thêm cấu trúc khảo sát: Body Metrics (BMI ngữ cảnh), Eating Goals, Taste Profile, Allergen Hard Constraints. | Cung cấp dữ liệu để AI Coach cá nhân hóa ngay từ phiên đầu tiên (không dùng BMI để chẩn đoán y tế). |
+| **Nâng cấp Personalized Guideline** | Bổ sung không gian gợi ý thích ứng theo ngày/tuần, tính năng *Explain-Why*, học từ *Pick/Cook/Repeat/Waste*. | Giảm quyết định mệt mỏi (*Decision Fatigue*), học từ hành vi thực tế thay vì chỉ đếm click. |
+| **Chuẩn hóa Trending Guideline** | Xếp hạng bằng *Qualified Engagement Score*; bắt buộc qua Trust Layer; **Trending không được vượt qua Allergen Constraint**. | Ngăn chặn rủi ro dị ứng và thiên vị món viral thiếu an toàn. |
+| **Bổ sung Voice Interaction Layer** | Hỗ trợ điều khiển giọng nói khi nấu ăn rảnh tay và nhập pantry; thêm cơ chế xác nhận lại khi confidence thấp. | Giữ nguyên nguyên tắc: Voice chỉ là giao diện tương tác, không thay thế Trust Layer. |
+| **Định vị Nền tảng & Thiết bị** | Web/PWA mobile-first là bề mặt trải nghiệm chính; Native Mobile App là hướng mở rộng khi cần tích hợp sâu Voice/Vision và thiết bị. | Giữ một lõi AI–tool–Trust thống nhất trên nhiều bề mặt sản phẩm. |
+| **Cập nhật Bảng giá SaaS (Pricing)** | Cập nhật 6 gói: Free ($0), Plus ($4.99), Pro ($9.99), Family ($14.99), Creator, Business/API. | Khắc họa rõ giá trị gia tăng của AI Coach, Shared Family Pantry và Voice/Vision Quota. |
+| **Kịch bản Demo 3 phút** | Xây dựng kịch bản 3 phút thể hiện trọn vẹn: Voice ➔ Smart Pantry ➔ Trust Layer (Block dị ứng) ➔ Guided Cooking ➔ Learning Update. | Phục vụ trực tiếp cho buổi thuyết trình và pitching tại AISC 2026. |
