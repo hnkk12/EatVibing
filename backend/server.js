@@ -8,6 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// health check
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "EatVibing API is running" });
+});
+
 // use route
 app.use("/api/meals", mealRoutes);
 app.use("/api/ai", aiRoutes);

@@ -1,21 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Chat from "./pages/Chat";
-import Guide from "./pages/Guide";
-import RecommendPage from "./pages/RecommendPage";
-
 const data = [
   {
-    path: "/ai-menu",
-    element: <Chat />,
+    path: "/chat",
     label: "AI Suggestions Menu",
     icon: "⚡",
   },
-  { path: "/guide", element: <Guide />, label: "Recommendation", icon: "🌐" },
   {
-    path: "/recommendation",
-    element: <RecommendPage />,
+    path: "/guide",
+    label: "Recommendation",
+    icon: "🌐",
+  },
+  {
+    path: "/guide",
     label: "Cooking Guide",
     icon: "🍳",
   },

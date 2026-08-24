@@ -5,7 +5,7 @@ import Hero from "./_components/hero";
 import Chat from "./_components/pages/Chat";
 import Guide from "./_components/pages/Guide";
 import Community from "./_components/pages/Community";
-import AdminDashboard from "./_components/pages/AdminDashBoard";
+import AdminDashboard from "./_components/pages/AdminDashboard";
 export default function App() {
   return (
     <BrowserRouter>

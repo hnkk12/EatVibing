@@ -1,6 +1,7 @@
 import { Asterisk } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import heroImg from "../assets/hero.png";
 
 const Hero = () => {
   return (
@@ -9,7 +10,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl"
+        className="max-w-2xl z-10"
       >
         <h1 className="font-display text-5xl md:text-8xl font-bold leading-[0.9] md:leading-[0.88] tracking-tighter text-zinc-900 mb-8 md:mb-12">
           Deliciously <br />
@@ -24,7 +25,7 @@ const Hero = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-base md:text-xl font-normal text-zinc-500 mb-8 md:mb-10 leading-relaxed max-w-lg"
         >
-          Personalized meal plans and smart restaurant picks{" "}
+          Personalized meal plans and smart culinary recipes{" "}
           <span className="text-zinc-900 font-medium">powered by AI.</span>
         </motion.h3>
 
@@ -46,8 +47,15 @@ const Hero = () => {
       </motion.div>
 
       {/* img - ẩn trên mobile */}
-      <div className="hidden md:flex absolute right-0 bottom-0 top-0 w-1/2 items-end justify-center pointer-events-none overflow-hidden select-none">
-        <motion.img />
+      <div className="hidden md:flex absolute right-4 lg:right-12 bottom-0 top-0 w-1/2 items-center justify-center pointer-events-none overflow-hidden select-none">
+        <motion.img
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          src={heroImg}
+          alt="EatVibing Hero Dish"
+          className="max-h-[85%] max-w-full object-contain drop-shadow-2xl"
+        />
       </div>
     </div>
   );

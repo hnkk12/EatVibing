@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../../config/api";
 import { Plus, Trash2, Save, UploadCloud, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -56,19 +56,27 @@ const AdminDashboard = () => {
   // Submit to Backend
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ loading: true, message: "Uploading...", type: "info" });
+    if (!meal.name.trim()) {
+      setStatus({ loading: false, message: "Vui lòng nhập tên món ăn!", type: "error" });
+      return;
+    }
+    setStatus({ loading: true, message: "Đang lưu món ăn...", type: "info" });
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/meals",
-        meal,
-      );
+      const filteredIngredients = meal.ingredients.filter((ing) => ing.trim() !== "");
+      const filteredRecipes = meal.recipes.filter((rec) => rec.content.trim() !== "");
+
+      await api.post("/meals", {
+        ...meal,
+        ingredients: filteredIngredients,
+        recipes: filteredRecipes,
+      });
       setStatus({
         loading: false,
-        message: "Meal uploaded successfully!",
+        message: "Lưu món ăn thành công!",
         type: "success",
       });
-      // Reset form if needed
+      // Reset form
       setMeal({
         name: "",
         origin: "",
@@ -81,7 +89,7 @@ const AdminDashboard = () => {
       console.error(error);
       setStatus({
         loading: false,
-        message: "Error uploading meal. Check console.",
+        message: error.response?.data?.error || "Lỗi khi lưu món ăn. Vui lòng kiểm tra lại!",
         type: "error",
       });
     }
