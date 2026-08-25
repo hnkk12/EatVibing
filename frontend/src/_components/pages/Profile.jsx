@@ -36,7 +36,8 @@ const Profile = () => {
       setUser(user);
 
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/profile/${user.id}`);
+        const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const res = await axios.get(`${baseUrl}/api/profile/${user.id}`);
         if (res.data) {
           setProfile({
             ...emptyProfile,
@@ -77,7 +78,8 @@ const Profile = () => {
     if (!user) return;
     setStatus({ loading: true, message: "", type: "" });
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/profile`, {
+      const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      await axios.post(`${baseUrl}/api/profile`, {
         userId: user.id,
         profile: {
           height_cm: Number(profile.height_cm) || null,

@@ -14,7 +14,8 @@ const Navbar = () => {
   // Onboarding: nếu user vừa đăng nhập lần đầu (chưa có hồ sơ) thì đưa sang /profile
   const redirectIfFirstLogin = async (userId) => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/profile/${userId}`);
+      const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await axios.get(`${baseUrl}/api/profile/${userId}`);
       if (!res.data) navigate("/profile");
     } catch (error) {
       console.error("Error checking profile", error);

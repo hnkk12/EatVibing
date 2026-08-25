@@ -18,8 +18,13 @@ const RecipeDetail = () => {
 
   const loadRatings = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/ratings/${id}`);
-      setRatings(res.data);
+      const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await axios.get(`${baseUrl}/api/ratings/${id}`);
+      if (res.data && Array.isArray(res.data.reviews)) {
+        setRatings(res.data);
+      } else {
+        console.error("Ratings response is invalid:", res.data);
+      }
     } catch (error) {
       console.error("Error loading ratings", error);
     }
@@ -34,7 +39,8 @@ const RecipeDetail = () => {
     if (!user || !myScore) return;
     setSubmitting(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/ratings`, {
+      const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      await axios.post(`${baseUrl}/api/ratings`, {
         mealId: id,
         userId: user.id,
         score: myScore,
@@ -53,14 +59,20 @@ const RecipeDetail = () => {
   useEffect(() => {
     const fetchMeal = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/meals`);
-        const found = res.data.find((m) => String(m.id) === id);
-        if (!found) {
-          setStatus("notfound");
-          return;
+        const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const res = await axios.get(`${baseUrl}/api/meals`);
+        if (Array.isArray(res.data)) {
+          const found = res.data.find((m) => String(m.id) === id);
+          if (!found) {
+            setStatus("notfound");
+            return;
+          }
+          setMeal(found);
+          setStatus("ok");
+        } else {
+          console.error("Meals response is not an array:", res.data);
+          setStatus("error");
         }
-        setMeal(found);
-        setStatus("ok");
       } catch (error) {
         console.error("Error loading recipe", error);
         setStatus("error");

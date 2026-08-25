@@ -68,9 +68,15 @@ const Guide = () => {
   useEffect(() => {
     const fetchMeals = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/meals`);
-        setMeals(res.data);
-        setMealsStatus("ok");
+        const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        const res = await axios.get(`${baseUrl}/api/meals`);
+        if (Array.isArray(res.data)) {
+          setMeals(res.data);
+          setMealsStatus("ok");
+        } else {
+          console.error("Meals response is not an array:", res.data);
+          setMealsStatus("error");
+        }
       } catch (error) {
         console.error("Error loading meals", error);
         setMealsStatus("error");
@@ -78,10 +84,21 @@ const Guide = () => {
     };
     fetchMeals();
 
+    const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/ratings/trending?days=7&limit=3`)
-      .then((res) => setTrending(res.data))
-      .catch((error) => console.error("Error loading trending", error));
+      .get(`${baseUrl}/api/ratings/trending?days=7&limit=3`)
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setTrending(res.data);
+        } else {
+          console.error("Trending response is not an array:", res.data);
+          setTrending([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading trending", error);
+        setTrending([]);
+      });
   }, []);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Heart, MessageCircle, User } from "lucide-react";
 import { supabase } from "../../supabaseClient";
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const timeAgo = (iso) => {
   const diffMs = Date.now() - new Date(iso).getTime();
@@ -179,8 +179,13 @@ const Community = () => {
   const loadPosts = async (userId) => {
     try {
       const res = await axios.get(`${API}/api/community/posts`, { params: { userId } });
-      setPosts(res.data);
-      setStatus("ok");
+      if (Array.isArray(res.data)) {
+        setPosts(res.data);
+        setStatus("ok");
+      } else {
+        console.error("Posts response is not an array:", res.data);
+        setStatus("error");
+      }
     } catch (error) {
       console.error("Error loading community posts", error);
       setStatus("error");
