@@ -43,8 +43,26 @@ exports.getPosts = async (req, res) => {
       });
     }
 
+    // Fetch meal info if any post tags a meal
+    const mealIds = posts.map((p) => p.meal_id).filter(Boolean);
+    let mealsMap = {};
+    if (mealIds.length) {
+      const { data: meals, error: mealErr } = await supabase
+        .from("meals")
+        .select("id, name, category")
+        .in("id", mealIds);
+      if (mealErr) throw mealErr;
+      meals.forEach((m) => {
+        mealsMap[m.id] = m;
+      });
+    }
+
     const withLikes = await attachLikes(posts, userId);
-    const result = withLikes.map((p) => ({ ...p, replyCount: replyCounts[p.id] || 0 }));
+    const result = withLikes.map((p) => ({
+      ...p,
+      replyCount: replyCounts[p.id] || 0,
+      meal: p.meal_id ? mealsMap[p.meal_id] || null : null,
+    }));
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -72,7 +90,7 @@ exports.getReplies = async (req, res) => {
 // [POST] Tạo post mới hoặc reply (reply chỉ 1 cấp: parentPostId phải là post gốc)
 exports.createPost = async (req, res) => {
   try {
-    const { userId, authorName, authorAvatar, content, imageUrl, parentPostId } = req.body;
+    const { userId, authorName, authorAvatar, content, imageUrl, parentPostId, mealId } = req.body;
     if (!userId || !content?.trim()) {
       return res.status(400).json({ error: "userId and content are required" });
     }
@@ -86,6 +104,7 @@ exports.createPost = async (req, res) => {
           content,
           image_url: imageUrl || null,
           parent_post_id: parentPostId || null,
+          meal_id: mealId || null,
         },
       ])
       .select()
