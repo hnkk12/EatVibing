@@ -200,7 +200,7 @@ const Guide = () => {
           )}
 
           {/* Trending this week (mục G: nhiều tương tác nhất -> guideline) */}
-          {selectedCat !== "what-to-eat" && selectedCat !== "weekly-plans" && trending.length > 0 && (
+          {selectedCat === "all" && trending.length > 0 && (
             <div className="mb-12">
               <h3 className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold mb-4">
                 🔥 Trending this week
