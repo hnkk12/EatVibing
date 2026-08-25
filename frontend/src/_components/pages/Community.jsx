@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Heart, MessageCircle, User } from "lucide-react";
+import { Heart, MessageCircle, User, Image, X } from "lucide-react";
 import { supabase } from "../../supabaseClient";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -164,6 +164,22 @@ const Community = () => {
   const [status, setStatus] = useState("loading");
   const [composeText, setComposeText] = useState("");
   const [posting, setPosting] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setImageFile(null);
+    setImagePreview(null);
+  };
 
   useEffect(() => {
     const init = async () => {
@@ -228,20 +244,46 @@ const Community = () => {
   };
 
   const handleComposeSubmit = async () => {
-    if (!composeText.trim() || !user) return;
+    if ((!composeText.trim() && !imageFile) || !user) return;
     setPosting(true);
+    let imageUrl = null;
+
     try {
+      if (imageFile) {
+        setUploadingImage(true);
+        const fileExt = imageFile.name.split(".").pop();
+        const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+        const filePath = `posts/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("uploads")
+          .upload(filePath, imageFile);
+
+        if (uploadError) throw uploadError;
+
+        const { data: urlData } = supabase.storage
+          .from("uploads")
+          .getPublicUrl(filePath);
+
+        imageUrl = urlData.publicUrl;
+      }
+
       const res = await axios.post(`${API}/api/community/posts`, {
         userId: user.id,
         authorName: user.user_metadata?.full_name,
         authorAvatar: user.user_metadata?.avatar_url,
         content: composeText,
+        imageUrl: imageUrl,
       });
       setPosts((prev) => [{ ...res.data, likeCount: 0, likedByMe: false, replyCount: 0 }, ...prev]);
       setComposeText("");
+      setImageFile(null);
+      setImagePreview(null);
     } catch (error) {
       console.error("Error posting", error);
+      alert("Đăng bài thất bại. Vui lòng kiểm tra lại cấu hình storage!");
     } finally {
+      setUploadingImage(false);
       setPosting(false);
     }
   };
@@ -262,13 +304,40 @@ const Community = () => {
                 rows={2}
                 className="w-full bg-transparent border-none outline-none resize-none text-sm placeholder-zinc-400"
               />
-              <div className="flex justify-end">
+              {imagePreview && (
+                <div className="relative mt-2 inline-block">
+                  <img
+                    src={imagePreview}
+                    alt="upload preview"
+                    className="max-h-40 rounded-xl border border-zinc-100 object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1 hover:bg-black/80 transition-colors"
+                    title="Remove image"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+              )}
+              <div className="flex justify-between items-center mt-3 border-t border-zinc-50 pt-3">
+                <label className="cursor-pointer text-zinc-400 hover:text-zinc-600 transition-colors flex items-center gap-1">
+                  <Image size={18} />
+                  <span className="text-[11px] font-medium">Add Photo</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </label>
                 <button
                   onClick={handleComposeSubmit}
-                  disabled={posting || !composeText.trim()}
+                  disabled={posting || uploadingImage || (!composeText.trim() && !imageFile)}
                   className="px-5 py-2 bg-black text-white rounded-full text-xs font-semibold disabled:opacity-30"
                 >
-                  {posting ? "Posting..." : "Post"}
+                  {posting ? "Posting..." : uploadingImage ? "Uploading..." : "Post"}
                 </button>
               </div>
             </div>
