@@ -1,7 +1,6 @@
 import { Asterisk } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import heroImg from "../assets/hero.png";
 
 const Hero = () => {
   return (
@@ -46,17 +45,7 @@ const Hero = () => {
         </Link>
       </motion.div>
 
-      {/* img - ẩn trên mobile */}
-      <div className="hidden md:flex absolute right-4 lg:right-12 bottom-0 top-0 w-1/2 items-center justify-center pointer-events-none overflow-hidden select-none">
-        <motion.img
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          src={heroImg}
-          alt="EatVibing Hero Dish"
-          className="max-h-[85%] max-w-full object-contain drop-shadow-2xl"
-        />
-      </div>
+
     </div>
   );
 };
