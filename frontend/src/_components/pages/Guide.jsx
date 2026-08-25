@@ -44,6 +44,7 @@ const Guide = () => {
     { id: "what-to-eat", label: "What to eat today?", type: "feature" },
     { id: "weekly-plans", label: "Weekly Meal Plans", type: "feature" },
     { id: "divider", label: "", type: "divider" },
+    { id: "trending", label: "Trending this week", type: "category" },
     { id: "all", label: "All meals", type: "category" },
     { id: "loss", label: "Weight Loss", type: "category" },
     { id: "gain", label: "Bulking", type: "category" },
@@ -200,36 +201,16 @@ const Guide = () => {
           )}
 
           {/* Trending this week (mục G: nhiều tương tác nhất -> guideline) */}
-          {selectedCat === "all" && trending.length > 0 && (
-            <div className="mb-12">
-              <h3 className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold mb-4">
-                🔥 Trending this week
-              </h3>
-              <div className="flex gap-6 overflow-x-auto">
-                {trending.map((meal) => (
-                  <Link
-                    key={meal.id}
-                    to={`/recipe/${meal.id}`}
-                    className="shrink-0 w-40 group"
-                  >
-                    <div className="aspect-[4/5] bg-gray-50 border border-gray-100 overflow-hidden flex items-center justify-center p-4">
-                      <img
-                        src={meal.image_url}
-                        alt={meal.name}
-                        className="max-h-full max-w-full object-contain group-hover:scale-105 transition-all duration-500"
-                      />
-                    </div>
-                    <p className="text-[11px] font-medium mt-2 uppercase tracking-tight">{meal.name}</p>
-                  </Link>
-                ))}
-              </div>
-            </div>
+          {selectedCat === "trending" && (
+            <h2 className="text-xl font-light tracking-widest uppercase mb-8">
+              🔥 Trending this week
+            </h2>
           )}
 
           {/* Recipe Gallery */}
-          {selectedCat !== "what-to-eat" && selectedCat !== "weekly-plans" && (
+          {(selectedCat === "trending" || (selectedCat !== "what-to-eat" && selectedCat !== "weekly-plans")) && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
-              {filteredMeals.map((meal) => (
+              {(selectedCat === "trending" ? trending : filteredMeals).map((meal) => (
                 <Link
                   key={meal.id}
                   to={`/recipe/${meal.id}`}
@@ -258,7 +239,12 @@ const Guide = () => {
                   </div>
                 </Link>
               ))}
-              {mealsStatus === "ok" && filteredMeals.length === 0 && (
+              {selectedCat === "trending" && trending.length === 0 && (
+                <p className="text-sm text-gray-400 col-span-full">
+                  No trending meals this week.
+                </p>
+              )}
+              {selectedCat !== "trending" && mealsStatus === "ok" && filteredMeals.length === 0 && (
                 <p className="text-sm text-gray-400 col-span-full">
                   No meals in this category yet.
                 </p>
