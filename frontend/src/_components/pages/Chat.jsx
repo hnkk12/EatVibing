@@ -18,6 +18,7 @@ const Chat = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [fridgeMode, setFridgeMode] = useState(false);
   const messagesEndRef = useRef(null);
 
   // Scroll to bottom
@@ -61,19 +62,26 @@ const Chat = () => {
 
   // Send message function
   const handleSend = async (customPrompt) => {
-    const textToSend = (customPrompt || input).trim();
-    if (!textToSend || isLoading) return;
+    const rawText = customPrompt || input;
+    if (!rawText.trim() || isLoading) return;
+
+    const sendingFridgeMode = fridgeMode;
+    const textToSend = sendingFridgeMode
+      ? `Tôi hiện có các nguyên liệu sau: ${rawText}. Hãy gợi ý món ăn tôi có thể nấu ngay.`
+      : rawText;
 
     // Add user message to UI
     const userMsg = { role: "user", text: textToSend };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+    setFridgeMode(false);
     setIsLoading(true);
 
     try {
       const response = await api.post("/ai/chat", {
         prompt: textToSend,
         userId: currentUser?.id || null,
+        mode: sendingFridgeMode ? "fridge" : undefined,
       });
 
       const aiMsg = { role: "assistant", text: response.data.answer };
@@ -143,7 +151,11 @@ const Chat = () => {
                 {suggestButtons.map((btn, idx) => (
                   <button
                     key={idx}
-                    onClick={() => handleSend(btn.prompt)}
+                    onClick={() =>
+                      btn.label === "Dọn tủ lạnh"
+                        ? setFridgeMode(true)
+                        : handleSend(btn.prompt)
+                    }
                     className="flex items-center gap-3 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-800 transition-all p-3.5 rounded-2xl text-sm font-medium text-left shadow-sm hover:shadow"
                   >
                     <div className="p-2 bg-white rounded-xl shadow-xs border border-zinc-100">
@@ -153,6 +165,11 @@ const Chat = () => {
                   </button>
                 ))}
               </div>
+              {fridgeMode && (
+                <p className="mt-4 text-xs text-orange-500">
+                  Chế độ Dọn tủ lạnh: liệt kê nguyên liệu bạn đang có bên dưới rồi gửi.
+                </p>
+              )}
             </div>
           ) : (
             /* Chat Messages List */
@@ -200,7 +217,11 @@ const Chat = () => {
                   handleSend();
                 }
               }}
-              placeholder="Hỏi EatVibing về công thức, nguyên liệu..."
+              placeholder={
+                fridgeMode
+                  ? "VD: 2 quả trứng, nửa củ hành tây, ít cơm nguội..."
+                  : "Hỏi EatVibing về công thức, nguyên liệu..."
+              }
               className="w-full bg-transparent border-none outline-none resize-none text-sm md:text-base px-3 py-1 placeholder-zinc-400 text-zinc-900 max-h-32"
               rows={1}
             />

@@ -6,9 +6,38 @@ const client = new OpenAI({
   apiKey: process.env.LLM7_API_KEY,
 });
 
+// Đưa hồ sơ cá nhân hóa (BMI, khẩu vị, dị ứng) vào system prompt nếu có
+const buildProfileContext = (profile) => {
+  if (!profile) return "";
+  const parts = [];
+  if (profile.height_cm && profile.weight_kg) {
+    const bmi = profile.weight_kg / (profile.height_cm / 100) ** 2;
+    parts.push(`chỉ số BMI khoảng ${bmi.toFixed(1)}`);
+  }
+  if (profile.goal) parts.push(`mục tiêu ăn uống: ${profile.goal}`);
+  if (profile.diet_tags?.length) parts.push(`chế độ ăn: ${profile.diet_tags.join(", ")}`);
+  if (profile.allergies?.length) parts.push(`dị ứng/kiêng: ${profile.allergies.join(", ")}`);
+  if (!parts.length) return "";
+  return `\n\nTHÔNG TIN NGƯỜI DÙNG (dùng để cá nhân hóa gợi ý, tuyệt đối tránh nguyên liệu người dùng dị ứng/kiêng): ${parts.join("; ")}.`;
+};
+
+const FRIDGE_MODE_PROMPT = `\n\nCHẾ ĐỘ DỌN TỦ LẠNH: Người dùng chỉ liệt kê nguyên liệu đang có sẵn. Hãy ưu tiên kết hợp CHÉO các nguyên liệu đó thành 2-3 món ăn hoàn chỉnh, chỉ được bổ sung thêm gia vị cơ bản có sẵn trong mọi gian bếp (muối, tiêu, dầu ăn, nước mắm). Không yêu cầu người dùng đi mua thêm nguyên liệu chính.`;
+
 const askAI = async (req, res) => {
   try {
-    const { prompt, userId } = req.body;
+    const { prompt, userId, mode } = req.body;
+
+    let profileContext = "";
+    if (userId) {
+      const { data: profileRow } = await supabase
+        .from("user_indicator_settings")
+        .select("visibility")
+        .eq("user_id", userId)
+        .maybeSingle();
+      profileContext = buildProfileContext(profileRow?.visibility);
+    }
+    const modeContext = mode === "fridge" ? FRIDGE_MODE_PROMPT : "";
+
     const response = await client.chat.completions.create({
       model: "default",
       messages: [
@@ -31,7 +60,7 @@ const askAI = async (req, res) => {
              - **Nguyên liệu**: Danh sách (*) kèm định lượng.
              - "Trên đây là các nguyên liệu cần thiết, sau đây là cách thực hiện."
              - **Cách nấu**: Danh sách số (1, 2, 3...).
-             - > **Mẹo**: Blockquote ngắn gọn.`,
+             - > **Mẹo**: Blockquote ngắn gọn.${profileContext}${modeContext}`,
         },
         { role: "user", content: prompt },
       ],

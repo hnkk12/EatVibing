@@ -6,6 +6,9 @@ import Chat from "./_components/pages/Chat";
 import Guide from "./_components/pages/Guide";
 import Community from "./_components/pages/Community";
 import AdminDashboard from "./_components/pages/AdminDashboard";
+import RecipeDetail from "./_components/pages/RecipeDetail";
+import Profile from "./_components/pages/Profile";
+import Pricing from "./_components/pages/Pricing";
 export default function App() {
   return (
     <BrowserRouter>
@@ -27,7 +30,10 @@ export default function App() {
             <Route path="/" element={<Hero />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/guide" element={<Guide />} />
+            <Route path="/recipe/:id" element={<RecipeDetail />} />
             <Route path="/community" element={<Community />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/admin" element={<AdminDashboard />}></Route>
           </Routes>
         </motion.div>
