@@ -63,6 +63,7 @@ const PostCard = ({ post, user, onToggleLike, onReplySubmit, onAvatarClick }) =>
   const [replyText, setReplyText] = useState("");
   const [replying, setReplying] = useState(false);
   const [loadingReplies, setLoadingReplies] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const loadReplies = async () => {
     if (showReplies) {
@@ -114,7 +115,30 @@ const PostCard = ({ post, user, onToggleLike, onReplySubmit, onAvatarClick }) =>
             <span className="text-xs text-zinc-400">{timeAgo(post.created_at)}</span>
           </div>
           <p className="text-sm text-zinc-800 whitespace-pre-wrap break-words mt-1 leading-relaxed">
-            {post.content}
+            {post.content.length > 240 && !isExpanded ? (
+              <>
+                {post.content.slice(0, 240)}
+                {"... "}
+                <button
+                  onClick={() => setIsExpanded(true)}
+                  className="text-black font-semibold hover:underline ml-1 text-xs"
+                >
+                  Đọc thêm
+                </button>
+              </>
+            ) : (
+              <>
+                {post.content}
+                {post.content.length > 240 && (
+                  <button
+                    onClick={() => setIsExpanded(false)}
+                    className="text-zinc-500 font-semibold hover:underline ml-2 text-xs"
+                  >
+                    Thu gọn
+                  </button>
+                )}
+              </>
+            )}
           </p>
 
           {/* Tagged Recipe Badge */}
