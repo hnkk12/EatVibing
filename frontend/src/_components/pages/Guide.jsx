@@ -1,6 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const SLOTS = ["Breakfast", "Lunch", "Dinner"];
+const SHOPPING_KEY = "eatvibing_shopping_checked";
+
+// ponytail: greedy round-robin capped at 2 uses/week per meal; if the category
+// has too few meals to fill 21 slots without repeats it falls back to any
+// meal in the category. Upgrade to a real scheduling algorithm if the menu
+// grows large enough for that cap to matter.
+const generateWeeklyPlan = (pool) => {
+  if (!pool.length) return null;
+  const usage = {};
+  return DAYS.map((day) => {
+    const meals = {};
+    SLOTS.forEach((slot) => {
+      const eligible = pool.filter((m) => (usage[m.id] || 0) < 2);
+      const candidates = eligible.length ? eligible : pool;
+      const picked = candidates[Math.floor(Math.random() * candidates.length)];
+      usage[picked.id] = (usage[picked.id] || 0) + 1;
+      meals[slot] = picked;
+    });
+    return { day, meals };
+  });
+};
+
+const buildShoppingList = (weeklyPlan) => {
+  const counts = {};
+  weeklyPlan.forEach((d) =>
+    Object.values(d.meals).forEach((meal) =>
+      (meal.ingredients || []).forEach((ing) => {
+        counts[ing.data] = (counts[ing.data] || 0) + 1;
+      }),
+    ),
+  );
+  return Object.entries(counts).map(([text, count]) => ({ text, count }));
+};
 
 const Guide = () => {
+  const navigate = useNavigate();
   const categories = [
     { id: "what-to-eat", label: "What to eat today?", type: "feature" },
     { id: "weekly-plans", label: "Weekly Meal Plans", type: "feature" },
@@ -11,61 +50,69 @@ const Guide = () => {
     { id: "balance", label: "Balanced", type: "category" },
   ];
 
-  const products = [
-    {
-      id: 1,
-      name: "Salad Ức Gà Áp Chảo",
-      origin: "Mỹ",
-      category: "loss",
-      image:
-        "https://images.unsplash.com/photo-1540420773420-3366772f4492?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Bún Chả Hà Nội",
-      origin: "Việt",
-      category: "balance",
-      image:
-        "https://images.unsplash.com/photo-1627318029524-747209da029b?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Dimsum Tôm Hấp",
-      origin: "Trung",
-      category: "balance",
-      image:
-        "https://images.unsplash.com/photo-1563245372-f21724e3a16d?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Steak Bò Khoai Tây",
-      origin: "Âu",
-      category: "gain",
-      image:
-        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 5,
-      name: "Pasta Sốt Kem",
-      origin: "Ý",
-      category: "gain",
-      image:
-        "https://images.unsplash.com/photo-1645112481338-3560e9426f6d?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 6,
-      name: "Phở Bò Nam Định",
-      origin: "Việt",
-      category: "balance",
-      image:
-        "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?q=80&w=600&auto=format&fit=crop",
-    },
-  ];
-
+  const [meals, setMeals] = useState([]);
+  const [mealsStatus, setMealsStatus] = useState("loading"); // loading | ok | error
+  const [trending, setTrending] = useState([]);
   const [selectedCat, setSelectedCat] = useState("all");
-  const filteredProducts = products.filter(
-    (p) => selectedCat === "all" || p.category === selectedCat,
+  const [plannerDiet, setPlannerDiet] = useState("balance");
+  const [weeklyPlan, setWeeklyPlan] = useState(null);
+  const [shoppingList, setShoppingList] = useState(null);
+  const [checked, setChecked] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(SHOPPING_KEY)) || {};
+    } catch {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    const fetchMeals = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/meals`);
+        setMeals(res.data);
+        setMealsStatus("ok");
+      } catch (error) {
+        console.error("Error loading meals", error);
+        setMealsStatus("error");
+      }
+    };
+    fetchMeals();
+
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/api/ratings/trending?days=7&limit=3`)
+      .then((res) => setTrending(res.data))
+      .catch((error) => console.error("Error loading trending", error));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(SHOPPING_KEY, JSON.stringify(checked));
+  }, [checked]);
+
+  const filteredMeals = meals.filter(
+    (m) => selectedCat === "all" || m.category === selectedCat,
   );
+
+  const handleRandomPick = () => {
+    if (!meals.length) return;
+    const pick = meals[Math.floor(Math.random() * meals.length)];
+    navigate(`/recipe/${pick.id}`);
+  };
+
+  const handleGeneratePlan = () => {
+    const pool = meals.filter((m) => m.category === plannerDiet);
+    const plan = generateWeeklyPlan(pool);
+    setWeeklyPlan(plan);
+    setShoppingList(null);
+  };
+
+  const handleGenerateShoppingList = () => {
+    if (!weeklyPlan) return;
+    setShoppingList(buildShoppingList(weeklyPlan));
+  };
+
+  const toggleChecked = (text) => {
+    setChecked((prev) => ({ ...prev, [text]: !prev[text] }));
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-800 font-sans selection:bg-black selection:text-white">
@@ -110,7 +157,13 @@ const Guide = () => {
 
         {/* --- MAIN CONTENT RIGHT --- */}
         <main className="flex-1">
-          {/* Render Nội dung Tool */}
+          {mealsStatus === "error" && (
+            <div className="mb-8 text-sm text-red-500">
+              Could not load meals from the server.
+            </div>
+          )}
+
+          {/* Random Picker */}
           {selectedCat === "what-to-eat" && (
             <div className="mb-16 bg-white border border-gray-100 p-16 rounded-sm text-center shadow-sm">
               <h2 className="text-2xl font-light tracking-widest uppercase">
@@ -119,53 +172,175 @@ const Guide = () => {
               <p className="text-gray-400 mt-2 text-sm">
                 Still wondering? Let EatVibing suggests meals for you.
               </p>
-              <button className="mt-8 px-10 py-3 border border-black hover:bg-black hover:text-white transition-all duration-500 uppercase text-xs tracking-[0.2em]">
+              <button
+                onClick={handleRandomPick}
+                disabled={mealsStatus !== "ok" || !meals.length}
+                className="mt-8 px-10 py-3 border border-black hover:bg-black hover:text-white transition-all duration-500 uppercase text-xs tracking-[0.2em] disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-black"
+              >
                 Generate Recipe
               </button>
             </div>
           )}
 
-          {/* Render Lưới Món Ăn */}
+          {/* Trending this week (mục G: nhiều tương tác nhất -> guideline) */}
+          {selectedCat !== "what-to-eat" && selectedCat !== "weekly-plans" && trending.length > 0 && (
+            <div className="mb-12">
+              <h3 className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold mb-4">
+                🔥 Trending this week
+              </h3>
+              <div className="flex gap-6 overflow-x-auto">
+                {trending.map((meal) => (
+                  <Link
+                    key={meal.id}
+                    to={`/recipe/${meal.id}`}
+                    className="shrink-0 w-40 group"
+                  >
+                    <div className="aspect-[4/5] bg-gray-50 border border-gray-100 overflow-hidden flex items-center justify-center p-4">
+                      <img
+                        src={meal.image_url}
+                        alt={meal.name}
+                        className="max-h-full max-w-full object-contain group-hover:scale-105 transition-all duration-500"
+                      />
+                    </div>
+                    <p className="text-[11px] font-medium mt-2 uppercase tracking-tight">{meal.name}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Recipe Gallery */}
           {selectedCat !== "what-to-eat" && selectedCat !== "weekly-plans" && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
-              {filteredProducts.map((product) => (
-                <div key={product.id} className="group cursor-pointer">
-                  {/* Image Container */}
+              {filteredMeals.map((meal) => (
+                <Link
+                  key={meal.id}
+                  to={`/recipe/${meal.id}`}
+                  className="group cursor-pointer block"
+                >
                   <div className="relative aspect-[4/5] bg-white border border-gray-100 overflow-hidden flex items-center justify-center p-8 transition-all duration-700 group-hover:border-gray-300">
                     <img
-                      src={product.image}
-                      alt={product.name}
+                      src={meal.image_url}
+                      alt={meal.name}
                       className="max-h-full max-w-full object-contain grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                     />
-                    {/* Quick View Overlay (Optional) */}
                     <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-black text-white text-[10px] py-3 text-center uppercase tracking-[0.2em]">
                       View Recipe
                     </div>
                   </div>
 
-                  {/* Info Row */}
                   <div className="mt-6 flex justify-between items-baseline border-b border-transparent group-hover:border-gray-100 pb-2 transition-all">
                     <div className="max-w-[70%]">
                       <h3 className="text-[13px] font-medium text-gray-900 leading-tight uppercase tracking-tight">
-                        {product.name}
+                        {meal.name}
                       </h3>
                     </div>
-                    {/* Mục Origin (thay thế giá tiền) */}
                     <div className="text-[11px] font-bold text-gray-900 border-l border-gray-200 pl-3 uppercase tracking-tighter">
-                      {product.origin}
+                      {meal.origin}
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
+              {mealsStatus === "ok" && filteredMeals.length === 0 && (
+                <p className="text-sm text-gray-400 col-span-full">
+                  No meals in this category yet.
+                </p>
+              )}
             </div>
           )}
 
-          {/* Weekly Plans Placeholder */}
+          {/* Weekly Meal Planner */}
           {selectedCat === "weekly-plans" && (
-            <div className="text-center py-40 border border-dashed border-gray-200 rounded-sm">
-              <p className="text-gray-400 uppercase text-[10px] tracking-[0.3em]">
-                Module under development
-              </p>
+            <div>
+              <div className="flex flex-wrap items-center gap-4 mb-10">
+                <select
+                  value={plannerDiet}
+                  onChange={(e) => setPlannerDiet(e.target.value)}
+                  className="border border-gray-200 px-4 py-2 text-xs uppercase tracking-widest"
+                >
+                  <option value="loss">Weight Loss</option>
+                  <option value="gain">Bulking</option>
+                  <option value="balance">Balanced</option>
+                </select>
+                <button
+                  onClick={handleGeneratePlan}
+                  disabled={mealsStatus !== "ok"}
+                  className="px-6 py-2 border border-black hover:bg-black hover:text-white transition-all duration-300 uppercase text-xs tracking-[0.2em] disabled:opacity-30"
+                >
+                  Generate 7-day Plan
+                </button>
+                {weeklyPlan && (
+                  <button
+                    onClick={handleGenerateShoppingList}
+                    className="px-6 py-2 border border-gray-300 hover:border-black transition-all duration-300 uppercase text-xs tracking-[0.2em]"
+                  >
+                    Tạo danh sách mua sắm
+                  </button>
+                )}
+              </div>
+
+              {!weeklyPlan && (
+                <p className="text-sm text-gray-400">
+                  Chọn chế độ ăn và bấm "Generate 7-day Plan" để tạo thực đơn tuần.
+                </p>
+              )}
+
+              {weeklyPlan && (
+                <div className="overflow-x-auto">
+                  <div className="grid grid-cols-7 gap-4 min-w-[900px]">
+                    {weeklyPlan.map(({ day, meals: dayMeals }) => (
+                      <div key={day} className="border border-gray-100 p-3">
+                        <h3 className="text-[11px] uppercase tracking-widest font-bold mb-3 text-center">
+                          {day}
+                        </h3>
+                        <div className="space-y-3">
+                          {SLOTS.map((slot) => (
+                            <Link
+                              key={slot}
+                              to={`/recipe/${dayMeals[slot].id}`}
+                              className="block text-center hover:bg-gray-50 p-2 rounded"
+                            >
+                              <p className="text-[9px] uppercase text-gray-400 tracking-widest">
+                                {slot}
+                              </p>
+                              <p className="text-[11px] font-medium leading-tight mt-1">
+                                {dayMeals[slot].name}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-[11px] text-gray-400 mt-6">
+                    Chưa có dữ liệu calo trong bảng meals nên chưa ước tính được TDEE — thêm cột `calories` vào bảng `meals` nếu cần bật tính năng này.
+                  </p>
+                </div>
+              )}
+
+              {shoppingList && (
+                <div className="mt-12 max-w-md">
+                  <h3 className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold mb-4">
+                    Shopping List
+                  </h3>
+                  <ul className="space-y-2">
+                    {shoppingList.map((item) => (
+                      <li key={item.text} className="flex items-center gap-3 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={!!checked[item.text]}
+                          onChange={() => toggleChecked(item.text)}
+                          className="w-4 h-4"
+                        />
+                        <span className={checked[item.text] ? "line-through text-gray-300" : ""}>
+                          {item.text}
+                          {item.count > 1 ? ` (x${item.count})` : ""}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
         </main>

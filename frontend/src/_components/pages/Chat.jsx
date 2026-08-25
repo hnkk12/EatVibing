@@ -20,6 +20,7 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [fridgeMode, setFridgeMode] = useState(false);
   const messagesEndRef = useRef(null);
 
   //scroll
@@ -40,7 +41,7 @@ const Chat = () => {
       if (user) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/ai/history/${user.id}`,
+            `${import.meta.env.VITE_API_URL}/api/ai/history/${user.id}`,
           );
 
           //map data from DB to text for UI
@@ -59,8 +60,8 @@ const Chat = () => {
 
   //send message function
   const handleSend = async (customPrompt) => {
-    const textToSend = customPrompt || input;
-    if (!textToSend.trim() || isLoading) return;
+    const rawText = customPrompt || input;
+    if (!rawText.trim() || isLoading) return;
 
     const {
       data: { user },
@@ -70,17 +71,27 @@ const Chat = () => {
       return;
     }
 
+    const sendingFridgeMode = fridgeMode;
+    const textToSend = sendingFridgeMode
+      ? `Tôi hiện có các nguyên liệu sau: ${rawText}. Hãy gợi ý món ăn tôi có thể nấu ngay.`
+      : rawText;
+
     //add user message to UI
     const userMsg = { role: "user", text: textToSend };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+    setFridgeMode(false);
     setIsLoading(true);
     try {
       //API calling to backend
-      const response = await axios.post("http://localhost:5000/api/ai/chat", {
-        prompt: textToSend,
-        userId: user.id,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/ai/chat`,
+        {
+          prompt: textToSend,
+          userId: user.id,
+          mode: sendingFridgeMode ? "fridge" : undefined,
+        },
+      );
 
       //add AI responses to UI
       const aiMsg = { role: "assistant", text: response.data.answer };
@@ -133,7 +144,11 @@ const Chat = () => {
                 {suggestButtons.map((btn, idx) => (
                   <button
                     key={idx}
-                    onClick={() => handleSend(btn.label)}
+                    onClick={() =>
+                      btn.label === "Fridge Clean-out"
+                        ? setFridgeMode(true)
+                        : handleSend(btn.label)
+                    }
                     className="flex items-center gap-2 bg-white border-black text-black hover:bg-slate-100 transition-colors px-4 py-2.5 rounded-full text-sm font-medium border border-transparent active:border-zinc-600"
                   >
                     {btn.icon}
@@ -141,6 +156,11 @@ const Chat = () => {
                   </button>
                 ))}
               </div>
+              {fridgeMode && (
+                <p className="mt-4 text-xs text-orange-500">
+                  Chế độ Dọn tủ lạnh: liệt kê nguyên liệu bạn đang có bên dưới rồi gửi.
+                </p>
+              )}
             </div>
           ) : (
             /* -> Hiện danh sách tin nhắn */
@@ -182,7 +202,11 @@ const Chat = () => {
                   handleSend();
                 }
               }}
-              placeholder="Ask EatVibing"
+              placeholder={
+                fridgeMode
+                  ? "VD: 2 quả trứng, nửa củ hành tây, ít cơm nguội..."
+                  : "Ask EatVibing"
+              }
               className="w-full bg-transparent border-none outline-none resize-none text-lg px-2 mb-4 placeholder-[#8e918f] text-black"
               rows={1}
             />

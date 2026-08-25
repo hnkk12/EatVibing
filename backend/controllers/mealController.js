@@ -48,10 +48,22 @@ exports.createMeal = async (req, res) => {
   }
 };
 
-// [DELETE] Xóa món ăn (Nhờ ON DELETE CASCADE trong DB nên nó sẽ tự xóa hết con)
+// [DELETE] Xóa món ăn (DB không có ON DELETE CASCADE nên xóa con trước)
 exports.deleteMeal = async (req, res) => {
   try {
     const { id } = req.params;
+    const { error: ingErr } = await supabase
+      .from("ingredients")
+      .delete()
+      .eq("meal_id", id);
+    if (ingErr) throw ingErr;
+
+    const { error: recErr } = await supabase
+      .from("recipes")
+      .delete()
+      .eq("meal_id", id);
+    if (recErr) throw recErr;
+
     const { error } = await supabase.from("meals").delete().eq("id", id);
     if (error) throw error;
     res.status(200).json({ message: "Deleted!" });

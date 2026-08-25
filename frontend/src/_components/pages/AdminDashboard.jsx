@@ -10,7 +10,7 @@ const AdminDashboard = () => {
     category: "balance", // default
     image_url: "",
     ingredients: [""],
-    recipes: [{ step_number: 1, content: "" }],
+    recipes: [{ order: 1, details: "" }],
   });
 
   const [status, setStatus] = useState({
@@ -43,13 +43,13 @@ const AdminDashboard = () => {
       ...meal,
       recipes: [
         ...meal.recipes,
-        { step_number: meal.recipes.length + 1, content: "" },
+        { order: meal.recipes.length + 1, details: "" },
       ],
     });
 
   const handleRecipeChange = (index, value) => {
     const newRec = [...meal.recipes];
-    newRec[index].content = value;
+    newRec[index].details = value;
     setMeal({ ...meal, recipes: newRec });
   };
 
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/meals",
+        `${import.meta.env.VITE_API_URL}/api/meals`,
         meal,
       );
       setStatus({
@@ -75,7 +75,7 @@ const AdminDashboard = () => {
         category: "balance",
         image_url: "",
         ingredients: [""],
-        recipes: [{ step_number: 1, content: "" }],
+        recipes: [{ order: 1, details: "" }],
       });
     } catch (error) {
       console.error(error);
@@ -248,10 +248,10 @@ const AdminDashboard = () => {
                   className="relative pl-8 border-l-2 border-zinc-100 space-y-2"
                 >
                   <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-black text-[10px] text-white flex items-center justify-center font-bold">
-                    {step.step_number}
+                    {step.order}
                   </div>
                   <textarea
-                    value={step.content}
+                    value={step.details}
                     onChange={(e) => handleRecipeChange(idx, e.target.value)}
                     className="w-full p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-sm focus:outline-none min-h-[100px]"
                     placeholder={`Describe step ${idx + 1}...`}

@@ -1,13 +1,25 @@
 import { useEffect, useState } from "react";
-import { Search, User, Menu, X, LogOut } from "lucide-react";
+import { Search, User, Menu, X, LogOut, UserCircle } from "lucide-react";
 import Logo from "./logo";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { supabase } from "../supabaseClient";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [user, setUser] = useState(null); //state archieves data user
+  const navigate = useNavigate();
+
+  // Onboarding: nếu user vừa đăng nhập lần đầu (chưa có hồ sơ) thì đưa sang /profile
+  const redirectIfFirstLogin = async (userId) => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/profile/${userId}`);
+      if (!res.data) navigate("/profile");
+    } catch (error) {
+      console.error("Error checking profile", error);
+    }
+  };
 
   //session management
   useEffect(() => {
@@ -22,7 +34,10 @@ const Navbar = () => {
     //listening sign in/log out status
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        if (event === "SIGNED_IN") setUser(session?.user);
+        if (event === "SIGNED_IN") {
+          setUser(session?.user);
+          if (session?.user) redirectIfFirstLogin(session.user.id);
+        }
         if (event === "SIGNED_OUT") setUser(null);
       },
     );
@@ -49,6 +64,7 @@ const Navbar = () => {
     { to: "/chat", label: "AI Assistance" },
     { to: "/guide", label: "Guideline" },
     { to: "/community", label: "Community" },
+    { to: "/pricing", label: "Pricing" },
   ];
 
   return (
@@ -102,12 +118,21 @@ const Navbar = () => {
                   {user ? `Welcome,${user.user_metadata.full_name}` : "Account"}
                 </p>
                 {user ? (
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center gap-3 px-4 py-3 hover:bg-red-50 text-sm font-semibold text-red-500 transition-colors rounded-xl"
-                  >
-                    <LogOut className="w-4 h-4" /> Sign Out
-                  </button>
+                  <>
+                    <Link
+                      to="/profile"
+                      onClick={() => setShowUserMenu(false)}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 text-sm font-semibold text-zinc-700 transition-colors rounded-xl"
+                    >
+                      <UserCircle className="w-4 h-4" /> Profile
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-red-50 text-sm font-semibold text-red-500 transition-colors rounded-xl"
+                    >
+                      <LogOut className="w-4 h-4" /> Sign Out
+                    </button>
+                  </>
                 ) : (
                   <button
                     onClick={handleGoogleLogin}
@@ -173,6 +198,13 @@ const Navbar = () => {
                   </p>
                 </div>
               </div>
+              <Link
+                to="/profile"
+                onClick={() => setShowUserMenu(false)}
+                className="w-full py-3 mb-2 border border-zinc-200 text-zinc-700 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-colors active:scale-95"
+              >
+                <UserCircle size={16} /> Profile
+              </Link>
               <button
                 onClick={handleLogout}
                 className="w-full py-3 bg-red-50 text-red-500 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-colors active:scale-95"
