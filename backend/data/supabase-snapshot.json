@@ -1,0 +1,2231 @@
+[
+  {
+    "id": 9,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Bơ nhồi trứng nướng Bacon",
+    "origin": "Mỹ",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600",
+    "ingredients": [
+      {
+        "id": 15,
+        "data": "2 quả bơ chín sẫm",
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 16,
+        "data": "2 quả trứng gà ta",
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 17,
+        "data": "4 lát thịt xông khói (Bacon)",
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 18,
+        "data": "Muối, tiêu đen, hẹ tươi thái nhỏ",
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 5,
+        "order": 1,
+        "title": "Chuẩn bị bơ",
+        "details": "Cắt đôi quả bơ, bỏ hạt, dùng thìa nạo bớt một ít ruột bơ để tạo khoảng trống lớn hơn cho trứng.",
+        "img_url": null,
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 6,
+        "order": 2,
+        "title": "Cho trứng vào",
+        "details": "Đập mỗi quả trứng vào một nửa quả bơ. Đặt bơ lên khay nướng có lót giấy nến.",
+        "img_url": null,
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 7,
+        "order": 3,
+        "title": "Nướng bơ và bacon",
+        "details": "Nướng ở nhiệt độ 200°C trong 12-15 phút đến khi lòng trắng chín. Trong lúc đó áp chảo bacon giòn rồi băm nhỏ.",
+        "img_url": null,
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 8,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Rắc bacon băm nhỏ, tiêu đen và hẹ thái nhỏ lên trên trứng nướng rồi thưởng thức.",
+        "img_url": null,
+        "meal_id": 9,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Salad bơ trứng muối tiêu",
+    "origin": "Pháp",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600",
+    "ingredients": [
+      {
+        "id": 19,
+        "data": "2 quả bơ chín cắt hạt lựu",
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 20,
+        "data": "3 quả trứng luộc chín cắt múi cau",
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 21,
+        "data": "2 muỗng canh mayonnaise béo",
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 22,
+        "data": "1 muỗng cafe nước cốt chanh",
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 23,
+        "data": "Muối, tiêu đen, rau mùi tây băm nhỏ",
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 9,
+        "order": 1,
+        "title": "Luộc và cắt trứng",
+        "details": "Luộc trứng gà trong 9 phút, bóc vỏ và cắt múi cau vừa ăn.",
+        "img_url": null,
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 10,
+        "order": 2,
+        "title": "Cắt bơ",
+        "details": "Bổ bơ, bỏ hạt, dùng dao khía và thìa múc ruột bơ ra cắt thành hạt lựu lớn.",
+        "img_url": null,
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 11,
+        "order": 3,
+        "title": "Trộn nước sốt",
+        "details": "Khuấy đều mayonnaise, nước cốt chanh, một nhúm muối và tiêu đen trong một bát nhỏ.",
+        "img_url": null,
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 12,
+        "order": 4,
+        "title": "Trộn salad",
+        "details": "Cho bơ và trứng vào bát lớn, rưới nước sốt lên trên, đảo nhẹ tay để không làm nát trứng. Rắc mùi tây và thưởng thức.",
+        "img_url": null,
+        "meal_id": 10,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Thịt bò áp chảo bơ tỏi",
+    "origin": "Mỹ",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947?w=600",
+    "ingredients": [
+      {
+        "id": 24,
+        "data": "300g thịt thăn ngoại bò (Ribeye)",
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 25,
+        "data": "2 muỗng canh bơ lạt nguyên chất",
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 26,
+        "data": "4 tép tỏi đập dập",
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 27,
+        "data": "2 nhánh hương thảo (Rosemary)",
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 28,
+        "data": "Muối kosher, tiêu đen xay giã",
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 13,
+        "order": 1,
+        "title": "Ướp bò",
+        "details": "Thấm khô miếng thịt bò bằng khăn giấy. Rắc muối và tiêu đều lên cả hai mặt thịt.",
+        "img_url": null,
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 14,
+        "order": 2,
+        "title": "Áp chảo bò",
+        "details": "Làm nóng chảo gang với một chút dầu. Đặt thịt bò vào áp chảo mỗi mặt khoảng 2-3 phút cho đến khi xém vàng.",
+        "img_url": null,
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 15,
+        "order": 3,
+        "title": "Rưới bơ tỏi",
+        "details": "Thêm bơ lạt, tỏi đập dập và hương thảo vào chảo. Nghiêng chảo múc bơ chảy liên tục rưới lên miếng thịt trong 1 phút.",
+        "img_url": null,
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 16,
+        "order": 4,
+        "title": "Nghỉ và thái thịt",
+        "details": "Lấy thịt ra đĩa để nghỉ trong 5 phút trước khi thái lát mỏng để giữ nước cho thịt ngon ngọt hơn.",
+        "img_url": null,
+        "meal_id": 11,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Cá hồi sốt kem bơ tỏi",
+    "origin": "Na Uy",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600",
+    "ingredients": [
+      {
+        "id": 34,
+        "data": "2 miếng phi lê cá hồi tươi (mỗi miếng 150g)",
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 35,
+        "data": "120ml kem tươi heavy cream",
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 36,
+        "data": "30g bơ lạt",
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 37,
+        "data": "3 tép tỏi băm nhuyễn",
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 38,
+        "data": "50g rau bó xôi (spinach) rửa sạch",
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 39,
+        "data": "Muối, tiêu, chanh tươi",
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 20,
+        "order": 1,
+        "title": "Áp chảo cá hồi",
+        "details": "Ướp cá hồi với muối, tiêu. Áp chảo cá hồi với ít dầu ô liu khoảng 3-4 phút mỗi mặt cho chín tái chín vừa, gắp ra đĩa.",
+        "img_url": null,
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 21,
+        "order": 2,
+        "title": "Làm sốt kem bơ tỏi",
+        "details": "Trong cùng chảo đó, phi thơm tỏi băm với bơ lạt. Đổ heavy cream vào đun sôi nhẹ, hạ lửa cho sốt sánh lại.",
+        "img_url": null,
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 22,
+        "order": 3,
+        "title": "Hoàn thiện nước sốt",
+        "details": "Thêm rau bó xôi vào đảo đều cho rau xẹp bớt. Nêm muối, tiêu và vài giọt chanh.",
+        "img_url": null,
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 23,
+        "order": 4,
+        "title": "Phục vụ",
+        "details": "Cho cá hồi trở lại chảo sốt kem khoảng 1 phút rồi múc ra đĩa sâu lòng.",
+        "img_url": null,
+        "meal_id": 13,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Măng tây xào thịt bò ba chỉ",
+    "origin": "Hàn Quốc",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947?w=600",
+    "ingredients": [
+      {
+        "id": 40,
+        "data": "200g ba chỉ bò cuộn đông lạnh",
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 41,
+        "data": "150g măng tây tươi cắt bỏ gốc già",
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 42,
+        "data": "1 muỗng canh dầu hào không đường",
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 43,
+        "data": "2 tép tỏi thái lát",
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 44,
+        "data": "Muối, tiêu, hạt mè rang",
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 24,
+        "order": 1,
+        "title": "Sơ chế nguyên liệu",
+        "details": "Rửa sạch măng tây, cắt khúc khoảng 5cm. Rã đông sơ ba chỉ bò.",
+        "img_url": null,
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 25,
+        "order": 2,
+        "title": "Xào măng tây",
+        "details": "Phi thơm tỏi trong chảo nóng, trần sơ măng tây với chút nước lọc trong 2 phút rồi xào to lửa.",
+        "img_url": null,
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 26,
+        "order": 3,
+        "title": "Thêm ba chỉ bò",
+        "details": "Cho thịt bò ba chỉ vào xào chín nhanh ở lửa lớn để thịt bò không bị dai.",
+        "img_url": null,
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 27,
+        "order": 4,
+        "title": "Nêm nếm",
+        "details": "Thêm dầu hào, muối, tiêu đảo đều trong 1 phút rồi rắc hạt mè lên và tắt bếp.",
+        "img_url": null,
+        "meal_id": 14,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Súp bông cải xanh phô mai",
+    "origin": "Anh",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=600",
+    "ingredients": [
+      {
+        "id": 45,
+        "data": "300g bông cải xanh cắt miếng nhỏ",
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 46,
+        "data": "100g phô mai Cheddar bào sợi",
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 47,
+        "data": "150ml nước dùng xương gà",
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 48,
+        "data": "80ml heavy cream",
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 49,
+        "data": "20g bơ nhạt",
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 50,
+        "data": "Tỏi băm, hành tây băm nhuyễn",
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 28,
+        "order": 1,
+        "title": "Phi thơm hành tỏi",
+        "details": "Đun chảy bơ trong nồi, phi hành tây và tỏi băm thơm lừng.",
+        "img_url": null,
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 29,
+        "order": 2,
+        "title": "Nấu bông cải",
+        "details": "Đổ nước dùng gà vào nấu sôi, thả bông cải xanh vào hầm mềm trong 8-10 phút.",
+        "img_url": null,
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 30,
+        "order": 3,
+        "title": "Xay súp",
+        "details": "Dùng máy xay cầm tay xay nhuyễn bông cải trong nồi súp cho sánh mịn.",
+        "img_url": null,
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 31,
+        "order": 4,
+        "title": "Thêm kem và phô mai",
+        "details": "Vặn nhỏ lửa, từ từ rót heavy cream và phô mai Cheddar vào khuấy đều cho phô mai tan chảy quyện đều.",
+        "img_url": null,
+        "meal_id": 15,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Mực nhồi thịt băm phô mai",
+    "origin": "Việt Nam",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600",
+    "ingredients": [
+      {
+        "id": 51,
+        "data": "2 con mực ống lớn làm sạch",
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 52,
+        "data": "150g thịt heo băm",
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 53,
+        "data": "50g phô mai Mozzarella xắt nhỏ",
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 54,
+        "data": "2 tai mộc nhĩ ngâm nở băm nhỏ",
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 55,
+        "data": "Hành tím băm, tiêu, nước mắm ngon",
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 32,
+        "order": 1,
+        "title": "Trộn nhân thịt",
+        "details": "Trộn đều thịt băm, mộc nhĩ, phô mai Mozzarella, hành tím băm, 1 muỗng cafe nước mắm và hạt tiêu.",
+        "img_url": null,
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 33,
+        "order": 2,
+        "title": "Nhồi mực",
+        "details": "Nhồi hỗn hợp thịt vào ống mực (không nhồi quá đầy kẻo mực nứt), dùng tăm ghim đầu mực lại.",
+        "img_url": null,
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 34,
+        "order": 3,
+        "title": "Hấp hoặc áp chảo",
+        "details": "Hấp mực trong 15 phút cho chín nhân thịt, sau đó đem áp chảo với chút bơ cho mực vàng thơm thơm giòn.",
+        "img_url": null,
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 35,
+        "order": 4,
+        "title": "Thái lát",
+        "details": "Cắt mực thành các khoanh tròn vừa ăn, phô mai bên trong chảy ra béo ngậy.",
+        "img_url": null,
+        "meal_id": 16,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Mì bí ngòi sốt Carbonara",
+    "origin": "Ý",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600",
+    "ingredients": [
+      {
+        "id": 56,
+        "data": "2 quả bí ngòi lớn xanh",
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 57,
+        "data": "2 lòng đỏ trứng gà",
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 58,
+        "data": "30g phô mai Parmesan bào mịn",
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 59,
+        "data": "50g thịt ba rọi muối Guanciale hoặc Bacon",
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 60,
+        "data": "Tỏi băm, tiêu đen đập dập",
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 36,
+        "order": 1,
+        "title": "Bào mì bí ngòi",
+        "details": "Dùng dụng cụ bào sợi để bào bí ngòi thành các sợi dài như mì Ý, bỏ phần ruột nhiều nước.",
+        "img_url": null,
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 37,
+        "order": 2,
+        "title": "Làm sốt trứng phô mai",
+        "details": "Đánh tan lòng đỏ trứng với phô mai Parmesan trong một cái bát nhỏ, thêm chút tiêu.",
+        "img_url": null,
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 38,
+        "order": 3,
+        "title": "Chiên bacon",
+        "details": "Chiên bacon giòn thơm trên chảo, vớt bớt dầu thừa ra.",
+        "img_url": null,
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 39,
+        "order": 4,
+        "title": "Xào mì bí ngòi",
+        "details": "Cho mì bí ngòi vào xào nhanh với bacon trong 1-2 phút. Tắt bếp, đổ hỗn hợp sốt trứng phô mai vào đảo thật nhanh tay để trứng chín bằng hơi nóng của mì mà không bị vón cục.",
+        "img_url": null,
+        "meal_id": 17,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Salad hạt Diêm mạch rau củ",
+    "origin": "Peru",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
+    "ingredients": [
+      {
+        "id": 66,
+        "data": "100g hạt diêm mạch (Quinoa) chín",
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 67,
+        "data": "1/2 quả dưa leo cắt hạt lựu",
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 68,
+        "data": "50g cà chua bi cắt đôi",
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 69,
+        "data": "1/2 quả ớt chuông vàng cắt nhỏ",
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 70,
+        "data": "Dầu ô liu, nước cốt chanh, muối, ngò tây",
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 44,
+        "order": 1,
+        "title": "Nấu chín quinoa",
+        "details": "Nấu hạt diêm mạch theo tỷ lệ 1 quinoa : 2 nước trong khoảng 15 phút rồi để nguội.",
+        "img_url": null,
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 45,
+        "order": 2,
+        "title": "Chuẩn bị rau củ",
+        "details": "Rửa sạch dưa leo, cà chua bi, ớt chuông, ngò tây rồi xắt nhỏ theo mô tả nguyên liệu.",
+        "img_url": null,
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 46,
+        "order": 3,
+        "title": "Trộn salad",
+        "details": "Cho diêm mạch và tất cả rau củ vào tô. Rưới dầu ô liu, cốt chanh, nêm muối tiêu vừa ăn và đảo nhẹ đều.",
+        "img_url": null,
+        "meal_id": 19,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Cà ri chay kiểu Thái",
+    "origin": "Thái Lan",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600",
+    "ingredients": [
+      {
+        "id": 71,
+        "data": "1 bìa đậu hũ cắt khối chiên vàng",
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 72,
+        "data": "1/2 củ khoai tây cắt khối",
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 73,
+        "data": "1/2 củ cà rốt cắt miếng",
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 74,
+        "data": "200ml nước cốt dừa nguyên chất",
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 75,
+        "data": "1.5 muỗng canh sốt cà ri đỏ Thái chay",
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 76,
+        "data": "Sả, lá chanh, muối, hạt nêm chay",
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 47,
+        "order": 1,
+        "title": "Xào sốt cà ri",
+        "details": "Phi thơm sả đập dập với sốt cà ri đỏ trên nồi nóng với chút dầu.",
+        "img_url": null,
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 48,
+        "order": 2,
+        "title": "Hầm củ quả",
+        "details": "Đổ nước cốt dừa và một ít nước lọc vào nồi. Thả khoai tây, cà rốt vào đun sôi rồi hạ lửa vừa hầm trong 12 phút.",
+        "img_url": null,
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 49,
+        "order": 3,
+        "title": "Thêm đậu hũ",
+        "details": "Thả đậu hũ chiên vào nồi nấu thêm 5 phút, nêm nếm muối, hạt nêm chay vừa miệng.",
+        "img_url": null,
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 50,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Thả lá chanh vò sơ vào đun thêm 1 phút rồi tắt bếp. Ăn nóng kèm cơm hoặc bánh mì.",
+        "img_url": null,
+        "meal_id": 20,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Đậu hũ sốt Tương Tỏi Ớt",
+    "origin": "Trung Quốc",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
+    "ingredients": [
+      {
+        "id": 77,
+        "data": "2 bìa đậu hũ non mềm",
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 78,
+        "data": "2 muỗng canh nước tương ngon",
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 79,
+        "data": "1 muỗng canh đường nâu/đường cát",
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 80,
+        "data": "Tỏi băm, ớt băm, hành lá cắt khúc",
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 81,
+        "data": "1 muỗng cafe dầu mè thơm",
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 51,
+        "order": 1,
+        "title": "Hấp đậu hũ",
+        "details": "Hấp cách thủy đậu hũ non trong 5 phút rồi cắt miếng vuông vừa ăn, xếp nhẹ tay ra đĩa.",
+        "img_url": null,
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 52,
+        "order": 2,
+        "title": "Làm nước sốt",
+        "details": "Pha nước tương, đường, dầu mè với tỏi ớt băm trong một bát nhỏ.",
+        "img_url": null,
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 53,
+        "order": 3,
+        "title": "Rim nước sốt",
+        "details": "Đun sôi hỗn hợp nước sốt trên chảo cho keo nhẹ lại, rưới đều lên đĩa đậu hũ.",
+        "img_url": null,
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 54,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Rắc hành lá lên trên trang trí và thưởng thức.",
+        "img_url": null,
+        "meal_id": 21,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Nấm đùi gà kho tộ",
+    "origin": "Việt Nam",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600",
+    "ingredients": [
+      {
+        "id": 82,
+        "data": "250g nấm đùi gà cắt lát tròn vừa ăn",
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 83,
+        "data": "2 muỗng canh nước tương nước màu chay",
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 84,
+        "data": "1 muỗng canh đường, hạt nêm chay",
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 85,
+        "data": "Hành boa-rô băm nhỏ, tiêu xanh, ớt sừng",
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 55,
+        "order": 1,
+        "title": "Sơ chế nấm",
+        "details": "Nấm rửa sạch với nước muối loãng, vắt nhẹ, cắt khoanh dày khoảng 1cm.",
+        "img_url": null,
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 56,
+        "order": 2,
+        "title": "Ướp nấm",
+        "details": "Ướp nấm với nước tương, nước màu, đường, hạt nêm chay trong 15 phút.",
+        "img_url": null,
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 57,
+        "order": 3,
+        "title": "Kho nấm",
+        "details": "Phi thơm hành boa-rô trong tộ đất, đổ nấm và nước ướp vào kho nhỏ lửa. Thêm tiêu xanh và ớt sừng.",
+        "img_url": null,
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 58,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Kho đến khi nước tương sệt lại, nấm ngấm vị đậm đà và có màu nâu cánh gián đẹp mắt.",
+        "img_url": null,
+        "meal_id": 22,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Mì Ý sốt bơ tỏi nấm",
+    "origin": "Ý",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600",
+    "ingredients": [
+      {
+        "id": 86,
+        "data": "80g mì Spaghetti khô",
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 87,
+        "data": "100g nấm mỡ hoặc nấm đùi gà nhỏ xắt lát",
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 88,
+        "data": "2 muỗng canh dầu ô liu loại ngon",
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 89,
+        "data": "3 tép tỏi băm nhuyễn",
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 90,
+        "data": "Muối, tiêu đen, ngò tây khô",
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 59,
+        "order": 1,
+        "title": "Luộc mì",
+        "details": "Luộc mì trong nước sôi có muối khoảng 8-10 phút cho chín vừa (Al Dente), vớt ra giữ lại 1/2 chén nước luộc.",
+        "img_url": null,
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 60,
+        "order": 2,
+        "title": "Xào nấm tỏi",
+        "details": "Phi thơm tỏi băm with dầu ô liu trên chảo nóng, thả nấm vào xào to lửa cho vàng xém thơm.",
+        "img_url": null,
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 61,
+        "order": 3,
+        "title": "Trộn mì",
+        "details": "Cho mì và nước luộc mì vào chảo nấm. Nêm chút muối, tiêu đen đập dập đảo đều cho mì quyện nước sốt.",
+        "img_url": null,
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 62,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Rắc ngò tây khô lên mì trước khi thưởng thức.",
+        "img_url": null,
+        "meal_id": 23,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Canh chua chay Nam Bộ",
+    "origin": "Việt Nam",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1547592180-85f173990554?w=600",
+    "ingredients": [
+      {
+        "id": 91,
+        "data": "1/2 bìa đậu hũ cắt nhỏ",
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 92,
+        "data": "1/4 quả thơm (dứa) thái lát",
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 93,
+        "data": "1 quả cà chua bổ múi cau",
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 94,
+        "data": "50g giá đỗ, dọc mùng, đậu bắp",
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 95,
+        "data": "Nước cốt me chua, ngò gai, rau ngổ, muối, đường",
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 63,
+        "order": 1,
+        "title": "Nấu nước chua",
+        "details": "Đun sôi nước, cho nước cốt me và thơm (dứa), cà chua vào nấu để ra nước chua ngọt tự nhiên.",
+        "img_url": null,
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 64,
+        "order": 2,
+        "title": "Thêm đậu hũ và rau",
+        "details": "Thả đậu hũ và đậu bắp, dọc mùng vào nồi nấu sôi trong 3 phút.",
+        "img_url": null,
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 65,
+        "order": 3,
+        "title": "Nêm nếm",
+        "details": "Nêm đường, muối, hạt nêm chay sao cho có vị chua ngọt hài hòa đặc trưng miền Nam.",
+        "img_url": null,
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 66,
+        "order": 4,
+        "title": "Hoàn tất",
+        "details": "Cho giá đỗ và ngò gai, rau ngổ cắt nhỏ vào rồi tắt bếp ngay.",
+        "img_url": null,
+        "meal_id": 24,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Bánh mì kẹp bơ và nấm nướng",
+    "origin": "Anh",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=600",
+    "ingredients": [
+      {
+        "id": 96,
+        "data": "2 lát bánh mì nguyên cám",
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 97,
+        "data": "1/2 quả bơ nghiền nhuyễn",
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 98,
+        "data": "100g nấm đùi gà cắt lát áp chảo",
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 99,
+        "data": "Rau xà lách, cà chua lát",
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 100,
+        "data": "Muối, tiêu, dầu ô liu",
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 67,
+        "order": 1,
+        "title": "Nướng nấm",
+        "details": "Áp chảo nấm đùi gà với dầu ô liu, muối và tiêu cho đến khi vàng đều hai mặt.",
+        "img_url": null,
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 68,
+        "order": 2,
+        "title": "Nướng bánh mì",
+        "details": "Nướng giòn hai lát bánh mì nguyên cám.",
+        "img_url": null,
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 69,
+        "order": 3,
+        "title": "Phết bơ nghiền",
+        "details": "Phết bơ nghiền nhuyễn có nêm tí muối chanh lên một mặt bánh mì.",
+        "img_url": null,
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 70,
+        "order": 4,
+        "title": "Kẹp bánh mì",
+        "details": "Xếp rau xà lách, cà chua, nấm nướng lên trên lớp bơ, kẹp lát bánh mì thứ hai lại và cắt đôi.",
+        "img_url": null,
+        "meal_id": 25,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Gỏi cuốn chay ngũ sắc",
+    "origin": "Việt Nam",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600",
+    "ingredients": [
+      {
+        "id": 101,
+        "data": "10 cái bánh tráng cuốn",
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 102,
+        "data": "1 củ cà rốt bào sợi trần sơ",
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 103,
+        "data": "1 quả dưa leo cắt sợi dài",
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 104,
+        "data": "100g đậu hũ chiên cắt sợi mỏng",
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 105,
+        "data": "Rau xà lách, húng lủi, bún tươi",
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 106,
+        "data": "Nước tương bơ đậu phộng chấm kèm",
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 71,
+        "order": 1,
+        "title": "Sơ chế rau củ",
+        "details": "Chuẩn bị tất cả các nguyên liệu cắt sợi sạch sẽ bày ra đĩa.",
+        "img_url": null,
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 72,
+        "order": 2,
+        "title": "Pha nước sốt chấm",
+        "details": "Trộn đều bơ đậu phộng, nước tương, đường và chút nước ấm cho hỗn hợp sánh mịn.",
+        "img_url": null,
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 73,
+        "order": 3,
+        "title": "Cuốn gỏi",
+        "details": "Làm ướt nhẹ bánh tráng, xếp xà lách, bún, dưa leo, cà rốt và đậu hũ sợi rồi cuốn chặt tay.",
+        "img_url": null,
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 74,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Bày ra đĩa ăn kèm sốt tương bơ đậu phộng bùi béo.",
+        "img_url": null,
+        "meal_id": 26,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Bông cải xanh xào hạt điều",
+    "origin": "Trung Quốc",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=600",
+    "ingredients": [
+      {
+        "id": 107,
+        "data": "250g bông cải xanh cắt bông vừa ăn",
+        "meal_id": 27,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 108,
+        "data": "50g hạt điều rang chín thơm",
+        "meal_id": 27,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 109,
+        "data": "1 muỗng canh dầu hào chay",
+        "meal_id": 27,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 110,
+        "data": "Tỏi băm, muối, hạt nêm chay",
+        "meal_id": 27,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 75,
+        "order": 1,
+        "title": "Chần sơ bông cải",
+        "details": "Chần bông cải xanh trong nước sôi 1 phút rồi vớt ra ngâm nước đá để giữ màu xanh giòn.",
+        "img_url": null,
+        "meal_id": 27,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 76,
+        "order": 2,
+        "title": "Xào bông cải",
+        "details": "Phi thơm tỏi băm, cho bông cải xanh vào xào to lửa, nêm dầu hào chay, muối, hạt nêm vừa vị.",
+        "img_url": null,
+        "meal_id": 27,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 77,
+        "order": 3,
+        "title": "Thêm hạt điều",
+        "details": "Cho hạt điều rang vào đảo nhanh tay trong 30 giây rồi tắt bếp để hạt điều giữ độ giòn thơm.",
+        "img_url": null,
+        "meal_id": 27,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Cháo yến mạch nấm đông cô",
+    "origin": "Việt Nam",
+    "category": "loss",
+    "image_url": "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=600",
+    "ingredients": [
+      {
+        "id": 111,
+        "data": "50g yến mạch cán dẹt",
+        "meal_id": 28,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 112,
+        "data": "5 tai nấm đông cô tươi xắt lát",
+        "meal_id": 28,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 113,
+        "data": "300ml nước lọc hoặc nước dùng rau củ",
+        "meal_id": 28,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 114,
+        "data": "Hành boa-rô phi thơm, ngò rí, tiêu sọ",
+        "meal_id": 28,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 78,
+        "order": 1,
+        "title": "Xào nấm",
+        "details": "Xào thơm nấm đông cô tươi với hành boa-rô và chút hạt nêm chay.",
+        "img_url": null,
+        "meal_id": 28,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 79,
+        "order": 2,
+        "title": "Nấu yến mạch",
+        "details": "Đun sôi nước dùng, cho yến mạch vào khuấy đều nấu nhỏ lửa trong 5-7 phút cho nở mềm thành cháo.",
+        "img_url": null,
+        "meal_id": 28,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 80,
+        "order": 3,
+        "title": "Hoàn thành",
+        "details": "Trộn nấm đã xào vào nồi cháo yến mạch, đun thêm 2 phút, nêm nếm muối tiêu cho vừa ăn. Rắc hành boa-rô phi giòn lên trên.",
+        "img_url": null,
+        "meal_id": 28,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Ức gà nướng hương thảo",
+    "origin": "Ý",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1598515214211-89d3e73ae83b?w=600",
+    "ingredients": [
+      {
+        "id": 115,
+        "data": "1 miếng ức gà lớn không da (250g)",
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 116,
+        "data": "1 nhánh lá hương thảo tươi (Rosemary)",
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 117,
+        "data": "1 muỗng canh dầu ô liu",
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 118,
+        "data": "1 muỗng canh nước cốt chanh",
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 119,
+        "data": "Muối, tiêu đen, bột tỏi",
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 81,
+        "order": 1,
+        "title": "Ướp gà",
+        "details": "Dùng nĩa đâm nhẹ lên ức gà để thấm gia vị. Ướp với dầu ô liu, chanh, muối, tiêu, bột tỏi và lá hương thảo trong 20 phút.",
+        "img_url": null,
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 82,
+        "order": 2,
+        "title": "Áp chảo nướng",
+        "details": "Làm nóng chảo nướng, nướng ức gà mỗi mặt khoảng 6-8 phút ở lửa vừa cho chín vàng đều mà không bị khô.",
+        "img_url": null,
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 83,
+        "order": 3,
+        "title": "Thái lát",
+        "details": "Để thịt nghỉ 3 phút rồi thái lát xéo bày ra đĩa ăn kèm bông cải luộc.",
+        "img_url": null,
+        "meal_id": 29,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Ức gà phô mai đút lò",
+    "origin": "Ý",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600",
+    "ingredients": [
+      {
+        "id": 29,
+        "data": "2 miếng ức gà lớn (mỗi miếng khoảng 200g)",
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 30,
+        "data": "100g phô mai Mozzarella bào sợi",
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 31,
+        "data": "1 quả cà chua chín cắt lát mỏng",
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 32,
+        "data": "2 muỗng canh sốt húng tây (Pesto)",
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 33,
+        "data": "Dầu ô liu, muối, bột tỏi, lá kinh giới khô (Oregano)",
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 17,
+        "order": 1,
+        "title": "Khía gà",
+        "details": "Rửa sạch ức gà, khía những đường ngang sâu khoảng 1.5cm cách đều nhau dọc thân ức gà.",
+        "img_url": null,
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 18,
+        "order": 2,
+        "title": "Nhồi phô mai và sốt",
+        "details": "Ướp gà với dầu ô liu, muối, bột tỏi. Nhét sốt Pesto, lát cà chua và phô mai Mozzarella vào các khe đã khía.",
+        "img_url": null,
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 19,
+        "order": 3,
+        "title": "Nướng đút lò",
+        "details": "Đặt gà lên khay nướng. Rắc lá oregano khô lên trên. Nướng ở 190°C trong 20-25 phút cho đến khi gà chín vàng, phô mai tan chảy.",
+        "img_url": null,
+        "meal_id": 12,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Trứng cuộn rau bó xôi phô mai",
+    "origin": "Việt Nam",
+    "category": "gain",
+    "image_url": "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?w=600",
+    "ingredients": [
+      {
+        "id": 61,
+        "data": "3 quả trứng gà ta",
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 62,
+        "data": "50g rau bó xôi thái nhỏ",
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 63,
+        "data": "30g phô mai Cheddar bào",
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 64,
+        "data": "1 muỗng canh sữa tươi không đường/cream",
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 65,
+        "data": "Bơ lạt, muối, tiêu",
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 40,
+        "order": 1,
+        "title": "Đánh trứng",
+        "details": "Đánh đều trứng gà với sữa tươi, muối và hạt tiêu.",
+        "img_url": null,
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 41,
+        "order": 2,
+        "title": "Xào rau",
+        "details": "Xào rau bó xôi chín tái với ít bơ lạt trên chảo rồi gắp ra đĩa.",
+        "img_url": null,
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 42,
+        "order": 3,
+        "title": "Rán trứng",
+        "details": "Đun bơ nóng chảy, đổ trứng vào tráng mỏng khắp mặt chảo.",
+        "img_url": null,
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 43,
+        "order": 4,
+        "title": "Cuộn phô mai và rau",
+        "details": "Khi mặt trên trứng còn ướt nhẹ, rải rau bó xôi và phô mai Cheddar lên. Cuộn trứng lại và rán thêm 1 phút cho phô mai tan chảy.",
+        "img_url": null,
+        "meal_id": 18,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Cơm bông cải trắng rang thịt băm",
+    "origin": "Hàn Quốc",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=600",
+    "ingredients": [
+      {
+        "id": 120,
+        "data": "300g bông cải trắng bào vụn giả cơm",
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 121,
+        "data": "100g thịt nạc heo băm",
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 122,
+        "data": "1 quả trứng gà đánh tan",
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 123,
+        "data": "Hành tím băm, hành lá cắt nhỏ, nước tương, dầu hào",
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 84,
+        "order": 1,
+        "title": "Làm giả cơm bông cải",
+        "details": "Bông cải trắng rửa sạch, dùng bàn nạo bào vụn nhỏ như hạt cơm (hoặc dùng máy xay sinh tố xay xung điện vài giây).",
+        "img_url": null,
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 85,
+        "order": 2,
+        "title": "Xào thịt",
+        "details": "Phi thơm hành tím, xào chín thịt băm nêm tí nước tương hạt nêm.",
+        "img_url": null,
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 86,
+        "order": 3,
+        "title": "Rang cơm bông cải",
+        "details": "Cho bông cải trắng bào vụn vào chảo thịt xào to lửa trong 3-4 phút cho săn khô lại.",
+        "img_url": null,
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 87,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Rưới trứng gà đánh tan vào chảo cơm, đảo đều tay cho trứng bám đều bông cải chín thơm, rắc hành lá cắt nhỏ.",
+        "img_url": null,
+        "meal_id": 30,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Tôm cuộn xà lách sốt sữa chua",
+    "origin": "Hy Lạp",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600",
+    "ingredients": [
+      {
+        "id": 124,
+        "data": "150g tôm tươi lột vỏ bỏ chỉ lưng",
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 125,
+        "data": "1 cây xà lách búp lớn Mỹ tách lá nguyên",
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 126,
+        "data": "1/2 quả bơ thái lát mỏng",
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 127,
+        "data": "1/2 hộp sữa chua Hy Lạp không đường",
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 128,
+        "data": "Muối, tiêu, tỏi băm, dầu ô liu",
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 88,
+        "order": 1,
+        "title": "Áp chảo tôm",
+        "details": "Ướp tôm với tỏi băm, muối, tiêu. Áp chảo tôm chín hồng rắc thêm tiêu.",
+        "img_url": null,
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 89,
+        "order": 2,
+        "title": "Làm sốt sữa chua",
+        "details": "Khuấy đều sữa chua Hy Lạp với một xíu muối, tiêu và vài giọt nước cốt chanh.",
+        "img_url": null,
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 90,
+        "order": 3,
+        "title": "Cuộn xà lách",
+        "details": "Đặt lá xà lách lên thớt, xếp bơ lát, tôm áp chảo vào giữa, rưới sốt sữa chua lên rồi cuộn tròn chặt lại.",
+        "img_url": null,
+        "meal_id": 31,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Cá chẽm hấp hành gừng",
+    "origin": "Trung Quốc",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600",
+    "ingredients": [
+      {
+        "id": 129,
+        "data": "300g phi lê cá chẽm tươi",
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 130,
+        "data": "1 nhánh gừng tươi cắt sợi mỏng",
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 131,
+        "data": "3 nhánh hành lá cắt khúc và tước sợi",
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 132,
+        "data": "1 muỗng canh nước tương nhạt",
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 133,
+        "data": "Dầu mè, muối, rượu nấu ăn",
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 91,
+        "order": 1,
+        "title": "Ướp cá",
+        "details": "Xoa đều rượu nấu ăn và muối lên miếng cá chẽm để khử tanh trong 10 phút.",
+        "img_url": null,
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 92,
+        "order": 2,
+        "title": "Sắp xếp hấp",
+        "details": "Xếp cá lên đĩa sâu lòng, rải một nửa gừng và hành lá lên trên miếng cá.",
+        "img_url": null,
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 93,
+        "order": 3,
+        "title": "Hấp cá",
+        "details": "Hấp cách thủy cá trong 12 phút từ khi nước sôi cho cá chín mềm ngọt.",
+        "img_url": null,
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 94,
+        "order": 4,
+        "title": "Hoàn thành nước tương",
+        "details": "Rưới nước tương nhạt lên cá nóng hổi, rải hành ngò tươi và gừng tươi còn lại lên trên cùng ít dầu mè đun nóng.",
+        "img_url": null,
+        "meal_id": 32,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Thịt heo nướng xiên rau củ",
+    "origin": "Hy Lạp",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600",
+    "ingredients": [
+      {
+        "id": 134,
+        "data": "250g nạc vai heo cắt khối vuông",
+        "meal_id": 33,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 135,
+        "data": "1/2 quả ớt chuông xanh đỏ cắt miếng vuông",
+        "meal_id": 33,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 136,
+        "data": "1/2 củ hành tây cắt khúc vừa xiên",
+        "meal_id": 33,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 137,
+        "data": "Nước mắm, mật ong rừng, sả băm, tỏi băm, tiêu",
+        "meal_id": 33,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 95,
+        "order": 1,
+        "title": "Ướp thịt",
+        "details": "Ướp thịt heo cắt khối với sả băm, tỏi, mật ong, nước mắm, tiêu trong 30 phút.",
+        "img_url": null,
+        "meal_id": 33,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 96,
+        "order": 2,
+        "title": "Xiên thịt rau củ",
+        "details": "Dùng xiên tre xiên xen kẽ một miếng thịt heo, một miếng ớt chuông, một miếng hành tây.",
+        "img_url": null,
+        "meal_id": 33,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 97,
+        "order": 3,
+        "title": "Nướng xiên",
+        "details": "Nướng trên bếp than hoa hoặc lò nướng nồi chiên không dầu ở 180°C trong 15-18 phút, trở mặt cho thịt vàng đều.",
+        "img_url": null,
+        "meal_id": 33,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Salad cá ngừ sốt mè rang",
+    "origin": "Nhật Bản",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",
+    "ingredients": [
+      {
+        "id": 138,
+        "data": "1 hộp cá ngừ ngâm dầu/nước lọc vắt ráo",
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 139,
+        "data": "100g rau salad hỗn hợp (xà lách, cải mầm, bắp cải tím)",
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 140,
+        "data": "1 quả trứng luộc cắt đôi",
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 141,
+        "data": "2 muỗng canh sốt mè rang low-carb ngon",
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 98,
+        "order": 1,
+        "title": "Rửa rau",
+        "details": "Rửa sạch rau salad, vẩy ráo nước hoàn toàn rồi xếp ra dĩa.",
+        "img_url": null,
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 99,
+        "order": 2,
+        "title": "Chuẩn bị cá ngừ",
+        "details": "Dùng nĩa làm tơi cá ngừ đóng hộp đã gạn bỏ phần dầu nước.",
+        "img_url": null,
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 100,
+        "order": 3,
+        "title": "Bày đĩa salad",
+        "details": "Rải cá ngừ lên mặt rau salad, xếp trứng luộc xung quanh.",
+        "img_url": null,
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 101,
+        "order": 4,
+        "title": "Rưới sốt mè",
+        "details": "Rưới nước sốt mè rang thơm phức lên trên và đảo đều thưởng thức.",
+        "img_url": null,
+        "meal_id": 34,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Trứng hấp vân ngũ sắc",
+    "origin": "Việt Nam",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600",
+    "ingredients": [
+      {
+        "id": 142,
+        "data": "3 quả trứng gà ta",
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 143,
+        "data": "50g giò sống (mọc heo) sạch",
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 144,
+        "data": "2 tai mộc nhĩ băm nhuyễn",
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 145,
+        "data": "1/2 củ cà rốt băm nhỏ",
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 146,
+        "data": "Hành lá băm, muối, hạt nêm, tiêu",
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 102,
+        "order": 1,
+        "title": "Làm hỗn hợp giò sống",
+        "details": "Trộn đều giò sống với mộc nhĩ, cà rốt và hành lá băm, nêm thêm hạt nêm và tiêu.",
+        "img_url": null,
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 103,
+        "order": 2,
+        "title": "Tráng trứng mỏng",
+        "details": "Đánh tan trứng với xíu muối, tráng trứng thật mỏng trên chảo chống dính.",
+        "img_url": null,
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 104,
+        "order": 3,
+        "title": "Cuộn giò sống",
+        "details": "Phết đều lớp giò sống mỏng lên trên miếng trứng tráng, sau đó cuộn tròn chặt lại.",
+        "img_url": null,
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 105,
+        "order": 4,
+        "title": "Hấp chín",
+        "details": "Hấp cách thủy cuộn trứng trong 15 phút cho giò sống chín hoàn toàn. Lấy ra để nguội bớt rồi thái khoanh tròn đẹp mắt.",
+        "img_url": null,
+        "meal_id": 35,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Bò lá lốt áp chảo",
+    "origin": "Việt Nam",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947?w=600",
+    "ingredients": [
+      {
+        "id": 147,
+        "data": "200g thịt bò băm trộn ít thịt heo mỡ",
+        "meal_id": 36,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 148,
+        "data": "20 cái lá lốt bánh tẻ rửa sạch",
+        "meal_id": 36,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 149,
+        "data": "Sả băm, hành tím băm, tiêu đen",
+        "meal_id": 36,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 150,
+        "data": "Dầu ăn, nước mắm ngon",
+        "meal_id": 36,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 106,
+        "order": 1,
+        "title": "Trộn nhân bò",
+        "details": "Trộn thịt băm với hành tím, sả băm, chút nước mắm, tiêu và 2 lá lốt băm nhuyễn cho thơm.",
+        "img_url": null,
+        "meal_id": 36,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 107,
+        "order": 2,
+        "title": "Cuốn lá lốt",
+        "details": "Đặt mặt xanh sẫm của lá lốt xuống dưới, cho một thìa thịt bò băm lên trên và cuộn chặt lại, ghim mép lá bằng cuống lá.",
+        "img_url": null,
+        "meal_id": 36,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 108,
+        "order": 3,
+        "title": "Áp chảo",
+        "details": "Xếp các cuộn bò lá lốt vào chảo có chút dầu ăn, áp chảo lửa vừa cho lá lốt chín săn và thịt bên trong chín thơm nức.",
+        "img_url": null,
+        "meal_id": 36,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Canh bí ngòi thịt nạc băm",
+    "origin": "Việt Nam",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1547592180-85f173990554?w=600",
+    "ingredients": [
+      {
+        "id": 151,
+        "data": "1 quả bí ngòi xanh cắt khúc bổ đôi hoặc lát tròn",
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 152,
+        "data": "100g thịt nạc heo băm",
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 153,
+        "data": "Hành lá, ngò rí",
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 154,
+        "data": "Muối, hạt nêm, tiêu",
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 109,
+        "order": 1,
+        "title": "Xào thịt băm",
+        "details": "Phi thơm đầu hành lá băm, xào chín tái thịt băm nêm hạt nêm muối.",
+        "img_url": null,
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 110,
+        "order": 2,
+        "title": "Nấu canh",
+        "details": "Đuôi nước lọc vừa đủ vào đun sôi, hớt bọt cho nước canh trong.",
+        "img_url": null,
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 111,
+        "order": 3,
+        "title": "Thêm bí ngòi",
+        "details": "Thả bí ngòi vào đun sôi thêm 2-3 phút cho bí chín tới (không đun quá lâu làm bí bị nát).",
+        "img_url": null,
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 112,
+        "order": 4,
+        "title": "Hoàn thành",
+        "details": "Nêm nếm lại muối cho vừa ăn, rắc hành lá ngò rí và tiêu lên trên rồi múc ra bát.",
+        "img_url": null,
+        "meal_id": 37,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "created_at": "2026-08-25T13:50:10.664663+07:00",
+    "name": "Đùi gà áp chảo sốt chanh sả",
+    "origin": "Việt Nam",
+    "category": "balance",
+    "image_url": "https://images.unsplash.com/photo-1598515214211-89d3e73ae83b?w=600",
+    "ingredients": [
+      {
+        "id": 155,
+        "data": "2 cái đùi tỏi gà rút xương lọc da",
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 156,
+        "data": "2 cây sả băm nhuyễn",
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 157,
+        "data": "1 muỗng canh nước cốt chanh tươi",
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 158,
+        "data": "Tỏi băm, hành tím băm, ngũ vị hương",
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 159,
+        "data": "Nước mắm ngon, tiêu",
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ],
+    "recipes": [
+      {
+        "id": 113,
+        "order": 1,
+        "title": "Ướp đùi gà",
+        "details": "Ướp đùi gà rút xương với sả băm, tỏi hành băm, xíu bột ngũ vị hương, nước mắm, tiêu trong 20 phút.",
+        "img_url": null,
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 114,
+        "order": 2,
+        "title": "Áp chảo gà",
+        "details": "Áp chảo đùi gà vàng giòn mặt ngoài rồi hạ nhỏ lửa cho gà chín kỹ bên trong.",
+        "img_url": null,
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      },
+      {
+        "id": 115,
+        "order": 3,
+        "title": "Làm sốt chanh sả",
+        "details": "Phi thơm sả tỏi còn lại, thêm nước mắm và nước cốt chanh đun sôi keo nhẹ rưới lên miếng gà.",
+        "img_url": null,
+        "meal_id": 38,
+        "created_at": "2026-08-25T13:50:10.664663+07:00"
+      }
+    ]
+  }
+]

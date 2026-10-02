@@ -1,0 +1,223 @@
+/* Added controls use the existing neutral style. All rules are scoped. */
+@scope (.premium-features) {
+  .feature-panel {
+    border: 1px solid #e4e4e7;
+    background: white;
+    padding: 24px;
+    margin: 25px 0;
+    border-radius: 12px;
+  }
+  .feature-panel h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .feature-panel p {
+    font-size: 12px;
+    margin: 12px 0;
+  }
+  .feature-fields {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+  }
+  .feature-fields > label,
+  .note-form > label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 11px;
+    color: #71717a;
+  }
+  .feature-fields .wide-field {
+    grid-column: span 2;
+  }
+  .feature-panel input:not([type="checkbox"]),
+  .feature-panel textarea,
+  .plan-add input {
+    border: 1px solid #d4d4d8;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 12px;
+    background: white;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .feature-fields select {
+    width: 100%;
+  }
+  .feature-fields fieldset {
+    border: 1px solid #e4e4e7;
+    padding: 12px;
+    grid-column: span 2;
+    font-size: 12px;
+  }
+  .inline-check {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 11px;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+  .inline-feature-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 15px 0;
+  }
+  .inline-feature-form input {
+    flex: 1;
+    min-width: 150px;
+  }
+  .plain-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+  }
+  .plain-feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e4e4e7;
+    padding: 12px 0;
+    font-size: 12px;
+  }
+  .plain-feature-list span {
+    flex: 1;
+  }
+  .plain-feature-list small,
+  .shopping-grid small {
+    display: block;
+    font-size: 10px;
+    color: #a1a1aa;
+    margin-top: 4px;
+  }
+  .plain-feature-list button {
+    background: transparent;
+    color: #71717a;
+    font-size: 11px;
+  }
+  .feature-warning {
+    border: 1px solid #d4d4d8;
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 11px;
+    margin: 20px 0;
+  }
+  .feature-warning ul {
+    padding-left: 18px;
+    line-height: 1.8;
+  }
+  .note-form {
+    margin: 25px 0;
+  }
+  .note-form textarea {
+    width: 100%;
+    min-height: 100px;
+    margin: 10px 0;
+    display: block;
+  }
+  .meal-slot {
+    border-top: 1px solid #e4e4e7;
+    padding: 15px 0;
+  }
+  .meal-slot h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-height: 0;
+    margin-bottom: 12px;
+  }
+  .meal-slot h4 {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  .meal-slot small {
+    font-size: 9px;
+    line-height: 1.5;
+    color: #a1a1aa;
+    display: block;
+    margin-top: 7px;
+  }
+  .meal-slot .add-day {
+    height: 90px;
+  }
+  .slot-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .slot-actions button {
+    background: transparent;
+    font-size: 9px;
+    color: #71717a;
+    text-align: left;
+  }
+  .daily-grid {
+    grid-template-columns: 1fr;
+    max-width: 850px;
+  }
+  .daily-grid > .day-card {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  .daily-grid > .day-card > .eyebrow {
+    grid-column: 1/-1;
+  }
+  .daily-grid .meal-slot img {
+    height: 150px;
+  }
+  .planner-feature > .section-heading small {
+    display: block;
+    font-size: 11px;
+    color: #a1a1aa;
+    margin-top: 12px;
+  }
+  .plan-add > div {
+    flex-wrap: wrap;
+  }
+  @media (max-width: 1050px) {
+    .feature-fields {
+      grid-template-columns: 1fr 1fr;
+    }
+    .planner-feature .week-grid:not(.daily-grid) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 700px) {
+    .feature-panel {
+      padding: 18px;
+    }
+    .feature-fields {
+      grid-template-columns: 1fr;
+    }
+    .feature-fields .wide-field,
+    .feature-fields fieldset {
+      grid-column: auto;
+    }
+    .planner-feature .week-grid:not(.daily-grid) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .daily-grid > .day-card {
+      grid-template-columns: 1fr;
+    }
+    .inline-feature-form {
+      align-items: stretch;
+    }
+    .plain-feature-list li {
+      flex-wrap: wrap;
+    }
+    .plan-add select {
+      max-width: 100%;
+    }
+  }
+}

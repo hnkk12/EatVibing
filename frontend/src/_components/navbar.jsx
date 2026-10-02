@@ -49,6 +49,7 @@ const Navbar = () => {
     { to: "/chat", label: "AI Assistance" },
     { to: "/guide", label: "Guideline" },
     { to: "/community", label: "Community" },
+    { to: "/pricing", label: "Free / Pro" },
   ];
 
   return (

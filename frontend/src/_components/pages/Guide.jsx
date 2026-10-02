@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../../dataContext";
+import { Planner } from "../../PremiumFeatures";
+import { PersonalizedSuggestions } from "../../WeeklyPlanner";
+import { CollectionManager } from "../../RecipeTools";
 
-const Guide = () => {
+const Guide = ({ saved = false }) => {
+  const { meals, state, mutate, loading, error, load } = useContext(Context);
+  const [query, setQuery] = useState("");
+  const [collection, setCollection] = useState("");
   const categories = [
     { id: "what-to-eat", label: "What to eat today?", type: "feature" },
     { id: "weekly-plans", label: "Weekly Meal Plans", type: "feature" },
@@ -11,60 +19,21 @@ const Guide = () => {
     { id: "balance", label: "Balanced", type: "category" },
   ];
 
-  const products = [
-    {
-      id: 1,
-      name: "Salad Ức Gà Áp Chảo",
-      origin: "Mỹ",
-      category: "loss",
-      image:
-        "https://images.unsplash.com/photo-1540420773420-3366772f4492?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Bún Chả Hà Nội",
-      origin: "Việt",
-      category: "balance",
-      image:
-        "https://images.unsplash.com/photo-1627318029524-747209da029b?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Dimsum Tôm Hấp",
-      origin: "Trung",
-      category: "balance",
-      image:
-        "https://images.unsplash.com/photo-1563245372-f21724e3a16d?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Steak Bò Khoai Tây",
-      origin: "Âu",
-      category: "gain",
-      image:
-        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 5,
-      name: "Pasta Sốt Kem",
-      origin: "Ý",
-      category: "gain",
-      image:
-        "https://images.unsplash.com/photo-1645112481338-3560e9426f6d?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 6,
-      name: "Phở Bò Nam Định",
-      origin: "Việt",
-      category: "balance",
-      image:
-        "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?q=80&w=600&auto=format&fit=crop",
-    },
-  ];
+  const products = meals.map((meal) => ({ ...meal, image: meal.image_url }));
 
   const [selectedCat, setSelectedCat] = useState("all");
   const filteredProducts = products.filter(
-    (p) => selectedCat === "all" || p.category === selectedCat,
+    (p) =>
+      (!saved || state.favorites.includes(p.id)) &&
+      (!saved ||
+        !collection ||
+        state.collections
+          ?.find((c) => c.id === collection)
+          ?.meals.includes(p.id)) &&
+      (selectedCat === "all" || p.category === selectedCat) &&
+      `${p.name} ${p.origin} ${p.ingredients.join(" ")}`
+        .toLowerCase()
+        .includes(query.toLowerCase()),
   );
 
   return (
@@ -106,66 +75,115 @@ const Guide = () => {
               );
             })}
           </ul>
+          <div className="mt-8 space-y-4 border-t border-zinc-100 pt-6 text-xs text-zinc-500">
+            <Link className="block hover:text-black" to="/saved">
+              Saved recipes
+            </Link>
+            <Link className="block hover:text-black" to="/pricing">
+              {state.plan === "pro"
+                ? "Pro demo · Manage plan"
+                : "Free · Explore Pro"}
+            </Link>
+            <Link className="block hover:text-black" to="/admin">
+              Add a meal locally
+            </Link>
+          </div>
         </aside>
 
         {/* --- MAIN CONTENT RIGHT --- */}
-        <main className="flex-1">
-          {/* Render Nội dung Tool */}
-          {selectedCat === "what-to-eat" && (
-            <div className="mb-16 bg-white border border-gray-100 p-16 rounded-sm text-center shadow-sm">
-              <h2 className="text-2xl font-light tracking-widest uppercase">
-                Random Picker
-              </h2>
-              <p className="text-gray-400 mt-2 text-sm">
-                Still wondering? Let EatVibing suggests meals for you.
-              </p>
-              <button className="mt-8 px-10 py-3 border border-black hover:bg-black hover:text-white transition-all duration-500 uppercase text-xs tracking-[0.2em]">
-                Generate Recipe
-              </button>
+        <main className="flex-1 min-w-0">
+          {loading && (
+            <p className="text-sm text-zinc-400 mb-6">Loading recipes…</p>
+          )}
+          {error && (
+            <div className="mb-6 text-sm text-red-500">
+              {error} <button onClick={load}>Try again</button>
             </div>
           )}
+          {selectedCat !== "what-to-eat" && selectedCat !== "weekly-plans" && (
+            <div className="flex justify-between items-center gap-4 mb-8">
+              <p className="text-xs text-zinc-400">
+                {saved ? "Saved recipes" : "All recipes"} ·{" "}
+                {filteredProducts.length}
+              </p>
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                aria-label="Search recipes"
+                placeholder="Search meals or ingredients…"
+                className="border border-zinc-200 rounded-full px-4 py-2 text-xs w-64 max-w-[65%] outline-none focus:border-black"
+              />
+            </div>
+          )}
+          {saved && (
+            <CollectionManager selected={collection} onSelect={setCollection} />
+          )}
+          {/* Render Nội dung Tool */}
+          {selectedCat === "what-to-eat" && <PersonalizedSuggestions />}
 
           {/* Render Lưới Món Ăn */}
           {selectedCat !== "what-to-eat" && selectedCat !== "weekly-plans" && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
               {filteredProducts.map((product) => (
                 <div key={product.id} className="group cursor-pointer">
-                  {/* Image Container */}
-                  <div className="relative aspect-[4/5] bg-white border border-gray-100 overflow-hidden flex items-center justify-center p-8 transition-all duration-700 group-hover:border-gray-300">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="max-h-full max-w-full object-contain grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                    />
-                    {/* Quick View Overlay (Optional) */}
-                    <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-black text-white text-[10px] py-3 text-center uppercase tracking-[0.2em]">
-                      View Recipe
+                  <Link
+                    to={"/recipes/" + product.id}
+                    aria-label={"View recipe: " + product.name}
+                  >
+                    {/* Image Container */}
+                    <div className="relative aspect-[4/5] bg-white border border-gray-100 overflow-hidden flex items-center justify-center p-8 transition-all duration-700 group-hover:border-gray-300">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="max-h-full max-w-full object-contain grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                      />
+                      {/* Quick View Overlay (Optional) */}
+                      <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-black text-white text-[10px] py-3 text-center uppercase tracking-[0.2em]">
+                        View Recipe
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Info Row */}
-                  <div className="mt-6 flex justify-between items-baseline border-b border-transparent group-hover:border-gray-100 pb-2 transition-all">
-                    <div className="max-w-[70%]">
-                      <h3 className="text-[13px] font-medium text-gray-900 leading-tight uppercase tracking-tight">
-                        {product.name}
-                      </h3>
+                    {/* Info Row */}
+                    <div className="mt-6 flex justify-between items-baseline border-b border-transparent group-hover:border-gray-100 pb-2 transition-all">
+                      <div className="max-w-[70%]">
+                        <h3 className="text-[13px] font-medium text-gray-900 leading-tight uppercase tracking-tight">
+                          {product.name}
+                        </h3>
+                      </div>
+                      {/* Mục Origin (thay thế giá tiền) */}
+                      <div className="text-[11px] font-bold text-gray-900 border-l border-gray-200 pl-3 uppercase tracking-tighter">
+                        {product.origin}
+                      </div>
                     </div>
-                    {/* Mục Origin (thay thế giá tiền) */}
-                    <div className="text-[11px] font-bold text-gray-900 border-l border-gray-200 pl-3 uppercase tracking-tighter">
-                      {product.origin}
-                    </div>
-                  </div>
+                  </Link>
+                  <button
+                    onClick={() => mutate("/favorites", { meal: product.id })}
+                    className="text-[10px] uppercase tracking-wider text-zinc-400 hover:text-black mt-3"
+                  >
+                    {state.favorites.includes(product.id)
+                      ? "♥ Saved · Remove"
+                      : "♡ Save recipe"}
+                  </button>
                 </div>
               ))}
             </div>
           )}
 
-          {/* Weekly Plans Placeholder */}
-          {selectedCat === "weekly-plans" && (
-            <div className="text-center py-40 border border-dashed border-gray-200 rounded-sm">
-              <p className="text-gray-400 uppercase text-[10px] tracking-[0.3em]">
-                Module under development
+          {!loading &&
+            !error &&
+            selectedCat !== "what-to-eat" &&
+            selectedCat !== "weekly-plans" &&
+            !filteredProducts.length && (
+              <p className="text-sm text-zinc-400 py-12">
+                {saved
+                  ? "No saved recipes yet. Save a meal from the guideline."
+                  : "No matching recipes."}
               </p>
+            )}
+          {/* Weekly Plans */}
+          {selectedCat === "weekly-plans" && (
+            <div className="premium-features">
+              <Planner />
             </div>
           )}
         </main>

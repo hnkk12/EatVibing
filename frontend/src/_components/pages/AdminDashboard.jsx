@@ -1,9 +1,35 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { api } from "../../localApi";
 import { Plus, Trash2, Save, UploadCloud, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
+  const [catalog, setCatalog] = useState([]);
+  const [imageMeal, setImageMeal] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  useEffect(() => {
+    api("/meals").then((r) => {
+      setCatalog(r.meals);
+      setImageMeal(r.meals[0]?.id || "");
+    });
+  }, []);
+  const saveImage = async (event) => {
+    event.preventDefault();
+    try {
+      const result = await api("/images", {
+        meal: imageMeal,
+        image_url: imageUrl,
+      });
+      setCatalog(result.meals);
+      setStatus({
+        loading: false,
+        message: "Image saved locally. Reload the recipe page to see it.",
+        type: "success",
+      });
+    } catch (error) {
+      setStatus({ loading: false, message: error.message, type: "error" });
+    }
+  };
   const [meal, setMeal] = useState({
     name: "",
     origin: "",
@@ -59,13 +85,14 @@ const AdminDashboard = () => {
     setStatus({ loading: true, message: "Uploading...", type: "info" });
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/meals",
-        meal,
-      );
+      await api("/meals", {
+        ...meal,
+        ingredients: meal.ingredients.filter((i) => i.trim()),
+        recipes: meal.recipes.filter((s) => s.content.trim()),
+      });
       setStatus({
         loading: false,
-        message: "Meal uploaded successfully!",
+        message: "Meal saved locally. Reload the library to see it.",
         type: "success",
       });
       // Reset form if needed
@@ -81,7 +108,7 @@ const AdminDashboard = () => {
       console.error(error);
       setStatus({
         loading: false,
-        message: "Error uploading meal. Check console.",
+        message: error.message,
         type: "error",
       });
     }
@@ -104,7 +131,7 @@ const AdminDashboard = () => {
               Admin Dashboard
             </h1>
             <p className="text-zinc-500">
-              Upload new delicious recipes to EatVibing
+              Upload new delicious recipes to EatVibing · Local demo
             </p>
           </div>
           <button
@@ -131,7 +158,43 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="bg-white p-6 rounded-2xl shadow-sm border border-zinc-100 mb-8 space-y-3">
+          <h2 className="text-lg font-bold">Meal image URLs</h2>
+          <p>
+            Choose an existing meal and replace its image with an HTTPS URL.
+            Changes are saved locally.
+          </p>
+          <form onSubmit={saveImage} className="flex flex-wrap gap-3">
+            <select
+              className="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-sm max-w-full"
+              aria-label="Meal to update"
+              value={imageMeal}
+              onChange={(e) => setImageMeal(e.target.value)}
+            >
+              {catalog.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
+            <input
+              required
+              type="url"
+              placeholder="https://… dish image URL"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              className="flex-1 min-w-0 p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-sm"
+              aria-label="New image URL"
+            />
+            <button className="bg-black text-white px-5 py-3 rounded-xl text-sm">
+              Save image locally
+            </button>
+          </form>
+        </section>
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           {/* Left Column: Basic Info */}
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-zinc-100">
