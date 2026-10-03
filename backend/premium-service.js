@@ -5,6 +5,7 @@ const {
   clean,
 } = require("./ingredients");
 const SLOTS = ["breakfast", "lunch", "dinner"];
+const { englishShopping, englishShoppingWarning } = require("./english-recipes");
 function calendar() {
   const text = new Intl.DateTimeFormat("en-CA", {
     timeZone: "Asia/Bangkok",
@@ -93,8 +94,8 @@ function installPremium(app, db, getMeals) {
         .prepare("SELECT meal FROM favorites WHERE visitor=?")
         .all(id)
         .map((x) => x.meal),
-      shopping: cart ? JSON.parse(cart.payload).items : [],
-      shoppingWarnings: cart ? JSON.parse(cart.payload).warnings : [],
+      shopping: cart ? englishShopping(JSON.parse(cart.payload).items) : [],
+      shoppingWarnings: cart ? JSON.parse(cart.payload).warnings.map(englishShoppingWarning) : [],
       shoppingStale: !!cart && cart.signature !== signature(id),
       pantry: pantry(id),
       notes: Object.fromEntries(
@@ -131,7 +132,7 @@ function installPremium(app, db, getMeals) {
   }
   function pro(req, res, next) {
     if (plan(req.visitor) !== "pro")
-      return res.status(403).json({ error: "This feature requires Pro demo." });
+      return res.status(403).json({ error: "This feature requires Pro." });
     next();
   }
   function reject(res, message, status = 400) {
@@ -202,7 +203,7 @@ function installPremium(app, db, getMeals) {
       if (plan(id) === "free" && state(id).favorites.length >= 10)
         return reject(
           res,
-          "Free can save 10 recipes. Upgrade to Pro demo for unlimited saves.",
+          "Basic can save 10 recipes. Upgrade to Pro for unlimited saves.",
           403,
         );
       db.prepare("INSERT INTO favorites VALUES(?,?)").run(id, m);
@@ -267,7 +268,7 @@ function installPremium(app, db, getMeals) {
     )
       return reject(
         res,
-        "Free plans today only. Pro unlocks all 7 days, servings and locked meals.",
+        "Basic plans today only. Pro unlocks all 7 days, servings and locked meals.",
         403,
       );
     if (meal === null)

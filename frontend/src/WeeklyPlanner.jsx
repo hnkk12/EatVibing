@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "./dataContext";
 import { api } from "./localApi";
+import { cuisineFor } from "./cuisines";
 const days = [
   "Monday",
   "Tuesday",
@@ -89,7 +90,7 @@ export function PreferenceForm() {
           >
             <option value="">Any cuisine</option>
             {[...new Set(meals.map((m) => m.origin))].sort().map((o) => (
-              <option key={o}>{o}</option>
+              <option key={o} value={o}>{cuisineFor(o).label}</option>
             ))}
           </select>
         </label>
@@ -385,10 +386,10 @@ export default function WeeklyPlanner() {
           <p>
             {pro
               ? "Breakfast, lunch and dinner for all 7 days."
-              : "Free lets you choose breakfast, lunch and dinner for today."}
+              : "Basic lets you choose breakfast, lunch and dinner for today."}
           </p>
           <small>
-            {pro ? p.activeWeek : state.today} · {pro ? "Pro demo" : "Free"}
+            {pro ? p.activeWeek : state.today} · {pro ? "Pro" : "Basic"}
           </small>
         </div>
         {pro ? (
@@ -513,7 +514,7 @@ export default function WeeklyPlanner() {
             and combines shopping quantities.
           </p>
           <Link className="btn secondary" to="/pricing">
-            Explore Pro demo
+            Explore Pro
           </Link>
         </div>
       )}
@@ -568,7 +569,7 @@ export default function WeeklyPlanner() {
                     <img src={m.image_url} alt={m.name} />
                     <span>
                       {m.name}
-                      <small>{m.origin}</small>
+                      <small>{cuisineFor(m.origin).label}</small>
                     </span>
                     +
                   </button>

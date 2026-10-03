@@ -4,7 +4,6 @@ import {
   ArrowRight,
   ArrowLeft,
   Heart,
-  Sparkles,
   Check,
   Crown,
   X,
@@ -16,6 +15,7 @@ import "./premium.css";
 import "./planning.css";
 import Planner from "./WeeklyPlanner";
 import RecipeTools from "./RecipeTools";
+import { cuisineFor } from "./cuisines";
 const categories = {
   all: "All meals",
   balance: "Balanced",
@@ -68,7 +68,7 @@ function Card({ meal }) {
         </button>
       </div>
       <div className="card-meta">
-        <span>{meal.origin}</span>
+        <span>{cuisineFor(meal.origin).label}</span>
         <span>{meal.ingredients.length} ingredients</span>
       </div>
       <Link to={`/recipes/${meal.id}`}>
@@ -129,7 +129,7 @@ function RecipeDetail({ id }) {
         </div>
         <div className="detail-intro">
           <span className="eyebrow">
-            {meal.origin} · {categories[meal.category]}
+            {cuisineFor(meal.origin).label} · {categories[meal.category]}
           </span>
           <h1>{meal.name}</h1>
           <p>{meal.description}</p>
@@ -284,9 +284,10 @@ function RecipeDetail({ id }) {
           </div>
           {meal.recipe_language === "en" && (
             <p className="subtle">
-              TheMealDB recipes use the original source text.
+              {meal.translation_language === "en" ? "English translation of the original recipe." : "Cooking instructions supplied by TheMealDB. See the recipe source for the original version."}
             </p>
           )}
+          {meal.recipe_review_note && <p className="subtle">{meal.recipe_review_note}</p>}
           {meal.recipes.map((step, i) => (
             <article
               className={`recipe-step ${finished.includes(i) ? "complete" : ""}`}
@@ -332,7 +333,7 @@ function RecipeDetail({ id }) {
   );
 }
 function Pricing() {
-  const { state, mutate, notice } = useContext(Context);
+  const { state, mutate, notice, loading, error, load } = useContext(Context);
   const [confirm, setConfirm] = useState(false),
     [busy, setBusy] = useState(false);
   async function change(p) {
@@ -341,8 +342,8 @@ function Pricing() {
       setConfirm(false);
       notice(
         p === "pro"
-          ? "Pro demo is ready. No payment has been charged."
-          : "Switched to Free. Your data has been kept.",
+          ? "Pro is active. No payment has been charged."
+          : "Switched to Basic. Your saved content has been kept.",
       );
     }
     setBusy(false);
@@ -356,38 +357,20 @@ function Pricing() {
         <em>Less planning.</em>
       </h1>
       <p>Choose the right plan for your kitchen.</p>
-      <div className="demo-note">
-        <Sparkles size={17} /> Demo only · Illustrative pricing · No payment or
-        card required
-      </div>
+      {error && <p role="alert">{error} <button onClick={load}>Try again</button></p>}
       <div className="pricing-grid">
         {[
           {
             id: "free",
-            name: "Free",
-            desc: "Start cooking something delicious every day.",
+            name: "Basic",
+            desc: "Everyday recipes and the essentials to get cooking.",
             price: "0",
-            features: [
-              "Explore the full recipe library",
-              "Read recipes and view dish images",
-              "Search by name and ingredients",
-              "Save up to 10 favorite recipes",
-              "Daily meal planner and basic suggestions",
-            ],
           },
           {
             id: "pro",
             name: "Pro",
             desc: "A kitchen planned around you.",
-            price: "99,000",
-            features: [
-              "Everything in Free",
-              "Save unlimited recipes in named collections",
-              "Scale verified servings and add cooking notes",
-              "Personalized 7-day breakfast, lunch and dinner plans",
-              "Smart grocery totals with pantry deductions",
-              "Save and reuse weekly plans; export grocery lists",
-            ],
+            price: "10",
           },
         ].map((p) => (
           <article
@@ -395,7 +378,7 @@ function Pricing() {
             key={p.id}
           >
             {p.id === "pro" && (
-              <span className="recommended">For people who love to cook</span>
+              <span className="recommended">Full access</span>
             )}
             <span className="eyebrow">EatVibing {p.name}</span>
             <h2>
@@ -404,30 +387,44 @@ function Pricing() {
             </h2>
             <p>{p.desc}</p>
             <div className="price">
-              {p.price}
-              <span>VND / month</span>
+              ${p.price}
+              <span>/month</span>
             </div>
             <button
-              disabled={busy || state.plan === p.id}
+              disabled={loading || !!error || busy || state.plan === p.id}
               className={`btn ${p.id === "pro" ? "primary" : "secondary"}`}
               onClick={() =>
                 p.id === "pro" ? setConfirm(true) : change("free")
               }
             >
-              {state.plan === p.id
+              {loading
+                ? "Loading plan…"
+                : state.plan === p.id
                 ? "Current plan"
                 : p.id === "pro"
-                  ? "Try Pro demo"
-                  : "Switch to Free"}
+                  ? "Get Pro"
+                  : "Choose Basic"}
               <ArrowRight size={17} />
             </button>
-            <ul>
-              {p.features.map((f) => (
-                <li key={f}>
-                  <Check size={17} />
-                  {f}
-                </li>
-              ))}
+            <ul aria-label={`${p.name} features`}>
+              {[
+                { label: "AI Assistant", basic: false },
+                { label: "Personalization", basic: false },
+                { label: "Recipe library, search and cooking guides", basic: true },
+                { label: "Saved recipes", basic: true, detail: p.id === "pro" ? "Unlimited" : "Up to 10" },
+                { label: "Daily meal planner", basic: true },
+                { label: "Personalized weekly meal plans", basic: false },
+                { label: "Serving adjustments and cooking notes", basic: false },
+                { label: "Recipe collections", basic: false },
+                { label: "Smart grocery lists and pantry tracking", basic: false },
+                { label: "Saved meal plans and grocery exports", basic: false },
+              ].map((feature) => {
+                const included = p.id === "pro" || feature.basic;
+                return <li key={feature.label} className={included ? "feature-included" : "feature-unavailable"}>
+                  {included ? <Check size={18} aria-hidden="true" /> : <X size={18} aria-hidden="true" />}
+                  <span><span className="sr-only">{included ? "Included: " : "Not included: "}</span>{feature.label}{feature.detail && <small className="feature-limit">{feature.detail}</small>}</span>
+                </li>;
+              })}
             </ul>
           </article>
         ))}
@@ -435,24 +432,24 @@ function Pricing() {
       <div className="faq">
         <h2>A few things to know.</h2>
         <details>
-          <summary>Does Pro demo charge me?</summary>
+          <summary>How does Pro billing work?</summary>
           <p>
-            No. 99,000 VND/month is illustrative pricing. Upgrading changes your
-            local plan without creating a payment.
+            Pro is listed at $10 per month. Online billing is not available yet,
+            so activating Pro here does not collect a payment or start a recurring charge.
           </p>
         </details>
         <details>
           <summary>Where is my data stored?</summary>
           <p>
-            Your demo plan, saved recipes, meal plan and grocery list are saved
-            on this computer for this browser. Supabase recipes are read only.
+            Your plan, saved recipes, meal plans and grocery lists are saved
+            on this device for this browser.
           </p>
         </details>
         <details>
-          <summary>Will switching to Free delete my meal plan?</summary>
+          <summary>Will switching to Basic delete my meal plan?</summary>
           <p>
-            Your data is kept. Upgrade to Pro demo again to edit your meal plan.
-            Free allows up to 10 saved recipes.
+            Your saved content is kept. Pro lets you edit your full weekly meal plan.
+            Basic includes up to 10 saved recipes and meal planning for today.
           </p>
         </details>
       </div>
@@ -475,14 +472,15 @@ function Pricing() {
             <h2 id="upgrade-title">Welcome to Pro.</h2>
             <p>
               Unlock personalized weekly planning, recipe collections and smart
-              grocery lists. This is a demo upgrade with no payment.
+              grocery lists. Pro is $10/month when billing becomes available.
+              Activating it now does not collect a payment.
             </p>
             <button
               className="btn primary"
               disabled={busy}
               onClick={() => change("pro")}
             >
-              {busy ? "Activating Pro…" : "Activate Pro demo"}
+              {busy ? "Activating Pro…" : "Activate Pro"}
               <ArrowRight size={17} />
             </button>
           </div>

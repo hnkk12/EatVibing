@@ -1,0 +1,293 @@
+{
+  "sb-9": {
+    "name": "Baked Avocado Eggs with Bacon",
+    "ingredients": ["2 ripe avocados", "2 eggs", "4 slices bacon", "Salt, black pepper and finely chopped chives"],
+    "steps": [
+      ["Prepare the avocados", "Halve the avocados and remove the pits. Scoop out a little flesh to make more room for the eggs."],
+      ["Add the eggs", "Crack an egg into each avocado half. Place the avocados on a baking tray lined with parchment paper."],
+      ["Bake and cook the bacon", "Bake at 200°C for 12–15 minutes until the egg whites are set. Meanwhile, pan-fry the bacon until crisp, then chop it."],
+      ["Finish and serve", "Top the baked eggs with chopped bacon, black pepper and chives, then serve."]
+    ]
+  },
+  "sb-10": {
+    "name": "Avocado and Egg Salad",
+    "ingredients": ["2 ripe avocados, diced", "3 hard-boiled eggs, cut into wedges", "2 tbsp mayonnaise", "1 tsp lime juice", "Salt, black pepper and chopped parsley"],
+    "steps": [
+      ["Boil and slice the eggs", "Boil the eggs for 9 minutes, peel them and cut into bite-sized wedges."],
+      ["Dice the avocados", "Halve and pit the avocados. Score the flesh, scoop it out and cut into large cubes."],
+      ["Mix the dressing", "Stir the mayonnaise, lime juice, a pinch of salt and black pepper together in a small bowl."],
+      ["Toss the salad", "Place the avocado and eggs in a large bowl. Add the dressing and toss gently to avoid breaking the eggs. Sprinkle with parsley and serve."]
+    ]
+  },
+  "sb-11": {
+    "name": "Garlic Butter Ribeye Steak",
+    "ingredients": ["300g ribeye steak", "2 tbsp unsalted butter", "4 garlic cloves, crushed", "2 rosemary sprigs", "Kosher salt and coarsely ground black pepper"],
+    "steps": [
+      ["Season the steak", "Pat the steak dry with paper towels. Season both sides evenly with salt and pepper."],
+      ["Sear the steak", "Heat a cast-iron pan with a little oil. Sear the steak for about 2–3 minutes on each side until browned."],
+      ["Baste with garlic butter", "Add the butter, crushed garlic and rosemary. Tilt the pan and spoon the melted butter over the steak continuously for 1 minute."],
+      ["Rest and slice", "Transfer the steak to a plate and rest for 5 minutes before slicing thinly to retain its juices."]
+    ]
+  },
+  "sb-13": {
+    "name": "Salmon with Creamy Garlic Butter Sauce",
+    "ingredients": ["2 fresh salmon fillets, 150g each", "120ml heavy cream", "30g unsalted butter", "3 garlic cloves, minced", "50g spinach, washed", "Salt, pepper and fresh lime"],
+    "steps": [
+      ["Pan-sear the salmon", "Season the salmon with salt and pepper. Pan-sear in a little olive oil for about 3–4 minutes per side until medium, then transfer to a plate."],
+      ["Make the sauce", "In the same pan, cook the minced garlic in the butter until fragrant. Add the heavy cream, bring to a gentle simmer and reduce the heat until the sauce thickens."],
+      ["Finish the sauce", "Stir in the spinach until wilted. Season with salt, pepper and a few drops of lime juice."],
+      ["Serve", "Return the salmon to the sauce for about 1 minute, then serve in a shallow bowl."]
+    ]
+  },
+  "sb-14": {
+    "name": "Beef and Asparagus Stir-Fry",
+    "ingredients": ["200g frozen thinly sliced beef belly", "150g fresh asparagus, woody ends removed", "1 tbsp sugar-free oyster sauce", "2 garlic cloves, sliced", "Salt, pepper and toasted sesame seeds"],
+    "steps": [
+      ["Prepare the ingredients", "Wash the asparagus and cut into roughly 5cm lengths. Partially thaw the beef slices."],
+      ["Cook the asparagus", "Cook the garlic in a hot pan until fragrant. Add the asparagus with a little water, blanch in the pan for 2 minutes, then stir-fry over high heat."],
+      ["Add the beef", "Add the beef slices and stir-fry quickly over high heat until cooked, keeping the meat tender."],
+      ["Season and finish", "Add the oyster sauce, salt and pepper. Toss for 1 minute, sprinkle with sesame seeds and turn off the heat."]
+    ]
+  },
+  "sb-15": {
+    "name": "Broccoli Cheddar Soup",
+    "ingredients": ["300g broccoli, cut into small pieces", "100g shredded Cheddar cheese", "150ml chicken stock", "80ml heavy cream", "20g unsalted butter", "Minced garlic and finely chopped onion"],
+    "steps": [
+      ["Cook the aromatics", "Melt the butter in a saucepan and cook the onion and garlic until fragrant."],
+      ["Simmer the broccoli", "Add the chicken stock and bring to a boil. Add the broccoli and simmer for 8–10 minutes until soft."],
+      ["Blend the soup", "Use an immersion blender to blend the broccoli in the saucepan until smooth."],
+      ["Add cream and cheese", "Reduce the heat. Slowly stir in the heavy cream and Cheddar until the cheese melts into the soup."]
+    ]
+  },
+  "sb-16": {
+    "name": "Pork and Cheese Stuffed Squid",
+    "ingredients": ["2 large squid tubes, cleaned", "150g ground pork", "50g Mozzarella, diced", "2 wood ear mushrooms, soaked and chopped", "Chopped shallots, pepper and fish sauce"],
+    "steps": [
+      ["Mix the filling", "Combine the ground pork, wood ear mushrooms, Mozzarella, shallots, 1 tsp fish sauce and pepper."],
+      ["Stuff the squid", "Fill the squid tubes with the pork mixture without overfilling, then secure the openings with toothpicks."],
+      ["Steam and sear", "Steam for 15 minutes until the pork filling is cooked. Then pan-sear in a little butter until the squid is golden and fragrant."],
+      ["Slice and serve", "Slice into bite-sized rings and serve with the melted cheese filling."]
+    ]
+  },
+  "sb-17": {
+    "name": "Zucchini Noodle Carbonara",
+    "ingredients": ["2 large green zucchini", "2 egg yolks", "30g finely grated Parmesan", "50g guanciale or bacon", "Minced garlic and coarsely ground black pepper"],
+    "steps": [
+      ["Make zucchini noodles", "Use a spiralizer to cut the zucchini into long spaghetti-like strands, discarding the watery core."],
+      ["Mix the egg sauce", "Whisk the egg yolks and Parmesan together in a small bowl with a little pepper."],
+      ["Cook the bacon", "Fry the bacon until crisp and remove some of the excess fat."],
+      ["Combine the noodles and sauce", "Stir-fry the zucchini noodles with the bacon for 1–2 minutes. Turn off the heat, add the egg and cheese mixture and toss quickly so the residual heat sets the sauce without scrambling it."]
+    ]
+  },
+  "sb-19": {
+    "name": "Quinoa Vegetable Salad",
+    "ingredients": ["100g cooked quinoa", "1/2 cucumber, diced", "50g cherry tomatoes, halved", "1/2 yellow bell pepper, chopped", "Olive oil, lime juice, salt and parsley"],
+    "steps": [
+      ["Cook the quinoa", "Cook quinoa with water at a ratio of 1 part quinoa to 2 parts water for about 15 minutes, then let it cool."],
+      ["Prepare the vegetables", "Wash the cucumber, cherry tomatoes, bell pepper and parsley, then cut as described in the ingredient list."],
+      ["Toss the salad", "Combine the quinoa and vegetables in a bowl. Drizzle with olive oil and lime juice, season with salt and pepper and toss gently."]
+    ]
+  },
+  "sb-20": {
+    "name": "Thai Vegetarian Red Curry",
+    "ingredients": ["1 block tofu, cubed and fried until golden", "1/2 potato, cubed", "1/2 carrot, sliced", "200ml coconut milk", "1.5 tbsp vegetarian Thai red curry paste", "Lemongrass, lime leaves, salt and vegetarian seasoning"],
+    "steps": [
+      ["Cook the curry paste", "Cook the crushed lemongrass and red curry paste in a hot saucepan with a little oil until fragrant."],
+      ["Simmer the vegetables", "Add the coconut milk and a little water. Add the potato and carrot, bring to a boil, then simmer over medium heat for 12 minutes."],
+      ["Add the tofu", "Add the fried tofu and cook for another 5 minutes. Season with salt and vegetarian seasoning."],
+      ["Finish and serve", "Lightly crush the lime leaves, add them and cook for 1 minute. Turn off the heat and serve hot with rice or bread."]
+    ]
+  },
+  "sb-21": {
+    "name": "Tofu with Garlic Chili Soy Sauce",
+    "ingredients": ["2 blocks soft tofu", "2 tbsp soy sauce", "1 tbsp brown or white sugar", "Minced garlic, chopped chili and sliced scallions", "1 tsp sesame oil"],
+    "steps": [
+      ["Steam the tofu", "Steam the soft tofu for 5 minutes, cut into bite-sized squares and carefully arrange on a plate."],
+      ["Mix the sauce", "Mix the soy sauce, sugar and sesame oil with the minced garlic and chili in a small bowl."],
+      ["Simmer the sauce", "Bring the sauce to a boil in a pan until slightly thickened, then pour evenly over the tofu."],
+      ["Finish and serve", "Garnish with scallions and serve."]
+    ]
+  },
+  "sb-22": {
+    "name": "Clay Pot Braised King Oyster Mushrooms",
+    "ingredients": ["250g king oyster mushrooms, sliced into rounds", "2 tbsp soy sauce and vegetarian caramel sauce", "1 tbsp sugar, plus vegetarian seasoning", "Chopped leek, green peppercorns and long red chili"],
+    "steps": [
+      ["Prepare the mushrooms", "Wash the mushrooms in lightly salted water, gently squeeze and cut into rounds about 1cm thick."],
+      ["Marinate the mushrooms", "Marinate with soy sauce, caramel sauce, sugar and vegetarian seasoning for 15 minutes."],
+      ["Braise the mushrooms", "Cook the leek in a clay pot until fragrant. Add the mushrooms and marinade, then braise over low heat with green peppercorns and chili."],
+      ["Finish", "Cook until the sauce thickens and the mushrooms absorb the seasoning and turn a rich golden brown."]
+    ]
+  },
+  "sb-23": {
+    "name": "Garlic Mushroom Spaghetti",
+    "ingredients": ["80g dried spaghetti", "100g button or small king oyster mushrooms, sliced", "2 tbsp olive oil", "3 garlic cloves, minced", "Salt, black pepper and dried parsley"],
+    "steps": [
+      ["Cook the pasta", "Boil the spaghetti in salted water for about 8–10 minutes until al dente. Drain, reserving 1/2 cup of the cooking water."],
+      ["Cook the garlic and mushrooms", "Cook the garlic in olive oil in a hot pan until fragrant. Add the mushrooms and stir-fry over high heat until browned."],
+      ["Toss the pasta", "Add the pasta and reserved cooking water to the pan. Season with salt and crushed black pepper and toss until coated in the sauce."],
+      ["Finish and serve", "Sprinkle with dried parsley before serving."]
+    ]
+  },
+  "sb-24": {
+    "name": "Southern Vietnamese Vegetarian Sour Soup",
+    "ingredients": ["1/2 block tofu, cubed", "1/4 pineapple, sliced", "1 tomato, cut into wedges", "50g bean sprouts, elephant ear stalks and okra", "Tamarind juice, culantro, rice paddy herb, salt and sugar"],
+    "steps": [
+      ["Make the sour broth", "Bring water to a boil. Add tamarind juice, pineapple and tomato to develop a naturally sweet and sour broth."],
+      ["Add tofu and vegetables", "Add the tofu, okra and elephant ear stalks and boil for 3 minutes."],
+      ["Season", "Season with sugar, salt and vegetarian seasoning to balance the characteristic southern Vietnamese sweet and sour flavor."],
+      ["Finish", "Add the bean sprouts and chopped culantro and rice paddy herb, then turn off the heat immediately."]
+    ]
+  },
+  "sb-25": {
+    "name": "Avocado and Grilled Mushroom Sandwich",
+    "ingredients": ["2 slices whole wheat bread", "1/2 avocado, mashed", "100g king oyster mushrooms, sliced and pan-seared", "Lettuce and sliced tomato", "Salt, pepper and olive oil"],
+    "steps": [
+      ["Cook the mushrooms", "Pan-sear the mushrooms with olive oil, salt and pepper until golden on both sides."],
+      ["Toast the bread", "Toast both slices of whole wheat bread until crisp."],
+      ["Spread the avocado", "Season the mashed avocado with a little salt and lime juice, then spread over one slice of bread."],
+      ["Assemble the sandwich", "Layer lettuce, tomato and grilled mushrooms over the avocado. Top with the second slice of bread and cut in half."]
+    ]
+  },
+  "sb-26": {
+    "name": "Rainbow Vegetarian Summer Rolls",
+    "ingredients": ["10 rice paper wrappers", "1 carrot, julienned and briefly blanched", "1 cucumber, cut into long strips", "100g fried tofu, thinly sliced", "Lettuce, mint and fresh rice vermicelli", "Soy sauce and peanut butter dipping sauce"],
+    "steps": [
+      ["Prepare the vegetables", "Prepare and arrange all the washed, julienned ingredients on a plate."],
+      ["Make the dipping sauce", "Mix peanut butter, soy sauce, sugar and a little warm water until smooth and slightly thick."],
+      ["Assemble the rolls", "Lightly moisten a rice paper wrapper. Layer the lettuce, vermicelli, cucumber, carrot and tofu, then roll tightly."],
+      ["Serve", "Arrange on a plate and serve with the peanut and soy dipping sauce."]
+    ]
+  },
+  "sb-27": {
+    "name": "Broccoli and Cashew Stir-Fry",
+    "ingredients": ["250g broccoli florets", "50g roasted cashews", "1 tbsp vegetarian oyster sauce", "Minced garlic, salt and vegetarian seasoning"],
+    "steps": [
+      ["Blanch the broccoli", "Blanch the broccoli in boiling water for 1 minute, then transfer to ice water to retain its color and crunch."],
+      ["Stir-fry the broccoli", "Cook the garlic until fragrant. Add the broccoli and stir-fry over high heat, seasoning with vegetarian oyster sauce, salt and vegetarian seasoning."],
+      ["Add the cashews", "Add the roasted cashews and toss for 30 seconds. Turn off the heat to keep the cashews crisp."]
+    ]
+  },
+  "sb-28": {
+    "name": "Shiitake Mushroom Oat Porridge",
+    "ingredients": ["50g rolled oats", "5 fresh shiitake mushrooms, sliced", "300ml water or vegetable stock", "Fried leek, cilantro and white pepper"],
+    "steps": [
+      ["Cook the mushrooms", "Stir-fry the shiitake mushrooms with leek and a little vegetarian seasoning until fragrant."],
+      ["Cook the oats", "Bring the stock to a boil, stir in the oats and simmer for 5–7 minutes until soft and porridge-like."],
+      ["Finish and serve", "Add the cooked mushrooms and simmer for another 2 minutes. Season with salt and pepper and top with crisp fried leek."]
+    ]
+  },
+  "sb-29": {
+    "name": "Rosemary Grilled Chicken Breast",
+    "ingredients": ["1 large skinless chicken breast, 250g", "1 fresh rosemary sprig", "1 tbsp olive oil", "1 tbsp lime juice", "Salt, black pepper and garlic powder"],
+    "steps": [
+      ["Marinate the chicken", "Prick the chicken breast lightly with a fork. Marinate with olive oil, lime juice, salt, pepper, garlic powder and rosemary for 20 minutes."],
+      ["Grill the chicken", "Heat a grill pan and cook the chicken over medium heat for about 6–8 minutes per side, until evenly golden and cooked without drying out."],
+      ["Slice and serve", "Rest for 3 minutes, then slice diagonally and serve with boiled broccoli."]
+    ]
+  },
+  "sb-12": {
+    "name": "Baked Chicken with Mozzarella and Pesto",
+    "ingredients": ["2 large chicken breasts, about 200g each", "100g shredded Mozzarella", "1 ripe tomato, thinly sliced", "2 tbsp pesto", "Olive oil, salt, garlic powder and dried oregano"],
+    "steps": [
+      ["Score the chicken", "Clean the chicken breasts and make evenly spaced cuts about 1.5cm deep across them."],
+      ["Add the filling", "Season with olive oil, salt and garlic powder. Fill the cuts with pesto, tomato slices and Mozzarella."],
+      ["Bake", "Place on a baking tray and sprinkle with dried oregano. Bake at 190°C for 20–25 minutes until the chicken is cooked and golden and the cheese has melted."]
+    ]
+  },
+  "sb-18": {
+    "name": "Spinach and Cheese Omelet Roll",
+    "ingredients": ["3 eggs", "50g spinach, chopped", "30g grated Cheddar", "1 tbsp unsweetened milk or cream", "Unsalted butter, salt and pepper"],
+    "steps": [
+      ["Beat the eggs", "Beat the eggs with the milk, salt and pepper."],
+      ["Cook the spinach", "Briefly saute the spinach in a little butter, then transfer to a plate."],
+      ["Cook the omelet", "Melt butter in the pan and pour in the eggs, spreading them in a thin layer."],
+      ["Fill and roll", "While the top is still slightly wet, add the spinach and Cheddar. Roll the omelet and cook for another 1 minute to melt the cheese."]
+    ]
+  },
+  "sb-30": {
+    "name": "Cauliflower Fried Rice with Pork",
+    "ingredients": ["300g cauliflower, grated into rice-sized pieces", "100g lean ground pork", "1 egg, beaten", "Chopped shallots, sliced scallions, soy sauce and oyster sauce"],
+    "steps": [
+      ["Prepare the cauliflower rice", "Wash the cauliflower and grate into rice-sized pieces, or pulse in a blender for a few seconds."],
+      ["Cook the pork", "Cook the shallots until fragrant. Stir-fry the pork until cooked and season with a little soy sauce and seasoning powder."],
+      ["Fry the cauliflower rice", "Add the grated cauliflower and stir-fry over high heat for 3–4 minutes until it firms up and loses excess moisture."],
+      ["Finish", "Pour in the beaten egg and stir so it coats the cauliflower and cooks through. Sprinkle with scallions."]
+    ]
+  },
+  "sb-31": {
+    "name": "Shrimp Lettuce Wraps with Yogurt Sauce",
+    "ingredients": ["150g fresh shrimp, peeled and deveined", "1 large head iceberg lettuce, leaves separated", "1/2 avocado, thinly sliced", "1/2 container unsweetened Greek yogurt", "Salt, pepper, minced garlic and olive oil"],
+    "steps": [
+      ["Pan-sear the shrimp", "Season the shrimp with minced garlic, salt and pepper. Pan-sear until pink and cooked, then sprinkle with more pepper."],
+      ["Make the yogurt sauce", "Mix the Greek yogurt with a little salt, pepper and a few drops of lime juice."],
+      ["Assemble the wraps", "Lay out a lettuce leaf and place avocado slices and shrimp in the center. Drizzle with yogurt sauce and roll tightly."]
+    ]
+  },
+  "sb-32": {
+    "name": "Steamed Sea Bass with Ginger and Scallions",
+    "ingredients": ["300g fresh sea bass fillet", "1 piece fresh ginger, finely julienned", "3 scallions, cut into lengths and shredded", "1 tbsp light soy sauce", "Sesame oil, salt and cooking wine"],
+    "steps": [
+      ["Season the fish", "Rub the fish with cooking wine and salt and leave for 10 minutes to reduce its fishy aroma."],
+      ["Arrange for steaming", "Place the fish in a shallow dish and scatter half the ginger and scallions over it."],
+      ["Steam the fish", "Steam for 12 minutes from when the water starts boiling, until the fish is tender and cooked."],
+      ["Finish the sauce", "Pour light soy sauce over the hot fish. Top with fresh scallions, cilantro and the remaining ginger, then drizzle with a little heated sesame oil."]
+    ]
+  },
+  "sb-33": {
+    "name": "Grilled Pork and Vegetable Skewers",
+    "ingredients": ["250g pork shoulder, cubed", "1/2 green or red bell pepper, cut into squares", "1/2 onion, cut into skewer-sized pieces", "Fish sauce, honey, minced lemongrass, minced garlic and pepper"],
+    "steps": [
+      ["Marinate the pork", "Marinate the pork cubes with lemongrass, garlic, honey, fish sauce and pepper for 30 minutes."],
+      ["Thread the skewers", "Thread pork, bell pepper and onion alternately onto bamboo skewers."],
+      ["Grill", "Cook over charcoal, or in an oven or air fryer at 180°C for 15–18 minutes, turning so the pork browns evenly."]
+    ]
+  },
+  "sb-34": {
+    "name": "Tuna Salad with Roasted Sesame Dressing",
+    "ingredients": ["1 can tuna in oil or water, drained", "100g mixed salad greens, sprouts and red cabbage", "1 hard-boiled egg, halved", "2 tbsp low-carb roasted sesame dressing"],
+    "steps": [
+      ["Wash the greens", "Wash the salad greens, drain thoroughly and arrange on a plate."],
+      ["Prepare the tuna", "Drain the canned tuna and flake with a fork."],
+      ["Assemble the salad", "Scatter the tuna over the greens and arrange the boiled egg around it."],
+      ["Add the dressing", "Drizzle with roasted sesame dressing, toss and serve."]
+    ]
+  },
+  "sb-35": {
+    "name": "Steamed Egg Rolls with Pork and Vegetables",
+    "ingredients": ["3 eggs", "50g raw pork paste", "2 wood ear mushrooms, finely chopped", "1/2 carrot, finely chopped", "Chopped scallions, salt, seasoning powder and pepper"],
+    "steps": [
+      ["Mix the pork filling", "Combine the pork paste with wood ear mushrooms, carrot and scallions. Season with seasoning powder and pepper."],
+      ["Make thin omelets", "Beat the eggs with a little salt and cook very thin omelets in a nonstick pan."],
+      ["Roll with the filling", "Spread a thin layer of pork filling over the omelet, then roll tightly."],
+      ["Steam", "Steam the rolls for 15 minutes until the pork filling is fully cooked. Let cool slightly, then slice into rounds."]
+    ]
+  },
+  "sb-36": {
+    "name": "Pan-Fried Beef in Wild Betel Leaves",
+    "ingredients": ["200g ground beef mixed with a little fatty pork", "20 wild betel leaves, washed", "Minced lemongrass, chopped shallots and black pepper", "Cooking oil and fish sauce"],
+    "steps": [
+      ["Mix the beef filling", "Mix the ground meat with shallots, lemongrass, a little fish sauce, pepper and 2 finely chopped wild betel leaves."],
+      ["Wrap the rolls", "Place each leaf dark-green side down, add a spoonful of filling and roll tightly. Use the leaf stem to secure the edge."],
+      ["Pan-fry", "Place the rolls in a pan with a little oil. Cook over medium heat until the leaves firm up and the meat filling is cooked and fragrant."]
+    ]
+  },
+  "sb-37": {
+    "name": "Zucchini Soup with Ground Pork",
+    "ingredients": ["1 green zucchini, cut into halves or rounds", "100g lean ground pork", "Scallions and cilantro", "Salt, seasoning powder and pepper"],
+    "steps": [
+      ["Cook the pork", "Cook the chopped scallion whites until fragrant. Stir-fry the pork until partially cooked and season with salt and seasoning powder."],
+      ["Make the broth", "Add enough water, bring to a boil and skim off any foam to keep the broth clear."],
+      ["Add the zucchini", "Add the zucchini and boil for another 2–3 minutes until just tender. Avoid overcooking it."],
+      ["Finish and serve", "Adjust the salt, sprinkle with scallions, cilantro and pepper and ladle into bowls."]
+    ]
+  },
+  "sb-38": {
+    "name": "Pan-Seared Chicken with Lime and Lemongrass",
+    "ingredients": ["2 boneless skinless chicken drumsticks", "2 lemongrass stalks, minced", "1 tbsp fresh lime juice", "Minced garlic, chopped shallots and five-spice powder", "Fish sauce and pepper"],
+    "steps": [
+      ["Marinate the chicken", "Marinate the chicken with lemongrass, garlic, shallots, a little five-spice powder, fish sauce and pepper for 20 minutes."],
+      ["Pan-sear the chicken", "Sear the chicken until golden and crisp outside, then reduce the heat and cook thoroughly inside."],
+      ["Make the sauce", "Cook the remaining lemongrass and garlic until fragrant. Add fish sauce and lime juice, simmer until slightly thickened and pour over the chicken."]
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+.guide-layout { padding-bottom: 24px; }
+.guide-sidebar { position: sticky; top: 24px; align-self: flex-start; flex: 0 0 240px; max-height: calc(100dvh - 48px); overflow-y: auto; scrollbar-width: thin; padding-right: 16px; overscroll-behavior: contain; }
+.guide-content { scroll-margin-top: 24px; }
+.cuisine-navigation { margin-top: 28px; padding-top: 24px; border-top: 1px solid #f0f0f0; }
+.cuisine-navigation h2 { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #71717a; font-weight: 700; margin-bottom: 14px; }
+.cuisine-navigation button { text-align: left; font-size: 12px; color: #71717a; padding: 9px 10px; width: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cuisine-navigation button:hover { background: #fafafa; color: #18181b; }
+.cuisine-navigation button.active { background: #f4f4f5; color: #18181b; font-weight: 600; }
+.cuisine-navigation button small { display: block; font-size: 10px; font-weight: 400; color: #71717a; margin-top: 2px; }
+.cuisine-group { border-bottom: 1px solid #f4f4f5; padding: 6px 0; }
+.cuisine-group summary { cursor: pointer; font-size: 12px; color: #27272a; padding: 10px 0; }
+.cuisine-group summary > span { float: right; color: #a1a1aa; font-size: 10px; }
+.guide-clear { font-size: 12px; color: #71717a; margin: -12px 0 24px; text-decoration: underline; text-underline-offset: 3px; }
+.guide-pagination { margin-top: 48px; padding-top: 24px; border-top: 1px solid #e4e4e7; display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.guide-pagination p { font-size: 12px; color: #71717a; }
+.guide-pagination nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.guide-pagination button { padding: 9px 12px; min-width: 38px; min-height: 38px; font-size: 12px; border: 1px solid #e4e4e7; border-radius: 6px; }
+.guide-pagination button[aria-current="page"] { background: #18181b; color: white; border-color: #18181b; }
+.guide-pagination button:disabled { opacity: .35; cursor: default; }
+.guide-pagination button:not(:disabled):hover { border-color: #18181b; }
+.pagination-gap { padding: 0 6px; color: #a1a1aa; }
+.guide-layout button:focus-visible, .guide-layout summary:focus-visible { outline: 2px solid #18181b; outline-offset: 3px; }
+@media (max-width: 767px) {
+  .guide-layout { flex-direction: column; gap: 32px; padding-top: 24px; }
+  .guide-sidebar { position: relative; top: auto; flex: none; width: 100%; max-height: none; overflow: visible; padding-right: 0; }
+  .guide-sidebar > ul { display: flex; flex-wrap: wrap; gap: 16px; }
+  .guide-sidebar > ul > li { margin: 0; }
+  .guide-sidebar > ul > li[aria-hidden] { display: none; }
+  .guide-sidebar > h2 { margin-bottom: 20px; }
+  .guide-sidebar > div:last-child { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+  .guide-sidebar > div:last-child a { margin: 0 !important; }
+  .guide-content { width: 100%; }
+  .guide-pagination { margin-top: 32px; }
+}

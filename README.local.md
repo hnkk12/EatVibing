@@ -48,7 +48,7 @@ npm run build
 
 The tests use an isolated SQLite database and a temporary HTTP server. They cover Free limits, Pro endpoint gates, 21-slot generation, locks, swaps, atomic failed generation, cross-visitor ownership, grocery arithmetic, pantry subtraction, checklist invalidation, templates, notes, collections, servings and downgrade data retention.
 
-`/admin` creates local recipes and overrides each meal's image URL. Reload the library after saving. The original Home, Navbar, Chat and Community components are retained. Existing AI chat needs the original AI service configuration; the local server does not start that integration. The random recipe picker is inside the original Guideline page. Added pricing, detail and planner pages use scoped neutral styles that do not alter the existing pages.
+`/admin` creates local recipes and overrides each meal's image URL. Reload the library after saving. The original Home, Navbar, Chat and Community components are retained. The new family assistant is available locally through /today, /profile, /family and /chat. See README.assistant.md for authenticated setup, clinical gates and remaining release work. The random recipe picker is inside the original Guideline page. Added pricing, detail and planner pages use scoped neutral styles that do not alter the existing pages.
 
 ## Supabase migration draft
 
@@ -61,3 +61,34 @@ Research references:
 - https://supabase.com/docs/guides/database/postgres/row-level-security
 - https://supabase.com/docs/guides/auth/managing-user-data
 - https://www.themealdb.com/api.php
+
+## Cuisine browsing and pagination
+
+The Guideline and Saved pages show 12 recipes per page, numbered navigation and a result range. Search, category, region, country, collection and page are stored in URL parameters; changing a filter starts at page 1. Search matches dish names, ingredients, country names and cooking instructions, including Vietnamese without accents. The desktop sidebar sticks 24px from the viewport top and scrolls independently when its expanded country lists exceed the viewport. Mobile uses a stacked layout. The app container uses `overflow-x-clip` so it does not break document-level sticky positioning.
+
+Country names in the existing Vietnamese catalog and TheMealDB English catalog are grouped under Asia, Europe, Americas and Other cuisines using `frontend/src/cuisines.js`. Country choices and counts come from the available catalog; countries without recipes are not shown. The current catalog contains 58 recipes across 22 countries. This categorizes the cuisine recorded by the source; it is not a certification of a dish's historical origin.
+
+Twelve additional recipe records were retrieved from TheMealDB on 2026-10-03 with ingredient measurements, instructions, dish photographs and original source links. Imports fall back to `strCountry` where `strArea` is missing and link to the specific TheMealDB meal when no original URL is supplied. Standalone `STEP n` headings are excluded from the cooking-step count. The Sushi ingredient transcription was corrected against Good Food (rice unit, rice vinegar, soy sauce quantity and missing nori); its review note is retained in the catalog. Recipe variants are those of the linked authors. No serving counts, cooking times or nutrition values were estimated.
+
+Recipe research and source checks:
+
+- https://www.bbcgoodfood.com/recipes/simple-sushi
+- https://www.bbcgoodfood.com/recipes/easy-pad-thai
+- https://www.bbcgoodfood.com/recipes/must-make-moussaka
+- https://www.bbcgoodfood.com/recipes/black-bean-meat-stew-feijoada
+- https://www.japan.travel/en/local-specialities/local-foods/
+- https://www.italia.it/en/italy/things-to-do/pasta-types-italian-formats-and-recipes
+
+Validation: targeted frontend ESLint, production Vite build, backend tests, catalog integrity assertions and browser checks for sticky scrolling, page 2, country filtering, Vietnamese search, empty results and a 390px mobile viewport.
+
+The full production build passes with the completed Community stylesheet.
+
+## English interface
+
+Cuisine menus display English region and country names. Vietnamese country aliases remain available for search. `backend/data/recipe-english.json` supplies English names, ingredients and cooking steps for the 30 original Supabase recipes. The local API applies these translations without modifying the source snapshot or writing to Supabase. Original ingredient lines and dish names remain available for Vietnamese search, ingredient avoidance and meal-type inference. Recipe IDs, saved meals and planner entries retain their existing identities. Cached generated grocery labels and warnings are translated for display without changing their keys or quantities. User-authored notes, pantry entries and custom recipes retain their submitted text.
+
+## Pricing interface
+
+Pricing displays Basic at $0/month and Pro at $10/month. Both cards list the same ten feature groups. Basic includes recipe browsing, ten saved recipes and daily planning; unavailable features use an X. All Pro features use green checkmarks. The Basic plan retains the internal `free` identifier so existing saved content and entitlements remain compatible. AI Assistant has a Pro access screen on the frontend; pilot access for the new assistant is granted separately by the authenticated server. Visible plan names, notices and upgrade links omit demo terminology. Community removes placeholder membership counts and uses descriptive browser-storage text.
+
+The FAQ and Pro activation dialog explain that billing is not connected and activation does not collect payment. These UI changes do not create a payment integration or a recurring subscription.

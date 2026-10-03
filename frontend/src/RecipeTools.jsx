@@ -16,7 +16,7 @@ export default function RecipeTools({ meal }) {
           collections.
         </p>
         <Link className="btn secondary" to="/pricing">
-          Explore Pro demo
+          Explore Pro
         </Link>
       </div>
     );
@@ -134,7 +134,7 @@ export function CollectionManager({ selected, onSelect }) {
   if (state.plan !== "pro")
     return (
       <p className="text-xs text-zinc-400 mb-6">
-        Free saves up to 10 recipes.{" "}
+        Basic saves up to 10 recipes.{" "}
         <Link to="/pricing" className="text-black">
           Pro adds unlimited saves and collections.
         </Link>

@@ -4,11 +4,18 @@ const { DatabaseSync } = require("node:sqlite");
 const fs = require("node:fs");
 const path = require("node:path");
 const { enrichMeal } = require("./ingredients");
+const { englishRecipe } = require("./english-recipes");
 const { installPremium } = require("./premium-service");
+require("dotenv").config();
+const { SQLiteStore } = require("./assistant/store");
+const { authenticator, installDemo } = require("./assistant/auth");
+const { installAssistant } = require("./assistant/service");
+const { createProvider, providerConfiguration } = require("./assistant/provider");
+const { loadPolicy } = require("./assistant/load-policy");
 const app = express();
 app.use(cors({ origin: ["http://127.0.0.1:5173", "http://localhost:5173"] }));
 app.use(express.json({ limit: "1mb" }));
-const db = new DatabaseSync(path.join(__dirname, "data", "eatvibing.sqlite"));
+const db = new DatabaseSync(process.env.LOCAL_DB_PATH || path.join(__dirname, "data", "eatvibing.sqlite"));
 db.exec(`PRAGMA foreign_keys=ON;
 CREATE TABLE IF NOT EXISTS catalog(id TEXT PRIMARY KEY,payload TEXT NOT NULL,source TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS visitors(id TEXT PRIMARY KEY,plan TEXT NOT NULL DEFAULT 'free' CHECK(plan IN ('free','pro')));
@@ -70,7 +77,7 @@ for (const m of imported.filter(Boolean)) {
     {
       id: `local-${m.idMeal}`,
       name: m.strMeal,
-      origin: m.strArea,
+      origin: m.strArea || m.strCountry || "Unspecified",
       category:
         m.strCategory === "Vegetarian"
           ? "loss"
@@ -81,9 +88,11 @@ for (const m of imported.filter(Boolean)) {
       ingredients,
       recipes: m.strInstructions
         .split(/\r?\n/)
-        .filter((x) => x.trim())
+        .filter((x) => x.trim() && !/^\s*step\s+\d+\s*[:.)-]?\s*$/i.test(x))
         .map((details, i) => ({ order: i + 1, details })),
-      source_url: m.strSource || "https://www.themealdb.com",
+      source_url: m.strSource || `https://www.themealdb.com/meal/${m.idMeal}`,
+      catalog_source_url: `https://www.themealdb.com/meal/${m.idMeal}`,
+      recipe_review_note: m.recipe_review_note || null,
       recipe_language: "en",
     },
     "local",
@@ -133,7 +142,7 @@ function meals() {
     .map((r) => {
       const meal = enrichMeal(
         {
-          ...JSON.parse(r.payload),
+          ...englishRecipe(JSON.parse(r.payload)),
           ...(r.image_url
             ? { image_url: r.image_url, image_note: "Custom local image" }
             : {}),
@@ -164,8 +173,20 @@ function meals() {
       return meal;
     });
 }
-app.use("/api", (req, res, next) => {
-  const id = req.headers["x-visitor-id"];
+const assistantStore = new SQLiteStore(db);
+const authClient = process.env.SUPABASE_URL && process.env.SUPABASE_KEY
+  ? require("@supabase/supabase-js").createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY, { auth: { persistSession: false } })
+  : null;
+// Local-only demo: a random server-issued HTTP-only session, never a supplied user ID.
+installDemo(app, assistantStore);
+installAssistant(app, { store: assistantStore, authenticate: authenticator({ client: authClient, store: assistantStore, demo: true }), getMeals: meals, policy: loadPolicy(), provider: createProvider(), providerConfiguration: providerConfiguration(), adminIds: (process.env.NUTRITION_REVIEWER_IDS || "").split(",").filter(Boolean), pilotIds: (process.env.ASSISTANT_PILOT_IDS || "").split(",").filter(Boolean) });
+app.get("/api/catalog", (req, res) => res.json({ meals: meals() }));
+app.use("/api", async (req, res, next) => {
+  let id = req.headers["x-visitor-id"];
+  if (req.headers.authorization) {
+    try { id = (await authenticator({ client: authClient, store: assistantStore })(req)).id; }
+    catch { return res.status(401).json({ error: "Sign in again or configure the local Supabase verifier." }); }
+  }
   if (!id || !/^[a-zA-Z0-9-]{8,80}$/.test(id))
     return res.status(400).json({ error: "Invalid local session." });
   req.visitor = id;
@@ -220,7 +241,8 @@ app.use((err, req, res, next) => {
     .status(500)
     .json({ error: "Unable to save local data. Please try again." });
 });
-app.listen(5000, "127.0.0.1", () => {
-  console.log("EatVibing local API http://127.0.0.1:5000");
+const localPort = Number(process.env.LOCAL_API_PORT) || 5000;
+app.listen(localPort, "127.0.0.1", () => {
+  console.log("EatVibing local API http://127.0.0.1:" + localPort);
   syncRemote();
 });

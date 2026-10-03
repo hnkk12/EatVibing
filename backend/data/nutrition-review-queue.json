@@ -1,0 +1,1481 @@
+{
+  "target": {
+    "vietnamese": 30,
+    "international": 30
+  },
+  "verifiedCount": 0,
+  "recipes": [
+    {
+      "id": "local-53234",
+      "name": "Salmon noodle soup",
+      "cuisine": "Vietnamese",
+      "sourceUrl": "https://www.bbcgoodfood.com/recipes/salmon-noodle-soup",
+      "ingredients": [
+        "1 L  Chicken Stock",
+        "2 tsp Thai Red Curry Paste",
+        "100g  Rice Noodles",
+        "150g Shiitake Mushrooms",
+        "125g Sweetcorn",
+        "2 Salmon",
+        "Juice of 2 Lime",
+        "1 tablespoon Soy Sauce",
+        "Pinch Brown Sugar",
+        "Bunch Coriander"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "local-53248",
+      "name": "Salmon noodle wraps",
+      "cuisine": "Vietnamese",
+      "sourceUrl": "https://www.bbcgoodfood.com/recipes/salmon-noodle-wraps",
+      "ingredients": [
+        "100g  Rice Noodles",
+        "3 sliced thinly Spring Onions",
+        "50g Petit Pois",
+        "85g Chilli",
+        "85g Coriander",
+        "85g Lime",
+        "300g Salmon"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "local-53238",
+      "name": "Beef pho",
+      "cuisine": "Vietnamese",
+      "sourceUrl": "https://www.bbcgoodfood.com/recipes/beef-pho",
+      "ingredients": [
+        "1 L  Beef Stock",
+        "1 large Onion",
+        "1 Large Chopped Ginger",
+        "1 Cinnamon Stick",
+        "2 Star Anise",
+        "1 tsp Coriander Seeds",
+        "1/2 teaspoon Cloves",
+        "225g Sirloin steak",
+        "1 tsp Palm Sugar",
+        "1 tablespoon Fish Sauce",
+        "1 ½ tbsp Soy Sauce",
+        "200g Rice Noodles",
+        "2 sliced Spring Onions",
+        "1 small Birds-eye Chillies",
+        "Handful Basil",
+        "Handful Coriander",
+        "1 Lime"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-1",
+      "name": "Phở gà",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-2",
+      "name": "Bún bò Huế",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-3",
+      "name": "Bún chả",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-4",
+      "name": "Bún thịt nướng",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-5",
+      "name": "Bún cá",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-6",
+      "name": "Bún riêu",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-7",
+      "name": "Bánh mì trứng",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-8",
+      "name": "Bánh cuốn",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-9",
+      "name": "Bánh xèo",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-10",
+      "name": "Gỏi cuốn tôm thịt",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-11",
+      "name": "Gỏi gà",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-12",
+      "name": "Gỏi ngó sen",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-13",
+      "name": "Cá kho tộ",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-14",
+      "name": "Thịt kho trứng",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-15",
+      "name": "Gà kho gừng",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-16",
+      "name": "Gà luộc",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-17",
+      "name": "Cá hấp gừng",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-18",
+      "name": "Đậu hũ sốt cà chua",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-19",
+      "name": "Rau muống xào tỏi",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-20",
+      "name": "Canh rau ngót thịt bằm",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-21",
+      "name": "Canh bí đỏ",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-22",
+      "name": "Canh cải đậu hũ",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-23",
+      "name": "Canh chua cá",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-24",
+      "name": "Cháo gà",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-25",
+      "name": "Cháo đậu xanh",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-26",
+      "name": "Cơm gạo lứt",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "pending-vietnam-27",
+      "name": "Rau củ luộc",
+      "cuisine": "Vietnam",
+      "sourceUrl": null,
+      "ingredients": [],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-9",
+      "name": "Baked Avocado Eggs with Bacon",
+      "cuisine": "Mỹ",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 ripe avocados",
+        "2 eggs",
+        "4 slices bacon",
+        "Salt, black pepper and finely chopped chives"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-10",
+      "name": "Avocado and Egg Salad",
+      "cuisine": "Pháp",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 ripe avocados, diced",
+        "3 hard-boiled eggs, cut into wedges",
+        "2 tbsp mayonnaise",
+        "1 tsp lime juice",
+        "Salt, black pepper and chopped parsley"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-11",
+      "name": "Garlic Butter Ribeye Steak",
+      "cuisine": "Mỹ",
+      "sourceUrl": null,
+      "ingredients": [
+        "300g ribeye steak",
+        "2 tbsp unsalted butter",
+        "4 garlic cloves, crushed",
+        "2 rosemary sprigs",
+        "Kosher salt and coarsely ground black pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-13",
+      "name": "Salmon with Creamy Garlic Butter Sauce",
+      "cuisine": "Na Uy",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 fresh salmon fillets, 150g each",
+        "120ml heavy cream",
+        "30g unsalted butter",
+        "3 garlic cloves, minced",
+        "50g spinach, washed",
+        "Salt, pepper and fresh lime"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-14",
+      "name": "Beef and Asparagus Stir-Fry",
+      "cuisine": "Hàn Quốc",
+      "sourceUrl": null,
+      "ingredients": [
+        "200g frozen thinly sliced beef belly",
+        "150g fresh asparagus, woody ends removed",
+        "1 tbsp sugar-free oyster sauce",
+        "2 garlic cloves, sliced",
+        "Salt, pepper and toasted sesame seeds"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-15",
+      "name": "Broccoli Cheddar Soup",
+      "cuisine": "Anh",
+      "sourceUrl": null,
+      "ingredients": [
+        "300g broccoli, cut into small pieces",
+        "100g shredded Cheddar cheese",
+        "150ml chicken stock",
+        "80ml heavy cream",
+        "20g unsalted butter",
+        "Minced garlic and finely chopped onion"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-16",
+      "name": "Pork and Cheese Stuffed Squid",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 large squid tubes, cleaned",
+        "150g ground pork",
+        "50g Mozzarella, diced",
+        "2 wood ear mushrooms, soaked and chopped",
+        "Chopped shallots, pepper and fish sauce"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-17",
+      "name": "Zucchini Noodle Carbonara",
+      "cuisine": "Ý",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 large green zucchini",
+        "2 egg yolks",
+        "30g finely grated Parmesan",
+        "50g guanciale or bacon",
+        "Minced garlic and coarsely ground black pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-19",
+      "name": "Quinoa Vegetable Salad",
+      "cuisine": "Peru",
+      "sourceUrl": null,
+      "ingredients": [
+        "100g cooked quinoa",
+        "1/2 cucumber, diced",
+        "50g cherry tomatoes, halved",
+        "1/2 yellow bell pepper, chopped",
+        "Olive oil, lime juice, salt and parsley"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-20",
+      "name": "Thai Vegetarian Red Curry",
+      "cuisine": "Thái Lan",
+      "sourceUrl": null,
+      "ingredients": [
+        "1 block tofu, cubed and fried until golden",
+        "1/2 potato, cubed",
+        "1/2 carrot, sliced",
+        "200ml coconut milk",
+        "1.5 tbsp vegetarian Thai red curry paste",
+        "Lemongrass, lime leaves, salt and vegetarian seasoning"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-21",
+      "name": "Tofu with Garlic Chili Soy Sauce",
+      "cuisine": "Trung Quốc",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 blocks soft tofu",
+        "2 tbsp soy sauce",
+        "1 tbsp brown or white sugar",
+        "Minced garlic, chopped chili and sliced scallions",
+        "1 tsp sesame oil"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-22",
+      "name": "Clay Pot Braised King Oyster Mushrooms",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "250g king oyster mushrooms, sliced into rounds",
+        "2 tbsp soy sauce and vegetarian caramel sauce",
+        "1 tbsp sugar, plus vegetarian seasoning",
+        "Chopped leek, green peppercorns and long red chili"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-23",
+      "name": "Garlic Mushroom Spaghetti",
+      "cuisine": "Ý",
+      "sourceUrl": null,
+      "ingredients": [
+        "80g dried spaghetti",
+        "100g button or small king oyster mushrooms, sliced",
+        "2 tbsp olive oil",
+        "3 garlic cloves, minced",
+        "Salt, black pepper and dried parsley"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-24",
+      "name": "Southern Vietnamese Vegetarian Sour Soup",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "1/2 block tofu, cubed",
+        "1/4 pineapple, sliced",
+        "1 tomato, cut into wedges",
+        "50g bean sprouts, elephant ear stalks and okra",
+        "Tamarind juice, culantro, rice paddy herb, salt and sugar"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-25",
+      "name": "Avocado and Grilled Mushroom Sandwich",
+      "cuisine": "Anh",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 slices whole wheat bread",
+        "1/2 avocado, mashed",
+        "100g king oyster mushrooms, sliced and pan-seared",
+        "Lettuce and sliced tomato",
+        "Salt, pepper and olive oil"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-26",
+      "name": "Rainbow Vegetarian Summer Rolls",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "10 rice paper wrappers",
+        "1 carrot, julienned and briefly blanched",
+        "1 cucumber, cut into long strips",
+        "100g fried tofu, thinly sliced",
+        "Lettuce, mint and fresh rice vermicelli",
+        "Soy sauce and peanut butter dipping sauce"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-27",
+      "name": "Broccoli and Cashew Stir-Fry",
+      "cuisine": "Trung Quốc",
+      "sourceUrl": null,
+      "ingredients": [
+        "250g broccoli florets",
+        "50g roasted cashews",
+        "1 tbsp vegetarian oyster sauce",
+        "Minced garlic, salt and vegetarian seasoning"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-28",
+      "name": "Shiitake Mushroom Oat Porridge",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "50g rolled oats",
+        "5 fresh shiitake mushrooms, sliced",
+        "300ml water or vegetable stock",
+        "Fried leek, cilantro and white pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-29",
+      "name": "Rosemary Grilled Chicken Breast",
+      "cuisine": "Ý",
+      "sourceUrl": null,
+      "ingredients": [
+        "1 large skinless chicken breast, 250g",
+        "1 fresh rosemary sprig",
+        "1 tbsp olive oil",
+        "1 tbsp lime juice",
+        "Salt, black pepper and garlic powder"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-12",
+      "name": "Baked Chicken with Mozzarella and Pesto",
+      "cuisine": "Ý",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 large chicken breasts, about 200g each",
+        "100g shredded Mozzarella",
+        "1 ripe tomato, thinly sliced",
+        "2 tbsp pesto",
+        "Olive oil, salt, garlic powder and dried oregano"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-18",
+      "name": "Spinach and Cheese Omelet Roll",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "3 eggs",
+        "50g spinach, chopped",
+        "30g grated Cheddar",
+        "1 tbsp unsweetened milk or cream",
+        "Unsalted butter, salt and pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-30",
+      "name": "Cauliflower Fried Rice with Pork",
+      "cuisine": "Hàn Quốc",
+      "sourceUrl": null,
+      "ingredients": [
+        "300g cauliflower, grated into rice-sized pieces",
+        "100g lean ground pork",
+        "1 egg, beaten",
+        "Chopped shallots, sliced scallions, soy sauce and oyster sauce"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-31",
+      "name": "Shrimp Lettuce Wraps with Yogurt Sauce",
+      "cuisine": "Hy Lạp",
+      "sourceUrl": null,
+      "ingredients": [
+        "150g fresh shrimp, peeled and deveined",
+        "1 large head iceberg lettuce, leaves separated",
+        "1/2 avocado, thinly sliced",
+        "1/2 container unsweetened Greek yogurt",
+        "Salt, pepper, minced garlic and olive oil"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-32",
+      "name": "Steamed Sea Bass with Ginger and Scallions",
+      "cuisine": "Trung Quốc",
+      "sourceUrl": null,
+      "ingredients": [
+        "300g fresh sea bass fillet",
+        "1 piece fresh ginger, finely julienned",
+        "3 scallions, cut into lengths and shredded",
+        "1 tbsp light soy sauce",
+        "Sesame oil, salt and cooking wine"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-33",
+      "name": "Grilled Pork and Vegetable Skewers",
+      "cuisine": "Hy Lạp",
+      "sourceUrl": null,
+      "ingredients": [
+        "250g pork shoulder, cubed",
+        "1/2 green or red bell pepper, cut into squares",
+        "1/2 onion, cut into skewer-sized pieces",
+        "Fish sauce, honey, minced lemongrass, minced garlic and pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-34",
+      "name": "Tuna Salad with Roasted Sesame Dressing",
+      "cuisine": "Nhật Bản",
+      "sourceUrl": null,
+      "ingredients": [
+        "1 can tuna in oil or water, drained",
+        "100g mixed salad greens, sprouts and red cabbage",
+        "1 hard-boiled egg, halved",
+        "2 tbsp low-carb roasted sesame dressing"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-35",
+      "name": "Steamed Egg Rolls with Pork and Vegetables",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "3 eggs",
+        "50g raw pork paste",
+        "2 wood ear mushrooms, finely chopped",
+        "1/2 carrot, finely chopped",
+        "Chopped scallions, salt, seasoning powder and pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-36",
+      "name": "Pan-Fried Beef in Wild Betel Leaves",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "200g ground beef mixed with a little fatty pork",
+        "20 wild betel leaves, washed",
+        "Minced lemongrass, chopped shallots and black pepper",
+        "Cooking oil and fish sauce"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-37",
+      "name": "Zucchini Soup with Ground Pork",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "1 green zucchini, cut into halves or rounds",
+        "100g lean ground pork",
+        "Scallions and cilantro",
+        "Salt, seasoning powder and pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    },
+    {
+      "id": "sb-38",
+      "name": "Pan-Seared Chicken with Lime and Lemongrass",
+      "cuisine": "Việt Nam",
+      "sourceUrl": null,
+      "ingredients": [
+        "2 boneless skinless chicken drumsticks",
+        "2 lemongrass stalks, minced",
+        "1 tbsp fresh lime juice",
+        "Minced garlic, chopped shallots and five-spice powder",
+        "Fish sauce and pepper"
+      ],
+      "status": "awaiting-review",
+      "baseServings": null,
+      "perServing": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "required": [
+        "confirm-source",
+        "measure-edible-ingredients",
+        "map-food-identifiers",
+        "confirm-raw-or-cooked",
+        "confirm-yield-and-servings",
+        "review-allergens",
+        "review-nutrition"
+      ]
+    }
+  ]
+}

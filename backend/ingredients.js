@@ -165,7 +165,7 @@ function ingredientLabel(item, factor = 1) {
 }
 function enrichMeal(m, metadata = {}) {
   const ingredients_structured = m.ingredients.map(parseIngredient);
-  const text = clean(m.name);
+  const text = clean(m.original_name || m.name);
   const mealTypes =
     metadata.mealTypes ||
     (/\b(egg|eggs|congee|bread|oat|omelette|pancake)\b|\btrung\b|^chao\b|\bbanh mi\b/.test(
@@ -182,7 +182,7 @@ function enrichMeal(m, metadata = {}) {
 }
 function matchesAvoid(meal, avoid) {
   const hay = clean(
-    `${meal.ingredients.join(" ")} ${meal.ingredients_structured.map((i) => i.name).join(" ")}`,
+    `${meal.ingredients.join(" ")} ${(meal.original_ingredients || []).join(" ")} ${meal.ingredients_structured.map((i) => i.name).join(" ")}`,
   );
   return avoid.some((term) => {
     const original = clean(term);

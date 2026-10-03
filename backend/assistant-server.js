@@ -1,0 +1,28 @@
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const { createClient } = require("@supabase/supabase-js");
+const { SupabaseStore } = require("./assistant/store");
+const { authenticator } = require("./assistant/auth");
+const { installAssistant, catalogWithNutrition } = require("./assistant/service");
+const { localDate, weekOf } = require("./assistant/nutrition");
+const { createProvider, providerConfiguration } = require("./assistant/provider");
+const { loadCatalog } = require("./assistant/catalog");
+const { loadPolicy } = require("./assistant/load-policy");
+for (const key of ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY", "APP_ORIGIN"]) if (!process.env[key]) throw new Error("Configure " + key + " before starting the authenticated assistant server.");
+const client = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
+const store = new SupabaseStore(client), app = express();
+app.disable("x-powered-by");
+app.use(cors({ origin: process.env.APP_ORIGIN, credentials: true }));
+app.use(express.json({ limit: "128kb" }));
+const catalog = loadCatalog();
+const sendCatalog = async (req, res, next) => { try { const { data } = await store.read(); res.json({ meals: catalogWithNutrition(data, catalog) }); } catch (e) { next(e); } };
+app.get("/api/catalog", sendCatalog);
+app.get("/api/meals", sendCatalog);
+// Compatibility for catalog/detail pages; legacy paid mutations stay local-only.
+app.get("/api/state", (req, res) => { const today = localDate(); res.json({ hostedAssistant: true, plan: "free", today, currentWeek: weekOf(today), currentDay: (new Date(today + "T12:00:00Z").getUTCDay() + 6) % 7, favorites: [], planner: [], shopping: [], pantry: [], collections: [], templates: [], notes: {}, preferences: { people: 1, category: "all", avoid: [], origins: [], activeWeek: weekOf(today) } }); });
+const policy = loadPolicy();
+installAssistant(app, { store, authenticate: authenticator({ client, store }), getMeals: () => catalog, policy, provider: createProvider(), providerConfiguration: providerConfiguration(), enabled: process.env.ASSISTANT_ENABLED !== "false", adminIds: (process.env.NUTRITION_REVIEWER_IDS || "").split(",").filter(Boolean), pilotIds: (process.env.ASSISTANT_PILOT_IDS || "").split(",").filter(Boolean) });
+app.use("/api", (req, res) => res.status(410).json({ error: "This legacy demo operation is local-only. Use Today, Profile or the family planner." }));
+app.use((err, req, res, next) => { void next; res.status(400).json({ error: "Invalid request." }); });
+app.listen(Number(process.env.PORT) || 5000, "127.0.0.1", () => console.log("EatVibing authenticated assistant API started"));

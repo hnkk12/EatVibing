@@ -1,0 +1,16 @@
+{
+  "version": "nutrition-policy-draft-v1",
+  "status": "draft",
+  "reviewedBy": null,
+  "reviewedAt": null,
+  "minimumAge": 20,
+  "maximumAge": 78,
+  "activityFactors": {},
+  "adjustments": {},
+  "energyBounds": null,
+  "mealShares": null,
+  "recipeServingBounds": null,
+  "weightGoalsEnabled": false,
+  "pediatricInterpretationEnabled": false,
+  "notes": "A qualified reviewer must approve activity factors, goal adjustments, bounds and applicability. No pediatric reference dataset has been installed."
+}

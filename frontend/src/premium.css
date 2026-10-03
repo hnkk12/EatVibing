@@ -450,6 +450,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     text-align: left;
+    margin-top: 48px;
   }
   .pricing-card {
     position: relative;
@@ -501,6 +502,22 @@
   .pricing-card li svg {
     color: #8a8a8a;
     flex-shrink: 0;
+  }
+  .pricing-card li.feature-included svg {
+    color: #16a34a;
+    stroke-width: 2.5;
+  }
+  .pricing-card li.feature-unavailable {
+    color: #a1a1aa;
+  }
+  .pricing-card li.feature-unavailable svg {
+    color: #a1a1aa;
+  }
+  .feature-limit {
+    display: block;
+    font-size: 10px;
+    color: #71717a;
+    margin-top: 4px;
   }
   .recommended {
     position: absolute;

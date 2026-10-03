@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Search, User, Menu, X, LogOut } from "lucide-react";
 import Logo from "./logo";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
 const Navbar = () => {
@@ -46,10 +46,11 @@ const Navbar = () => {
 
   const links = [
     { to: "/", label: "Home" },
-    { to: "/chat", label: "AI Assistance" },
+    { to: "/today", label: "Today" },
+    { to: "/chat", label: "AI Assistant" },
     { to: "/guide", label: "Guideline" },
     { to: "/community", label: "Community" },
-    { to: "/pricing", label: "Free / Pro" },
+    { to: "/pricing", label: "Basic / Pro" },
   ];
 
   return (
@@ -79,6 +80,7 @@ const Navbar = () => {
             />
           </div>
 
+          <Link className="text-sm text-zinc-500 px-2" to="/profile">Profile & BMI</Link>
           {/* User Menu Desktop */}
           <div className="relative">
             <button
@@ -158,6 +160,9 @@ const Navbar = () => {
       {/* Mobile User Menu */}
       {showUserMenu && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-zinc-200 p-4 flex flex-col shadow-lg">
+          <Link className="py-3" to="/profile" onClick={() => setShowUserMenu(false)}>Profile & BMI</Link>
+          <Link className="py-3" to="/family" onClick={() => setShowUserMenu(false)}>Family</Link>
+          <Link className="py-3" to="/family-planner" onClick={() => setShowUserMenu(false)}>Family planner</Link>
           {user ? (
             <>
               <div className="flex items-center gap-3 px-2 pb-2 border-b border-zinc-100">

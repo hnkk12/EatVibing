@@ -131,7 +131,7 @@ const AdminDashboard = () => {
               Admin Dashboard
             </h1>
             <p className="text-zinc-500">
-              Upload new delicious recipes to EatVibing · Local demo
+              Add new recipes to EatVibing
             </p>
           </div>
           <button

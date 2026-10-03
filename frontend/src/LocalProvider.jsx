@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Context } from "./dataContext";
 import { api } from "./localApi";
+import { supabase } from "./supabaseClient";
 export default function LocalProvider({ children }) {
   const [meals, setMeals] = useState([]);
   const [state, setState] = useState({
@@ -23,21 +24,33 @@ export default function LocalProvider({ children }) {
   const [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
-  async function load() {
+  const generation = useRef(0);
+  const load = useCallback(async () => {
+    const epoch = ++generation.current;
     try {
       const [catalog, data] = await Promise.all([api("/meals"), api("/state")]);
+      if (epoch !== generation.current) return;
       setMeals(catalog.meals);
       setState(data);
       setError("");
     } catch (e) {
-      setError(e.message);
+      if (epoch === generation.current) setError(e.message);
     } finally {
-      setLoading(false);
+      if (epoch === generation.current) setLoading(false);
     }
-  }
+  }, []);
   useEffect(() => {
     load();
-  }, []);
+    let active = true;
+    const { data } = supabase.auth.onAuthStateChange(() => {
+      generation.current++;
+      setLoading(true);
+      setNotice("");
+      setState(previous => ({ ...previous, plan: "free", favorites: [], planner: [], shopping: [], pantry: [], collections: [], templates: [], notes: {}, preferences: { people: 2, category: "all", avoid: [], origins: [], activeWeek: "" } }));
+      setTimeout(() => { if (active) load(); }, 0);
+    });
+    return () => { active = false; data.subscription.unsubscribe(); };
+  }, [load]);
   useEffect(() => {
     if (notice) {
       const timer = setTimeout(() => setNotice(""), 5000);
@@ -45,15 +58,17 @@ export default function LocalProvider({ children }) {
     }
   }, [notice]);
   async function mutate(route, body) {
+    const epoch = generation.current;
     try {
       const result = await api(route, body);
+      if (epoch !== generation.current) return false;
       if (result.state) {
         setState(result.state);
         if (result.meals) setMeals(result.meals);
       } else setState(result);
       return true;
     } catch (e) {
-      setNotice(e.message);
+      if (epoch === generation.current) setNotice(e.message);
       return false;
     }
   }
