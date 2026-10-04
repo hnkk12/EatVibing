@@ -94,7 +94,7 @@ function proposal(s, actor, date, slots, meals, selections, swap = false, used =
   const ids = memberIds(s, actor).filter(id => canPlan(s, actor, id, date));
   if (!ids.length) fail("Share meal preferences before planning.");
   const entries = [];
-  const existing = s.plans[scopeKey(s, actor) + ":" + date]?.entries || [];
+  const existing = projectPlan(s, actor, s.plans[scopeKey(s, actor) + ":" + date], date)?.entries || [];
   for (const slot of slots) {
     const locked = existing.find(e => e.slot === slot && e.locked);
     if (locked) { validateDishes(s, actor, date, locked.dishes, meals); entries.push(locked); for (const d of locked.dishes) used.add(d.mealId); continue; }
@@ -151,21 +151,47 @@ function publicPlan(plan, meals) {
   if (!plan) return null;
   return { ...plan, entries: plan.entries.map(e => ({ ...e, nutrition: totalNutrition(e.dishes, meals), nutritionByMember: Object.fromEntries(e.participants.map(id => [id, totalNutrition(e.dishes, meals, id)])), dishes: e.dishes.map(d => ({ ...d, name: meals.find(m => m.id === d.mealId)?.name || "Unavailable recipe", image: meals.find(m => m.id === d.mealId)?.image_url, verified: verifiedNutrition(meals.find(m => m.id === d.mealId) || {}) })) })) };
 }
-function safePlan(s, actor, plan, meals, date) {
+function projectPlan(s, actor, plan, date) {
   if (!plan) return null;
   // Re-project on every request: old shared portions never bypass withdrawn consent.
   const safe = structuredClone(plan);
+  const allowed = new Set(memberIds(s, actor).filter(id => canPlan(s, actor, id, date)));
   for (const entry of safe.entries) {
-    entry.participants = entry.participants.filter(id => memberIds(s, actor).includes(id) && canPlan(s, actor, id, date));
-    for (const d of entry.dishes) d.portions = Object.fromEntries(Object.entries(d.portions).filter(([id]) => entry.participants.includes(id)));
+    for (const d of entry.dishes) d.portions = Object.fromEntries(Object.entries(d.portions).filter(([id]) => allowed.has(id)));
+    entry.dishes = entry.dishes.filter(d => Object.keys(d.portions).length);
+    entry.participants = [...new Set(entry.dishes.flatMap(d => Object.keys(d.portions)))];
   }
-  return publicPlan(safe, meals);
+  safe.entries = safe.entries.filter(entry => entry.dishes.length);
+  return safe;
+}
+function safePlan(s, actor, plan, meals, date) {
+  return publicPlan(projectPlan(s, actor, plan, date), meals);
+}
+function conversationContext(s, actor, memberId, date, meals, policy) {
+  const person = visibleProfile(s, actor, memberId, date, policy);
+  const member = Object.fromEntries(["name", "child", "goal", "allergies", "avoid", "likes", "dislikes", "cuisines", "diet", "cookingMinutes", "equipment"].filter(k => person[k] !== undefined).map(k => [k, person[k]]));
+  const sharedPlan = projectPlan(s, actor, s.plans[scopeKey(s, actor) + ":" + date], date);
+  // Provider conversation concerns one consenting member. Never send household
+  // identities, other members' portions, or household nutrition totals.
+  const entries = (sharedPlan?.entries || []).map(entry => {
+    const dishes = entry.dishes.filter(d => d.portions[memberId]).map(d => ({ mealId: d.mealId, portions: { [memberId]: d.portions[memberId] } }));
+    return { slot: entry.slot, locked: entry.locked, dishes: dishes.map(d => ({ mealId: d.mealId, name: meals.find(m => m.id === d.mealId)?.name || "Unavailable recipe", servings: d.portions[memberId] })), nutrition: totalNutrition(dishes, meals, memberId) };
+  }).filter(entry => entry.dishes.length);
+  return { date, member, plan: entries.length ? { date, entries } : null,
+    policy: { status: policy.status, version: policy.version },
+    checkIn: editable(s, actor, memberId, date) ? s.checkIns[memberId + ":" + date] || null : null,
+    logs: editable(s, actor, memberId, date) ? Object.values(s.logs).filter(l => l.memberId === memberId && l.date === date) : [],
+    recipes: meals.slice(0, 25).map(m => ({ id: m.id, name: m.name, ingredients: m.ingredients, verified: verifiedNutrition(m), nutrition: verifiedNutrition(m) ? m.nutrition.perServing : null })) };
+}
+function conversationStamp(s, memberId, context) {
+  // Local fingerprint also covers clinical exclusions without sending them to AI.
+  return hash(JSON.stringify({ context, profile: s.profiles[memberId] || freshProfile(memberId) }));
 }
 function groceryView(s, actor, meals, start) {
   const end = new Date(start + "T12:00:00Z"); end.setUTCDate(end.getUTCDate() + 6);
   const plans = Object.values(s.plans).filter(p => p.scope === scopeKey(s, actor) && p.date >= start && p.date <= end.toISOString().slice(0, 10));
   const entries = [];
-  for (const p of plans) for (const e of p.entries) for (const d of e.dishes) {
+  for (const p of plans) for (const e of projectPlan(s, actor, p, p.date).entries) for (const d of e.dishes) {
     validateDishes(s, actor, p.date, [d], meals);
     entries.push({ meal: d.mealId, servings: Object.values(d.portions).reduce((a, b) => a + b, 0) });
   }
@@ -190,7 +216,7 @@ function confirmProposal(s, actor, p, catalog, policy = defaultPolicy) {
   const plan = { date: p.date, scope: p.scope, entries: [...previous.filter(e => !(p.slots || p.entries.map(e => e.slot)).includes(e.slot)), ...p.entries], updatedAt: new Date().toISOString() };
   s.plans[key] = plan; p.status = "confirmed";
   s.events.push({ type: "plan_confirmed", at: Date.now() }); s.events = s.events.slice(-1000);
-  return publicPlan(plan, catalog);
+  return safePlan(s, actor, plan, catalog, p.date);
 }
 function todayView(s, actor, policy, meals, date = currentDate(s, actor)) {
   const profile = ownProfile(s, actor);
@@ -392,7 +418,7 @@ function installAssistant(app, { store, authenticate, getMeals, policy = default
           date.setUTCDate(date.getUTCDate() - 7);
           const previous = s.plans[scopeKey(s, actor) + ":" + date.toISOString().slice(0, 10)];
           if (!previous) fail("Previous week has missing days. Generate a new week instead.", 409);
-          selections = Object.fromEntries(previous.entries.map(e => [e.slot, e.dishes]));
+          selections = Object.fromEntries(projectPlan(s, actor, previous, day).entries.map(e => [e.slot, e.dishes]));
         }
         days.push(proposal(s, actor, day, SLOTS, catalog, selections, false, used, policy));
       }
@@ -425,12 +451,16 @@ function installAssistant(app, { store, authenticate, getMeals, policy = default
     res.json(Object.values(s.plans).filter(p => p.scope === scopeKey(s, actor) && p.date >= start && p.date <= end).sort((a, b) => a.date.localeCompare(b.date)).map(p => safePlan(s, actor, p, meals, p.date)));
   });
   route("post", "/plans/lock", async (req, res) => {
+    const meals = await getMeals();
     await mutate(store, s => {
       const actor = req.actor.id, date = checkDate(req.body.date), plan = s.plans[scopeKey(s, actor) + ":" + date];
       const entry = plan?.entries.find(e => e.slot === req.body.slot);
       if (!entry || typeof req.body.locked !== "boolean") fail("Meal slot unavailable.", 404);
-      if (!entry.participants.every(id => canPlan(s, actor, id, date))) fail("A member's consent changed.", 409);
-      entry.locked = req.body.locked; plan.updatedAt = new Date().toISOString();
+      const projected = projectPlan(s, actor, { entries: [entry] }, date).entries[0];
+      if (projected && req.body.locked) validateDishes(s, actor, date, projected.dishes, catalogWithNutrition(s, meals));
+      if (projected) projected.locked = req.body.locked;
+      plan.entries = plan.entries.flatMap(e => e === entry ? (projected ? [projected] : []) : [e]);
+      plan.updatedAt = new Date().toISOString();
     }); res.json({ saved: true });
   });
   route("get", "/pantry", async (req, res) => { const { s, actor } = await read(req); res.json(s.pantry[scopeKey(s, actor)] || []); });
@@ -488,19 +518,18 @@ function installAssistant(app, { store, authenticate, getMeals, policy = default
     const stamp = accessStamp(s, actor);
     // Only permitted, current context reaches a provider; no full store or health chat logging.
     const view = todayView(s, actor, policy, meals, date);
-    const permittedMember = Object.fromEntries(["name", "child", "goal", "allergies", "avoid", "likes", "dislikes", "cuisines", "diet", "cookingMinutes", "equipment"].filter(k => person[k] !== undefined).map(k => [k, person[k]]));
-    const context = { date, member: permittedMember, plan: view.plan, policy: view.policy, actions: view.actions,
-      checkIn: editable(s, actor, memberId, date) ? s.checkIns[memberId + ":" + date] || null : null,
-      logs: editable(s, actor, memberId, date) ? Object.values(s.logs).filter(l => l.memberId === memberId && l.date === date) : [],
-      recipes: meals.slice(0, 25).map(m => ({ id: m.id, name: m.name, ingredients: m.ingredients, verified: verifiedNutrition(m), nutrition: verifiedNutrition(m) ? m.nutrition.perServing : null })) };
+    const context = conversationContext(s, actor, memberId, date, meals, policy);
+    const contextStamp = conversationStamp(s, memberId, context);
+    let providerAttempted = false;
     let answer = safetyResponse(prompt, person, policy.status), providerStatus = answer ? "policy" : "offline", usage = null;
     const intent = answer ? null : planningIntent(prompt);
     const start = Date.now();
     const consent = s.profiles[memberId]?.aiConsent === true;
     if (provider && !consent && !answer && !intent) providerStatus = "consent-required";
     if (provider && consent && !answer && !intent) {
+      providerAttempted = true;
       try {
-        const response = await provider({ prompt, context, history: (s.messages[actor] || []).filter(m => m.stamp === stamp && m.memberId === memberId).slice(-12).map(m => ({ role: m.role, content: m.text })) });
+        const response = await provider({ prompt, context, history: (s.messages[actor] || []).filter(m => m.stamp === stamp && m.memberId === memberId && m.contextStamp === contextStamp).slice(-12).map(m => ({ role: m.role, content: m.text })) });
         answer = typeof response === "string" ? response : response?.answer;
         if (typeof answer !== "string" || !answer.trim()) throw new Error("Empty provider response");
         usage = typeof response === "object" ? response?.usage || null : null; providerStatus = "available";
@@ -515,13 +544,16 @@ function installAssistant(app, { store, authenticate, getMeals, policy = default
     // Never trust free-form model text as a source of numerical nutrition or executable actions.
     const numericNutrition = /\d+(?:[.,]\d+)?\s*(?:kcal|calories?\b|calo\b)|\b(?:bmi|bmr|tdee|calorie target)\b[^\n.!?]{0,40}\d|\d+(?:[.,]\d+)?\s*g\s*(?:protein|carbs?|carbohydrate|fat)\b/i.test(answer || "");
     if (providerStatus === "available" && (numericNutrition || /\b(saved|confirmed|updated|prescribed|diagnosed)\b|da luu|da cap nhat|da xac nhan/.test(clean(answer)) || safetyResponse(answer, person, policy.status))) { answer = vi ? "Mình có thể giúp bạn chọn món và điều chỉnh kế hoạch. Các chỉ số và giá trị dinh dưỡng đã kiểm tra nằm trong Profile và thẻ kế hoạch; hãy dùng các thao tác bên dưới." : "I can help choose meals and adjust your plan. Validated measurements and nutrition are shown in your Profile and plan cards. Use the actions below."; providerStatus = "filtered"; }
+    const currentMeals = await getMeals();
     const result = await mutate(store, state => {
       if (accessStamp(state, actor) !== stamp) fail("Sharing permissions changed. Please send your message again.", 409);
+      const currentCatalog = catalogWithNutrition(state, currentMeals);
+      if (providerAttempted && (currentDate(state, actor) !== date || conversationStamp(state, memberId, conversationContext(state, actor, memberId, date, currentCatalog, policy)) !== contextStamp)) fail("Meal preferences or daily context changed. Please send your message again.", 409);
       const requestedDate = new Date(date + "T12:00:00Z"); requestedDate.setUTCDate(requestedDate.getUTCDate() + (intent?.offset || 0));
       const planDate = checkDate(intent?.explicitDate || requestedDate.toISOString().slice(0, 10));
-      const preview = intent && !intent.needsDate ? publicPlan(proposal(state, actor, planDate, intent.slots, catalogWithNutrition(state, meals), undefined, intent.swap, new Set(), policy), catalogWithNutrition(state, meals)) : null;
+      const preview = intent && !intent.needsDate ? publicPlan(proposal(state, actor, planDate, intent.slots, currentCatalog, undefined, intent.swap, new Set(), policy), currentCatalog) : null;
       const at = new Date().toISOString(), messages = state.messages[actor] ||= [];
-      messages.push({ role: "user", text: prompt, at, stamp, memberId }, { role: "assistant", text: String(answer).slice(0, 6000), at, stamp, memberId }); state.messages[actor] = messages.slice(-100);
+      messages.push({ role: "user", text: prompt, at, stamp, memberId, contextStamp }, { role: "assistant", text: String(answer).slice(0, 6000), at, stamp, memberId, contextStamp }); state.messages[actor] = messages.slice(-100);
       state.events.push({ type: "assistant_response", providerStatus, durationMs: Date.now() - start, usage, at: Date.now() }); state.events = state.events.slice(-1000);
       return { answer: String(answer).slice(0, 6000), proposal: preview, cards: view.actions, sources: ["https://www.who.int/news-room/fact-sheets/detail/healthy-diet"], missingInformation: person.metrics?.missing || [], estimated: true, providerStatus };
     }); res.json(result);

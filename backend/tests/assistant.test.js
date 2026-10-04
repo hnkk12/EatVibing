@@ -292,3 +292,135 @@ test("numbered cooking steps pass through while nutritional targets and empty re
   await call("alice", "/profile", { aiConsent: false }, "PUT");
   assert.equal((await call("alice", "/assistant/status")).data.ready, false);
 });
+
+test("provider plan contains only the selected consenting member's dishes and nutrition", async t => {
+  const requests = [];
+  const { call, family } = await harness(t, { provider: async request => { requests.push(request); return "Cook gently."; } });
+  await family(); await call("bob", "/profile", { aiConsent: false }, "PUT");
+  const date = localDate();
+  const preview = await call("alice", "/plan-proposals", { date, slots: ["dinner"], selections: { dinner: [
+    { mealId: "recipe-0", portions: { alice: 1, bob: 3 } },
+    { mealId: "recipe-1", portions: { bob: 4 } },
+  ] } });
+  assert.equal((await call("alice", `/plan-proposals/${preview.data.id}/confirm`, {})).status, 200);
+  const reply = await call("alice", "/assistant/messages", { memberId: "alice", prompt: "Tell me a kitchen tip" });
+  assert.equal(reply.status, 200); assert.equal(requests.length, 1);
+  const plan = requests[0].context.plan;
+  assert.equal(plan.scope, undefined); assert.equal(plan.entries[0].participants, undefined);
+  assert.deepEqual(plan.entries[0].dishes, [{ mealId: "recipe-0", name: "Reviewed chicken 0", servings: 1 }]);
+  assert.equal(plan.entries[0].nutrition.values.kcal, 200);
+  assert.equal(plan.entries[0].nutritionByMember, undefined);
+  assert.equal(JSON.stringify(requests[0].context).includes('"bob"'), false);
+  assert.equal((await call("alice", "/assistant/messages", { memberId: "bob", prompt: "Tell me a kitchen tip" })).data.providerStatus, "consent-required");
+  assert.equal(requests.length, 1);
+});
+
+test("provider history is reused only with the same current member context", async t => {
+  const requests = [];
+  const { call, profile, store } = await harness(t, { provider: async request => { requests.push(request); return "Use fresh ingredients."; } });
+  await profile("alice");
+  for (let i = 0; i < 2; i++) assert.equal((await call("alice", "/assistant/messages", { prompt: "Tell me a kitchen tip" })).status, 200);
+  assert.equal(requests[0].history.length, 0); assert.equal(requests[1].history.length, 2);
+  await mutate(store, s => { for (const m of s.messages.alice) delete m.contextStamp; });
+  assert.equal((await call("alice", "/assistant/messages", { prompt: "Tell me a kitchen tip" })).status, 200);
+  assert.equal(requests[2].history.length, 0);
+  await call("alice", "/profile", { allergies: ["milk"] }, "PUT");
+  assert.equal((await call("alice", "/assistant/messages", { prompt: "Tell me a kitchen tip" })).status, 200);
+  assert.equal(requests[3].history.length, 0); assert.deepEqual(requests[3].context.member.allergies, ["milk"]);
+});
+
+test("in-flight provider replies are discarded when restrictions, consent or daily context change", async t => {
+  for (const change of ["allergies", "avoid", "diet", "specialCare", "consent", "checkIn", "plan", "catalog"]) {
+    await t.test(change, async sub => {
+      let release, entered;
+      const started = new Promise(resolve => { entered = resolve; });
+      const paused = new Promise(resolve => { release = resolve; });
+      const { call, profile, store, meals } = await harness(sub, { provider: async () => { entered(); await paused; return "Try milk in the sauce."; } });
+      await profile("alice");
+      const pending = call("alice", "/assistant/messages", { prompt: "Tell me a kitchen tip" });
+      await started;
+      try {
+        if (change === "catalog") { meals[0].name = "Changed source recipe"; }
+        else if (change === "plan") {
+          const p = await call("alice", "/plan-proposals", { date: localDate(), slots: ["dinner"] });
+          assert.equal((await call("alice", `/plan-proposals/${p.data.id}/confirm`, {})).status, 200);
+        } else {
+          const patch = change === "allergies" ? { allergies: ["milk"] } : change === "avoid" ? { avoid: ["milk"] } : change === "diet" ? { diet: "vegan" } : change === "specialCare" ? { specialCare: true } : { aiConsent: false };
+          const updated = change === "checkIn" ? await call("alice", "/check-ins", { date: localDate(), dayActivity: "light", activityStatus: "planned", activity: "Walk", activityMinutes: 20, cookingMinutes: 15, locations: { breakfast: "home", lunch: "outside", dinner: "home" } }) : await call("alice", "/profile", patch, "PUT");
+          assert.equal(updated.status, 200);
+        }
+      } finally { release(); }
+      const result = await pending;
+      assert.equal(result.status, 409); assert.match(result.data.error, /changed/);
+      assert.equal(((await store.read()).data.messages.alice || []).length, 0);
+    });
+  }
+});
+
+test("withdrawn participation and departed members do not block groceries, locks or new proposals", async t => {
+  for (const change of ["withdraw", "leave"]) {
+    await t.test(change, async sub => {
+      const { call, family, store } = await harness(sub); await family();
+      const date = localDate(), start = weekOf(date);
+      const preview = await call("alice", "/plan-proposals", { date, slots: ["dinner"], selections: { dinner: [
+        { mealId: "recipe-0", portions: { alice: 1, bob: 2 } },
+        { mealId: "recipe-1", portions: { bob: 1 } },
+      ] } });
+      assert.equal((await call("alice", `/plan-proposals/${preview.data.id}/confirm`, {})).status, 200);
+      assert.equal((await call("alice", "/plans/lock", { date, slot: "dinner", locked: true })).status, 200);
+      const before = await call("alice", "/groceries?start=" + start);
+      const item = before.data.items.find(i => i.name === "chicken breast");
+      assert.equal(item.needed, 400);
+      assert.equal((await call("alice", "/groceries/check", { start, signature: before.data.signature, key: item.key, checked: true })).status, 200);
+      const changed = change === "withdraw" ? await call("bob", "/profile", { sharing: { portions: false, goals: false, body: false } }, "PUT") : await call("bob", "/households/leave", {});
+      assert.equal(changed.status, 200);
+      const after = await call("alice", "/groceries?start=" + start);
+      assert.equal(after.status, 200); assert.equal(after.data.items.find(i => i.name === "chicken breast").needed, 100);
+      assert.equal(after.data.items.find(i => i.name === "chicken breast").checked, false);
+      const plans = await call("alice", "/plans?start=" + start);
+      assert.equal(plans.data[0].entries[0].dishes.length, 1);
+      assert.deepEqual(plans.data[0].entries[0].dishes[0].portions, { alice: 1 });
+      const breakfast = await call("alice", "/plan-proposals", { date, slots: ["breakfast"] });
+      const confirmed = await call("alice", `/plan-proposals/${breakfast.data.id}/confirm`, {});
+      assert.equal(confirmed.status, 200);
+      assert.ok(confirmed.data.entries.every(e => e.dishes.every(d => d.portions.bob === undefined)));
+      const next = await call("alice", "/plan-proposals", { date, slots: ["dinner"] });
+      assert.equal(next.status, 201); assert.equal(next.data.entries[0].locked, true);
+      assert.deepEqual(next.data.entries[0].participants, ["alice"]);
+      assert.equal((await call("alice", "/plans/lock", { date, slot: "dinner", locked: false })).status, 200);
+      const saved = (await store.read()).data.plans[preview.data.scope + ":" + date];
+      assert.equal(saved.entries[0].locked, false); assert.deepEqual(saved.entries[0].dishes[0].portions, { alice: 1 });
+      const week = await call("alice", "/weekly-proposals", { start });
+      assert.equal(week.status, 201);
+      assert.equal((await call("alice", `/plan-proposals/${week.data.id}/confirm`, {})).status, 200);
+    });
+  }
+});
+
+test("slots with no permitted participants disappear and can be unlocked; allergy conflicts still reject locks", async t => {
+  const { call, family } = await harness(t); await family(); const date = localDate();
+  const p = await call("alice", "/plan-proposals", { date, slots: ["dinner"], selections: { dinner: [{ mealId: "recipe-0", portions: { bob: 1 } }] } });
+  await call("alice", `/plan-proposals/${p.data.id}/confirm`, {});
+  await call("alice", "/plans/lock", { date, slot: "dinner", locked: true });
+  await call("bob", "/profile", { sharing: { portions: false, goals: false, body: false } }, "PUT");
+  assert.deepEqual((await call("alice", "/groceries")).data.items, []);
+  assert.deepEqual((await call("alice", "/plans")).data[0].entries, []);
+  assert.equal((await call("alice", "/plans/lock", { date, slot: "dinner", locked: false })).status, 200);
+  const own = await call("alice", "/plan-proposals", { date, slots: ["dinner"] });
+  await call("alice", `/plan-proposals/${own.data.id}/confirm`, {});
+  await call("alice", "/profile", { allergies: ["milk"] }, "PUT");
+  assert.equal((await call("alice", "/plans/lock", { date, slot: "dinner", locked: true })).status, 409);
+  assert.equal((await call("alice", "/plans/lock", { date, slot: "dinner", locked: false })).status, 200);
+});
+
+test("previous-week reuse removes departed participants before creating a new week", async t => {
+  const { call, family } = await harness(t); await family(); const start = weekOf(localDate());
+  const week = await call("alice", "/weekly-proposals", { start });
+  assert.equal((await call("alice", `/plan-proposals/${week.data.id}/confirm`, {})).status, 200);
+  assert.equal((await call("bob", "/households/leave", {})).status, 200);
+  const next = new Date(start + "T12:00:00Z"); next.setUTCDate(next.getUTCDate() + 7);
+  const reused = await call("alice", "/weekly-proposals", { start: next.toISOString().slice(0, 10), reusePrevious: true });
+  assert.equal(reused.status, 201);
+  assert.ok(reused.data.days.every(day => day.entries.every(e => e.dishes.every(d => Object.keys(d.portions).join() === "alice"))));
+  assert.equal((await call("alice", `/plan-proposals/${reused.data.id}/confirm`, {})).status, 200);
+});

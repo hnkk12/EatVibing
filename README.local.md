@@ -1,5 +1,7 @@
 # EatVibing — local review
 
+System inventory and next work: [Bảng chức năng, công việc đã làm và kế hoạch hệ thống](docs/ke-hoach-he-thong.md).
+
 Branch: `local/saas-premium`. No changes are pushed.
 
 ## Run

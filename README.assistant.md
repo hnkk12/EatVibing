@@ -1,5 +1,7 @@
 # EatVibing family assistant
 
+Vietnamese system inventory and roadmap: [Bảng chức năng, công việc đã làm và kế hoạch hệ thống](docs/ke-hoach-he-thong.md).
+
 Implemented on 2026-10-03. The interface remains English; deterministic chat responses support Vietnamese and English. This is a reviewable implementation with a local demo and an authenticated server entry point. It has not been deployed, clinically approved or tested with real pilot families.
 
 ## What works
@@ -43,6 +45,10 @@ Every `/api/v1` request derives identity from `auth.getUser(bearerToken)`; body 
 SQLite and Supabase use the same versioned store contract. The Supabase migration is a **service-only, compare-and-set JSON document**, with browser table/RPC access revoked and RLS enabled. This supports an isolated pilot and atomic operations, but all families currently share one persistence row. Before broad production rollout, normalize household/member rows, add indexed queries, per-entity RLS, migration/backfill tooling, retention/export/deletion workflows, durable audit events and measured concurrency/rate-limit handling. Do not treat the current persistence adapter as a scalable multi-tenant production schema.
 
 Conversation data is private to the requesting adult. Provider context is intentionally minimized; measurements and birth dates are not sent. Guardian records stay with the guardian after leaving a household. An adult account transition at 18 requires explicit identity/consent work and is currently blocked rather than inferred.
+
+The 2026-10-04 review fixes restrict provider plan context to the selected consenting member's dishes, portions and nutrition. Other household participants, portions and totals are excluded. Provider history is reused only for the same current context; legacy messages without a context fingerprint are excluded from provider history. If the selected profile, restrictions, daily context, plan or supplied recipe context changes while a provider request is pending, its reply is rejected with HTTP 409 and is not saved. Fingerprints of private profile fields remain local to the server.
+
+Saved plans, groceries, locked previews, confirmation replies and previous-week reuse re-project participation under current permissions. Departed or non-sharing members' portions are omitted. Slots with no remaining participants disappear from the projection; unlocking can remove their stale slot. Unlocking also remains available to repair a conflicting meal, while locking and confirming still validate current allergies and dietary suitability.
 
 ## Clinical gates and recipe preparation
 
@@ -107,7 +113,7 @@ npm run build
 
 The backend suite covers BMI/units/age boundaries, separate identities, privacy revocation, child guards, history correction, stale/expired proposals, multi-dish arithmetic, atomic weeks, pantry/checklist invalidation, offline provider, future activity, explicit import and existing premium regressions. The 107-case evaluation is deterministic/offline: it is **not** a live LLM assessment or an expert-scored holdout.
 
-Latest local validation on 2026-10-03: **25 backend tests passed**, **107 offline cases passed**, targeted frontend ESLint passed and Vite production build passed. The build reports a bundle-size advisory and an outdated Browserslist database; neither is a build failure. `git diff --check` passed. Browser checks covered desktop and 390px mobile without horizontal overflow; previously found duplicate React keys were corrected.
+Latest local validation on 2026-10-04: **43 backend checks passed** (including subtests), **107 offline cases passed**, targeted frontend ESLint including Community passed and Vite production build passed. Regression coverage includes per-member provider plan context, current/legacy history, in-flight restrictions/consent/check-in/plan/catalog changes, withdrawn/departed participants, grocery quantities, unlocking and previous-week reuse. The build reports a bundle-size advisory and an outdated Browserslist database; neither is a build failure. `git diff --check` passed. Earlier browser checks on 2026-10-03 covered desktop and 390px mobile without horizontal overflow; previously found duplicate React keys were corrected. This fix did not repeat live browser or external-service verification.
 
 Desktop and a 390px mobile browser were checked using synthetic local profiles, family creation, check-in, unknown school lunch, chat preview and confirmed plans. Screenshots are under `artifacts/assistant`. No real health data was used.
 
